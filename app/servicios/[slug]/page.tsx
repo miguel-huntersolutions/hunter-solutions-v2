@@ -75,7 +75,7 @@ export default async function ServicePage({
           <Link href="/" className="underline">
             Inicio
           </Link>{" "}
-          / <Link href="/#servicios" className="underline">
+          / <Link href="/servicios" className="underline">
             Servicios
           </Link>{" "}
           / <span className="text-navy">{service.nombre}</span>
