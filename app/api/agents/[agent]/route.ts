@@ -10,6 +10,7 @@ import {
 import {
   SAFE_FALLBACK,
   correctiveInstruction,
+  stripMarkdown,
   validateAgentOutput,
 } from "@/lib/agents/guardrails"
 
@@ -96,7 +97,7 @@ export async function POST(
       }
     }
 
-    return new Response(text, {
+    return new Response(stripMarkdown(text), {
       headers: { "Content-Type": "text/plain; charset=utf-8" },
     })
   } catch (error) {

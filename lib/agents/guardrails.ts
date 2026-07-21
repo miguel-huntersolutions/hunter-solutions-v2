@@ -30,6 +30,16 @@ const GUARANTEE_PATTERN =
 const SENSITIVE_REQUEST_PATTERN =
   /(?:dame|envíe|envía|comparta|comparte|necesito|indíqueme|escriba)[^.]{0,60}(?:cédula|tarjeta de crédito|número de tarjeta|contraseña|credenciales)/i
 
+/** Limpieza defensiva: el modelo debe responder en texto plano, pero si
+ * cuela markdown (negritas, encabezados) lo eliminamos antes de mostrarlo. */
+export function stripMarkdown(text: string): string {
+  return text
+    .replace(/\*\*([^*]+)\*\*/g, "$1")
+    .replace(/__([^_]+)__/g, "$1")
+    .replace(/^#{1,6}\s+/gm, "")
+    .replace(/^\s*[-*]\s+/gm, "· ")
+}
+
 export function validateAgentOutput(text: string): GuardrailViolation[] {
   const violations: GuardrailViolation[] = []
 
