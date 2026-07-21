@@ -1,7 +1,9 @@
 import { Hero } from "@/components/home/hero"
+import { StatBand } from "@/components/home/stat-band"
 import { Problems } from "@/components/home/problems"
 import { Process } from "@/components/home/process"
 import { Catalog } from "@/components/home/catalog"
+import { Sectors } from "@/components/home/sectors"
 import { Cases } from "@/components/home/cases"
 import { Tools } from "@/components/home/tools"
 import { Recommender } from "@/components/home/recommender"
@@ -14,11 +16,13 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      <StatBand />
       <Problems />
       <Process />
       <Catalog />
       <Recommender />
       <Tools />
+      <Sectors />
       <Cases />
       <GovernanceStrip />
       <Differentiators />

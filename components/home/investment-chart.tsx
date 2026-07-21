@@ -4,8 +4,6 @@ import { Bar, BarChart, XAxis, YAxis, LabelList } from "recharts"
 import { levels } from "@/content"
 import {
   ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
   type ChartConfig,
 } from "@/components/ui/chart"
 
@@ -18,63 +16,49 @@ function fmt(n: number) {
 const data = levels.map((l) => {
   const esUltimo = l.id === levels.length
   return {
-    nivel: l.nombre.split(" · ")[1] ?? l.nombre,
-    min: l.rangoMin / 1_000_000,
-    span: (l.rangoMax - l.rangoMin) / 1_000_000,
-    rangoMin: l.rangoMin,
-    rangoMax: l.rangoMax,
-    esUltimo,
-    etiqueta: esUltimo ? `Desde ${fmt(l.rangoMin)}` : `${fmt(l.rangoMin)} – ${fmt(l.rangoMax)}`,
+    nivel: (l.nombre.split(" · ")[1] ?? l.nombre).toUpperCase(),
+    // Tope de cada nivel, en millones, para dimensionar la barra.
+    tope: l.rangoMax / 1_000_000,
+    etiqueta: esUltimo ? `desde ${fmt(l.rangoMin)}` : `${fmt(l.rangoMin)} – ${fmt(l.rangoMax)}`,
   }
 })
 
 const config = {
-  span: { label: "Rango de inversión", color: "var(--chart-1)" },
+  tope: { label: "Rango de inversión", color: "var(--chart-1)" },
 } satisfies ChartConfig
 
 export function InvestmentChart() {
   return (
-    <div className="hst-card p-4">
+    <div className="hst-card p-5">
       <p className="text-caption font-semibold uppercase tracking-wide text-teal-dark">
         Rangos de inversión por nivel
       </p>
       <p className="mt-1 mb-4 text-caption leading-relaxed text-slate">
-        En millones de pesos colombianos, sin IVA. Cada proyecto se cotiza según su alcance.
+        En millones de pesos colombianos (COP), sin IVA. Cada proyecto se cotiza según su alcance.
       </p>
-      <ChartContainer config={config} className="aspect-[16/9] w-full">
-        <BarChart accessibilityLayer data={data} layout="vertical" margin={{ left: 8, right: 48 }}>
-          <XAxis type="number" hide />
+      <ChartContainer config={config} className="h-[220px] w-full">
+        <BarChart
+          accessibilityLayer
+          data={data}
+          layout="vertical"
+          margin={{ top: 4, bottom: 4, left: 4, right: 96 }}
+        >
+          <XAxis type="number" hide domain={[0, 220]} />
           <YAxis
             type="category"
             dataKey="nivel"
             tickLine={false}
             axisLine={false}
-            width={92}
-            tick={{ fill: "var(--color-navy)", fontSize: 13, fontWeight: 600 }}
+            width={96}
+            tick={{ fill: "var(--color-navy)", fontSize: 13, fontWeight: 700 }}
           />
-          <ChartTooltip
-            cursor={false}
-            content={
-              <ChartTooltipContent
-                hideIndicator
-                formatter={(_v, _n, item) => {
-                  const p = item.payload as (typeof data)[number]
-                  return p.esUltimo
-                    ? `Desde ${fmt(p.rangoMin)}`
-                    : `${fmt(p.rangoMin)} – ${fmt(p.rangoMax)}`
-                }}
-              />
-            }
-          />
-          {/* Barra base invisible que desplaza el inicio del rango */}
-          <Bar dataKey="min" stackId="a" fill="transparent" />
-          <Bar dataKey="span" stackId="a" fill="var(--color-teal)" radius={[0, 6, 6, 0]} barSize={28}>
+          <Bar dataKey="tope" fill="var(--color-teal)" radius={[6, 6, 6, 6]}>
             <LabelList
               dataKey="etiqueta"
               position="right"
-              offset={10}
+              offset={12}
               className="fill-navy"
-              fontSize={12}
+              fontSize={13}
               fontWeight={600}
             />
           </Bar>

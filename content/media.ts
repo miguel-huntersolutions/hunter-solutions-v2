@@ -24,4 +24,8 @@ export const caseImages: Record<string, string> = {
   "procesamiento-automatico-de-hojas-de-vida": "/casos/hojas-de-vida.png",
 }
 
+export function caseImage(slug: string): string {
+  return caseImages[slug] ?? "/placeholder.svg"
+}
+
 export const heroAbstract = "/abstract/digital-workforce.png"
