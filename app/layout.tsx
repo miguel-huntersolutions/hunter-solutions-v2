@@ -4,6 +4,8 @@ import { Open_Sans } from 'next/font/google'
 import { brand } from '@/content'
 import { SiteHeader } from '@/components/layout/site-header'
 import { SiteFooter } from '@/components/layout/site-footer'
+import { CookieNotice } from '@/components/layout/cookie-notice'
+import { OrgJsonLd } from '@/components/seo/org-jsonld'
 import './globals.css'
 
 const openSans = Open_Sans({
@@ -53,6 +55,8 @@ export default function RootLayout({
         <SiteHeader />
         <main id="contenido">{children}</main>
         <SiteFooter />
+        <CookieNotice />
+        <OrgJsonLd />
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>

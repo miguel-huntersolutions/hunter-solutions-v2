@@ -1,6 +1,6 @@
 import { agentCorpus } from "./corpus"
 
-export const AGENT_MODEL = "google/gemini-3.5-flash"
+export const AGENT_MODEL = "openai/gpt-4o-mini"
 
 /**
  * Guardrails compartidos por todos los agentes públicos de HST.
