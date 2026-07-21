@@ -30,7 +30,7 @@ export function Catalog() {
             >
               <div className="relative bg-navy p-5 text-white">
                 {destacado && (
-                  <span className="absolute right-4 top-4 rounded-full bg-teal px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wide text-white">
+                  <span className="absolute right-4 top-4 -mt-[26px] rounded-full bg-teal px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wide text-white">
                     Más elegido
                   </span>
                 )}
