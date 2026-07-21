@@ -15,8 +15,8 @@ type LogoProps = {
 }
 
 const SRC: Record<Exclude<LogoProps["variant"], "auto" | undefined>, { src: string; ratio: number }> = {
-  claro: { src: "/brand/lockup_horizontal.svg", ratio: 420 / 96 },
-  negativo: { src: "/brand/lockup_negativo.svg", ratio: 420 / 96 },
+  claro: { src: "/brand/lockup_horizontal.svg", ratio: 556.9 / 112 },
+  negativo: { src: "/brand/lockup_negativo.svg", ratio: 556.9 / 112 },
   icono: { src: "/brand/icono.svg", ratio: 1 },
 }
 
