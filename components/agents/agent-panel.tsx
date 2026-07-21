@@ -67,14 +67,21 @@ export function AgentPanel({ endpoint, title, placeholder, suggestions = [], ton
 
   return (
     <div
-      className={`flex h-full min-h-[320px] flex-col border ${
-        dark ? "border-slate bg-ink" : "border-line bg-white"
+      className={`flex h-full min-h-[320px] flex-col overflow-hidden rounded-xl border shadow-lg ${
+        dark ? "border-white/10 bg-ink" : "border-line bg-white"
       }`}
     >
-      <div className={`border-b px-2 py-1 ${dark ? "border-slate" : "border-line"}`}>
-        <p className={`text-caption font-semibold uppercase tracking-wide ${dark ? "text-teal" : "text-teal"}`}>
+      <div className="flex items-center justify-between gap-2 bg-navy px-3 py-2.5">
+        <p className="flex items-center gap-2 text-caption font-semibold text-white">
+          <span className="flex h-6 w-6 items-center justify-center rounded-full bg-teal text-[11px] font-bold text-white">
+            AI
+          </span>
           {title}
         </p>
+        <span className="flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-wide text-line">
+          <span aria-hidden className="h-2 w-2 rounded-full bg-teal" />
+          En línea
+        </span>
       </div>
 
       <div
@@ -92,10 +99,10 @@ export function AgentPanel({ endpoint, title, placeholder, suggestions = [], ton
                 key={s}
                 type="button"
                 onClick={() => send(s)}
-                className={`border px-2 py-1 text-left text-caption transition-colors ${
+                className={`rounded-lg border px-2 py-1.5 text-left text-caption transition-colors ${
                   dark
-                    ? "border-slate text-line hover:border-teal hover:text-white"
-                    : "border-line text-slate hover:border-teal hover:text-navy"
+                    ? "border-white/15 bg-white/5 text-line hover:border-teal hover:text-white"
+                    : "border-line bg-bg text-slate hover:border-teal hover:text-navy"
                 }`}
               >
                 {s}
@@ -107,10 +114,10 @@ export function AgentPanel({ endpoint, title, placeholder, suggestions = [], ton
         {messages.map((m, i) => (
           <div
             key={i}
-            className={`max-w-[85%] px-2 py-1 text-caption leading-relaxed whitespace-pre-wrap ${
+            className={`max-w-[85%] rounded-2xl px-3 py-2 text-caption leading-relaxed whitespace-pre-wrap ${
               m.role === "user"
-                ? `self-end ${dark ? "bg-teal text-white" : "bg-navy text-white"}`
-                : `self-start ${dark ? "bg-navy text-line" : "bg-bg text-ink"}`
+                ? `self-end rounded-br-sm ${dark ? "bg-teal text-white" : "bg-navy text-white"}`
+                : `self-start rounded-bl-sm ${dark ? "bg-navy text-line" : "bg-bg text-ink"}`
             }`}
           >
             {m.content || "…"}
@@ -144,7 +151,7 @@ export function AgentPanel({ endpoint, title, placeholder, suggestions = [], ton
         <button
           type="submit"
           disabled={status === "loading"}
-          className="flex items-center gap-1 bg-teal px-2 py-1 text-caption font-semibold uppercase tracking-wide text-white disabled:opacity-60"
+          className="m-1.5 flex items-center gap-1 rounded-lg bg-teal px-3 py-1.5 text-caption font-semibold uppercase tracking-wide text-white transition-colors hover:bg-teal-dark disabled:opacity-60"
         >
           {status === "loading" ? "Pensando…" : "Enviar"}
           <SendHorizontal size={16} aria-hidden />

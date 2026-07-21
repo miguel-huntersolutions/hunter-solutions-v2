@@ -1,27 +1,50 @@
 @import 'tailwindcss';
 
 /*
-  Sistema de diseño Hunter Solutions Tech — derivado de design/tokens.ts.
-  Paleta cerrada (7 colores), esquinas rectas, espaciado en múltiplos de 8.
-  Escribir bg-blue-500, rounded-lg o p-[13px] no produce ninguna clase válida.
+  Sistema de diseño Hunter Solutions Tech v3 — evolución "comercial".
+  Mantiene la paleta de marca (navy · teal · neutros) y Open Sans,
+  pero incorpora esquinas suaves, profundidad ligera, textura de rejilla
+  y un uso más protagónico del teal, alineado con huntersolutions.tech.
 */
 
 @theme {
-  /* Paleta cerrada: se elimina la paleta por defecto de Tailwind */
+  /* Paleta cerrada de marca + dos shades de apoyo (mismas familias) */
   --color-*: initial;
   --color-teal: #4c9c87;
+  --color-teal-dark: #3c8371;
+  --color-teal-soft: #e5f0ed;
   --color-navy: #182543;
+  --color-navy-600: #24345a;
   --color-ink: #151b28;
   --color-slate: #5a6472;
-  --color-line: #d5dae2;
-  --color-bg: #f6f7f9;
+  --color-line: #d9dee5;
+  --color-bg: #f5f7f9;
   --color-white: #ffffff;
   --color-transparent: transparent;
   --color-current: currentColor;
 
-  /* Esquinas rectas: borderRadius solo admite 0 */
+  /* Alias que consumen los componentes shadcn (chart, card) */
+  --color-border: #d9dee5;
+  --color-muted: #f5f7f9;
+  --color-muted-foreground: #5a6472;
+  --color-foreground: #151b28;
+
+  /* Paleta de gráficas — familias de marca (navy/teal + neutro) */
+  --chart-1: #4c9c87;
+  --chart-2: #182543;
+  --chart-3: #24345a;
+  --chart-4: #3c8371;
+  --chart-5: #9aa4b2;
+
+  /* Esquinas suaves (antes: solo 0) */
   --radius-*: initial;
   --radius-none: 0;
+  --radius-sm: 0.375rem;
+  --radius-md: 0.625rem;
+  --radius-lg: 0.875rem;
+  --radius-xl: 1.25rem;
+  --radius-2xl: 1.75rem;
+  --radius-full: 9999px;
 
   /* Espaciado en múltiplos de 8: p-1 = 8px, p-2 = 16px, p-3 = 24px… */
   --spacing: 0.5rem;
@@ -31,24 +54,32 @@
   --font-sans: var(--font-open-sans), ui-sans-serif, system-ui, -apple-system,
     'Segoe UI', Arial, sans-serif;
 
-  /* Escala tipográfica de marca (px del manual) */
+  /* Escala tipográfica de marca */
   --text-*: initial;
   --text-caption: 0.8125rem;
-  --text-caption--line-height: 1.4;
+  --text-caption--line-height: 1.5;
   --text-body: 1rem;
   --text-body--line-height: 1.6;
+  --text-lead: 1.1875rem;
+  --text-lead--line-height: 1.6;
   --text-h3: 1.25rem;
   --text-h3--line-height: 1.4;
-  --text-h2: 1.75rem;
-  --text-h2--line-height: 1.25;
-  --text-h1: 2.25rem;
-  --text-h1--line-height: 1.2;
-  --text-display: 3rem;
-  --text-display--line-height: 1.15;
+  --text-h2: 1.875rem;
+  --text-h2--line-height: 1.2;
+  --text-h1: 2.5rem;
+  --text-h1--line-height: 1.12;
+  --text-display: 3.5rem;
+  --text-display--line-height: 1.05;
 
-  /* Sin sombras difusas: la jerarquía es superficie, línea y espacio */
+  /* Profundidad sutil, teñida de navy */
   --shadow-*: initial;
   --shadow-none: 0 0 #0000;
+  --shadow-sm: 0 1px 2px 0 rgb(24 37 67 / 0.06);
+  --shadow-md: 0 8px 24px -12px rgb(24 37 67 / 0.22);
+  --shadow-lg: 0 24px 50px -24px rgb(24 37 67 / 0.32);
+
+  --animate-*: initial;
+  --animate-fade-up: fade-up 0.5s ease-out both;
 }
 
 :root {
@@ -57,14 +88,13 @@
   --hst-navy: #182543;
   --hst-ink: #151b28;
   --hst-slate: #5a6472;
-  --hst-line: #d5dae2;
-  --hst-bg: #f6f7f9;
+  --hst-line: #d9dee5;
+  --hst-bg: #f5f7f9;
   --hst-white: #ffffff;
 }
 
 @layer base {
   * {
-    border-radius: 0;
     border-color: var(--hst-line);
   }
 
@@ -77,6 +107,9 @@
     html {
       scroll-behavior: auto;
     }
+    * {
+      animation: none !important;
+    }
   }
 
   body {
@@ -86,14 +119,7 @@
       'Segoe UI', Arial, sans-serif;
     font-size: 1rem;
     line-height: 1.6;
-  }
-
-  input,
-  textarea,
-  select,
-  button,
-  img {
-    border-radius: 0;
+    -webkit-font-smoothing: antialiased;
   }
 
   :focus-visible {
@@ -108,17 +134,44 @@
 }
 
 @layer components {
+  /* Tarjeta base: superficie clara, borde tenue, profundidad ligera */
   .hst-card {
     background-color: var(--hst-white);
     border: 1px solid var(--hst-line);
-    border-radius: 0;
-    padding: 24px;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+  }
+  .hst-card-hover:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+    border-color: color-mix(in srgb, var(--hst-teal) 40%, var(--hst-line));
+  }
+
+  /* Textura de rejilla para superficies navy (hero, secciones oscuras) */
+  .hst-grid {
+    background-image:
+      linear-gradient(to right, rgb(255 255 255 / 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(255 255 255 / 0.05) 1px, transparent 1px);
+    background-size: 46px 46px;
+  }
+
+  /* Resplandor teal muy sutil como acento de fondo */
+  .hst-glow {
+    background:
+      radial-gradient(60% 60% at 80% 10%, rgb(76 156 135 / 0.22), transparent 70%);
   }
 }
 
-/* Única excepción de redondeo: el tile del logo (data-brand-logo) */
-[data-brand-logo] * {
-  border-radius: initial;
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @media print {
