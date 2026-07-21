@@ -17,8 +17,8 @@ const COLUMNS = [
   {
     title: "Legal",
     links: [
-      { href: "/legal/privacidad", label: "Política de privacidad" },
-      { href: "/legal/terminos", label: "Términos de uso" },
+      { href: "/privacidad", label: "Política de privacidad" },
+      { href: "/terminos", label: "Términos de uso" },
       { href: "/legal/uso-de-ia", label: "Uso de IA en este sitio" },
     ],
   },

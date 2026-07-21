@@ -108,9 +108,9 @@ export function Contact() {
         <div className="flex items-start gap-2 md:col-span-2">
           <input id="lead-consent" name="consentimiento" type="checkbox" required className="mt-1" />
           <label htmlFor="lead-consent" className="text-caption leading-relaxed text-slate">
-            Autorizo el tratamiento de mis datos personales para que Hunter Solutions Tech responda
-            esta solicitud, según la{" "}
-            <a href="/legal/privacidad" className="underline">
+            Autorizo el tratamiento de mis datos personales por Hunter Solutions Tech para responder
+            esta solicitud, conforme a la Ley 1581 de 2012 y la{" "}
+            <a href="/privacidad" className="underline">
               política de privacidad
             </a>
             .
