@@ -1,5 +1,4 @@
 import { Hero } from "@/components/home/hero"
-import { StatBand } from "@/components/home/stat-band"
 import { Problems } from "@/components/home/problems"
 import { Process } from "@/components/home/process"
 import { Catalog } from "@/components/home/catalog"
@@ -16,7 +15,6 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <StatBand />
       <Problems />
       <Process />
       <Catalog />
