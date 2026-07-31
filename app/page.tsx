@@ -3,6 +3,7 @@ import { DigitalWorkforce } from "@/components/home/digital-workforce"
 import { Problems } from "@/components/home/problems"
 import { Process } from "@/components/home/process"
 import { Catalog } from "@/components/home/catalog"
+import { EngagementModels } from "@/components/home/engagement-models"
 import { Sectors } from "@/components/home/sectors"
 import { Cases } from "@/components/home/cases"
 import { Tools } from "@/components/home/tools"
@@ -20,6 +21,7 @@ export default function HomePage() {
       <Problems />
       <Process />
       <Catalog />
+      <EngagementModels />
       <Recommender />
       <Tools />
       <Sectors />
