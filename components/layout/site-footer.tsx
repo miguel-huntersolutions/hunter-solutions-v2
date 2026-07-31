@@ -11,6 +11,7 @@ const COLUMNS = [
       { href: "/casos", label: "Casos" },
       { href: "/gobernanza", label: "Gobernanza de IA" },
       { href: "/formacion", label: "Formación" },
+      { href: "/recursos", label: "Recursos" },
       { href: "/aliados", label: "Aliados" },
       { href: "/preguntas", label: "Preguntas frecuentes" },
     ],

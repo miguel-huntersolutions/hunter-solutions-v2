@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next"
-import { services, publishedCases } from "@/content"
+import { services, publishedCases, publishedResources } from "@/content"
 import { SITE_URL } from "@/lib/seo"
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -9,6 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = [
     "",
     "/fuerza-laboral-digital",
+    "/recursos",
     "/servicios",
     "/casos",
     "/gobernanza",
@@ -39,5 +40,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }))
 
-  return [...staticRoutes, ...serviceRoutes, ...caseRoutes]
+  // Solo artículos publicados; los borradores quedan fuera del sitemap.
+  const resourceRoutes = publishedResources.map((r) => ({
+    url: `${base}/recursos/${r.slug}`,
+    lastModified: new Date(r.dateModified),
+    changeFrequency: "monthly" as const,
+    priority: 0.6,
+  }))
+
+  return [...staticRoutes, ...serviceRoutes, ...caseRoutes, ...resourceRoutes]
 }

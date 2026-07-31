@@ -16,6 +16,14 @@ export {
 } from "./narrative"
 export { levels, services, roles } from "./commercial"
 export { governance, cases, teamExperience, partners, training } from "./trust"
+export {
+  resources,
+  publishedResources,
+  getResourceBySlug,
+  readingMinutes,
+  formatResourceDate,
+} from "./resources"
+export type { Resource, ResourceSection, ResourceFaq, ResourceLink } from "./resources"
 export type * from "./types"
 
 import { cases as allCases } from "./trust"
