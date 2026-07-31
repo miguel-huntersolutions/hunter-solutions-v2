@@ -3,7 +3,7 @@ import { Concept } from "@/components/home/concept"
 import { Problems } from "@/components/home/problems"
 import { RolesGallery } from "@/components/home/roles-gallery"
 import { Catalog } from "@/components/home/catalog"
-import { Recommender } from "@/components/home/recommender"
+import { RecommenderLazy } from "@/components/home/recommender-lazy"
 import { Cases } from "@/components/home/cases"
 import { GovernanceStrip } from "@/components/home/governance-strip"
 import { Differentiators } from "@/components/home/differentiators"
@@ -27,7 +27,7 @@ export default function HomePage() {
       <Problems />
       <RolesGallery />
       <Catalog />
-      <Recommender />
+      <RecommenderLazy />
       <Cases />
       <GovernanceStrip />
       <Differentiators />

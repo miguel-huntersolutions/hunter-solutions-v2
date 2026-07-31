@@ -4,7 +4,9 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
-    unoptimized: true,
+    // Optimización activada: Next entrega AVIF/WebP con tamaños responsivos
+    // (antes estaba en unoptimized: true, que servía los PNG originales sin transformar).
+    formats: ["image/avif", "image/webp"],
   },
   async redirects() {
     return [

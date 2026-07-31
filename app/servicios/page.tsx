@@ -3,7 +3,7 @@ import Link from "next/link"
 import { formatLevelRange, levels, services } from "@/content"
 import { Sectors } from "@/components/home/sectors"
 import { EngagementModels } from "@/components/home/engagement-models"
-import { Tools } from "@/components/home/tools"
+import { ToolsLazy } from "@/components/home/tools-lazy"
 
 const description =
   "Servicios de IA aplicada organizados en tres niveles de inversión, con rangos publicados en COP."
@@ -78,7 +78,7 @@ export default function ServiciosPage() {
 
       <Sectors />
       <EngagementModels />
-      <Tools />
+      <ToolsLazy />
     </main>
   )
 }

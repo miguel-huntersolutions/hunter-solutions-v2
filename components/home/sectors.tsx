@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image"
 import { ArrowRight } from "lucide-react"
 import { sectors, sectorPages } from "@/content"
 import { sectorBlurb, sectorImages } from "@/content/media"
@@ -25,11 +26,12 @@ export function Sectors() {
           const card = (
             <>
               <div className="relative aspect-[16/10] overflow-hidden">
-                <img
+                <Image
                   src={sectorImages[s] || "/placeholder.svg"}
                   alt={`Operación del sector ${s} apoyada con agentes de IA`}
-                  className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                  loading="lazy"
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className="object-cover transition-transform duration-300 group-hover:scale-105"
                 />
                 <span className="absolute left-2 top-2 rounded-full bg-navy/90 px-2.5 py-1 text-caption font-semibold uppercase tracking-wide text-white">
                   {s}
