@@ -18,8 +18,10 @@ export function Hero() {
             <Eyebrow tone="dark">Consultora AI-native · Colombia</Eyebrow>
             <h1 className="text-h1 font-bold text-balance md:text-display">{positioning.h1}</h1>
             <p className="max-w-[54ch] text-lead leading-relaxed text-line">
-              Construimos Fuerza Laboral Digital: agentes autónomos que se conectan a su ERP, deciden
-              con las reglas de su negocio y ejecutan procesos completos de principio a fin.
+              Multiplicamos la eficiencia de su equipo y reducimos su gasto operativo con una Fuerza
+              Laboral Digital que opera sus procesos de principio a fin, con supervisión humana. No
+              solo responde preguntas: se conecta a su ERP, decide con las reglas de su negocio y
+              ejecuta.
             </p>
 
             <div className="flex flex-wrap items-center gap-2">
