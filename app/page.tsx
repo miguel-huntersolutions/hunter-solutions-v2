@@ -1,4 +1,5 @@
 import { Hero } from "@/components/home/hero"
+import { DigitalWorkforce } from "@/components/home/digital-workforce"
 import { Problems } from "@/components/home/problems"
 import { Process } from "@/components/home/process"
 import { Catalog } from "@/components/home/catalog"
@@ -15,6 +16,7 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      <DigitalWorkforce />
       <Problems />
       <Process />
       <Catalog />
