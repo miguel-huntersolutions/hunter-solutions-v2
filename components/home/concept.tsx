@@ -20,15 +20,14 @@ const columns = [
   },
 ]
 
-export function AugmentTeam() {
+export function Concept() {
   return (
     <Section
-      id="potenciar-equipo"
-      eyebrow="Personas y agentes"
-      title="No reemplazamos a su equipo. Lo potenciamos."
-      intro="La Fuerza Laboral Digital se encarga del trabajo repetitivo, manual y de alto volumen para que su gente haga lo que solo las personas hacen bien: pensar, decidir, crear y atender a otras personas. Sumar capacidad digital no es recortar el equipo, es multiplicar lo que su equipo puede lograr."
-      align="center"
-      tone="bg"
+      id="fuerza-laboral"
+      eyebrow="Fuerza Laboral Digital"
+      title="Su nómina de personas ya existe. Le construimos la digital."
+      intro="Así como su empresa tiene una nómina de personas, desarrollamos su nómina digital: colaboradores de IA que, como cualquier miembro del equipo, tienen un rol, se integran a sus sistemas y operan sus procesos con supervisión humana. No reemplazamos a su equipo, lo potenciamos."
+      tone="white"
     >
       <div className="grid gap-4 md:grid-cols-3">
         {columns.map((c) => {
@@ -54,7 +53,7 @@ export function AugmentTeam() {
         })}
       </div>
 
-      <div className="mx-auto mt-8 max-w-[64ch] border-l-4 border-teal bg-white p-5">
+      <div className="mx-auto mt-8 max-w-[64ch] border-l-4 border-teal bg-bg p-5">
         <p className="text-lead font-semibold leading-relaxed text-navy text-pretty">
           La IA no viene a quitar trabajo. Viene a devolverle a su equipo el tiempo para el trabajo
           que vale la pena.

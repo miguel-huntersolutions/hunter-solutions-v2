@@ -12,6 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/gobernanza",
     "/formacion",
     "/aliados",
+    "/preguntas",
     "/privacidad",
     "/terminos",
     "/legal/uso-de-ia",

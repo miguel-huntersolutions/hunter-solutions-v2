@@ -2,6 +2,9 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { formatLevelRange, levels, services } from "@/content"
 import { absoluteUrl } from "@/lib/seo"
+import { Sectors } from "@/components/home/sectors"
+import { EngagementModels } from "@/components/home/engagement-models"
+import { Tools } from "@/components/home/tools"
 
 export const metadata: Metadata = {
   title: "Servicios y niveles de inversión",
@@ -70,6 +73,10 @@ export default function ServiciosPage() {
           </Link>
         </section>
       </div>
+
+      <Sectors />
+      <EngagementModels />
+      <Tools />
     </main>
   )
 }

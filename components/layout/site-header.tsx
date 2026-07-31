@@ -13,6 +13,7 @@ const NAV = [
   { href: "/gobernanza", label: "Gobernanza" },
   { href: "/formacion", label: "Formación" },
   { href: "/aliados", label: "Aliados" },
+  { href: "/preguntas", label: "Preguntas" },
 ] as const
 
 export function SiteHeader() {

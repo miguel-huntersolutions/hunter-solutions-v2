@@ -14,7 +14,7 @@ export function Cases() {
       intro="Casos anonimizados y autorizados. Cada resultado se publica con su encuadre y su fuente: así medimos, así lo contamos."
     >
       <div className="grid gap-5 md:grid-cols-2">
-        {publishedCases.map((c) => (
+        {publishedCases.slice(0, 2).map((c) => (
           <article
             key={c.id}
             className="group flex flex-col overflow-hidden rounded-2xl border border-line bg-white shadow-sm transition-shadow hover:shadow-lg"
@@ -54,6 +54,16 @@ export function Cases() {
             </div>
           </article>
         ))}
+      </div>
+
+      <div className="mt-5">
+        <Link
+          href="/casos"
+          className="inline-flex items-center gap-1.5 rounded-lg border border-navy px-4 py-2 text-caption font-semibold uppercase tracking-wide text-navy transition-colors hover:bg-navy hover:text-white"
+        >
+          Ver todos los casos
+          <ArrowRight size={16} aria-hidden />
+        </Link>
       </div>
 
       <div className="mt-6 flex flex-col gap-4 rounded-2xl border border-line bg-navy p-6 md:flex-row md:items-start md:gap-5">

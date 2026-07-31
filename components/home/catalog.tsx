@@ -1,15 +1,21 @@
 import Link from "next/link"
-import { ArrowRight, Check } from "lucide-react"
-import { formatLevelRange, levels, services } from "@/content"
+import { ArrowRight } from "lucide-react"
+import { formatLevelRange, levels } from "@/content"
 import { Section } from "@/components/ui/section"
 import { InvestmentChart } from "@/components/home/investment-chart"
+
+const LEVEL_BLURB: Record<number, string> = {
+  1: "Primeros pasos con IA aplicada: una capacidad puntual y acotada para validar valor rápido.",
+  2: "El nivel más elegido: un agente operando un proceso real, integrado a sus sistemas.",
+  3: "Orquestación de procesos completos y capacidad digital que escala con su operación.",
+}
 
 export function Catalog() {
   return (
     <Section
       id="servicios"
       eyebrow="Catálogo por niveles"
-      title="Un catálogo por niveles, con rangos a la vista"
+      title="Tres niveles de inversión, rangos a la vista"
       intro="Rangos de referencia en COP, sin IVA. Cada proyecto se cotiza según su alcance; los rangos existen para que conozca el orden de magnitud antes de conversar."
       tone="white"
     >
@@ -19,7 +25,6 @@ export function Catalog() {
 
       <div className="grid items-start gap-5 lg:grid-cols-3">
         {levels.map((level) => {
-          const levelServices = services.filter((s) => s.nivel === level.id)
           const destacado = level.id === 2
           return (
             <div
@@ -38,29 +43,16 @@ export function Catalog() {
                 <p className="mt-2 text-h2 font-bold text-teal">{formatLevelRange(level.id)}</p>
                 <p className="mt-1 text-caption text-line">Sin IVA · {level.nota}</p>
               </div>
-              <ul className="flex flex-1 flex-col gap-1 p-3">
-                {levelServices.map((s) => (
-                  <li key={s.id}>
-                    <Link
-                      href={`/servicios/${s.slug}`}
-                      className="flex gap-2 rounded-lg p-2 transition-colors hover:bg-bg"
-                    >
-                      <Check size={16} aria-hidden className="mt-0.5 shrink-0 text-teal" />
-                      <span className="flex flex-col gap-0.5">
-                        <span className="text-caption font-semibold text-navy">
-                          {s.nombre}
-                          {s.esPuertaDeEntrada && (
-                            <span className="ml-1 rounded-full bg-teal/15 px-1.5 py-0.5 text-[11px] font-semibold uppercase tracking-wide text-teal-dark">
-                              Puerta de entrada
-                            </span>
-                          )}
-                        </span>
-                        <span className="text-caption leading-snug text-slate">{s.descripcion}</span>
-                      </span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+              <div className="flex flex-1 flex-col gap-3 p-5">
+                <p className="text-caption leading-relaxed text-slate">{LEVEL_BLURB[level.id]}</p>
+                <Link
+                  href="/servicios"
+                  className="mt-auto inline-flex items-center gap-1.5 pt-1 text-caption font-semibold uppercase tracking-wide text-navy transition-colors hover:text-teal"
+                >
+                  Ver servicios de este nivel
+                  <ArrowRight size={16} aria-hidden />
+                </Link>
+              </div>
             </div>
           )
         })}

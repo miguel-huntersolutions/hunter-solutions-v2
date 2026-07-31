@@ -74,7 +74,7 @@ export function EngagementModels() {
 
       <div className="mt-8 flex justify-center">
         <Link
-          href="#contacto"
+          href="/#contacto"
           className="bg-navy px-4 py-2 text-body font-semibold uppercase tracking-wide text-white transition-colors hover:bg-teal"
         >
           Agendar diagnóstico

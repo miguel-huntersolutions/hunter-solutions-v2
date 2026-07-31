@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { governance, stages } from "@/content"
+import { governance, stages, cnt, promise } from "@/content"
 import { absoluteUrl } from "@/lib/seo"
 import { Logo } from "@/components/brand/logo"
 
@@ -76,6 +76,88 @@ export default function GobernanzaPage() {
               </li>
             ))}
           </ol>
+        </section>
+
+        <section className="flex flex-col gap-3">
+          <h2 className="text-h2 font-bold text-navy">Anatomía de un colaborador digital</h2>
+          <p className="text-body leading-relaxed text-ink">
+            Un agente se gestiona como un miembro del equipo, desde su rol hasta su crecimiento. Una
+            nómina digital se gobierna como una de personas: con roles claros, supervisión y
+            crecimiento.
+          </p>
+          <ol className="flex flex-col gap-2">
+            {[
+              {
+                titulo: "Rol y responsabilidad",
+                descripcion:
+                  "Cada agente tiene una hoja de vida: un rol definido y una responsabilidad única.",
+              },
+              {
+                titulo: "Onboarding",
+                descripcion:
+                  "Lo integramos a su ERP y a las reglas de su negocio, como a cualquier colaborador nuevo.",
+              },
+              {
+                titulo: "Seguimiento",
+                descripcion: "Observabilidad y trazabilidad: sabemos qué hizo, con qué datos y por qué.",
+              },
+              {
+                titulo: "Acompañamiento",
+                descripcion:
+                  "Supervisión humana sobre las decisiones sensibles. El agente propone, la organización dispone.",
+              },
+              {
+                titulo: "Crecimiento",
+                descripcion: "Mejora continua: el agente evoluciona con su operación.",
+              },
+            ].map((paso, i) => (
+              <li key={paso.titulo} className="flex gap-3 border border-line bg-white p-3">
+                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-teal text-caption font-bold text-white">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span className="flex flex-col gap-0.5">
+                  <span className="text-body font-semibold text-navy">{paso.titulo}</span>
+                  <span className="text-body leading-relaxed text-ink">{paso.descripcion}</span>
+                </span>
+              </li>
+            ))}
+          </ol>
+        </section>
+
+        <section className="flex flex-col gap-3">
+          <h2 className="text-h2 font-bold text-navy">La lente CNT</h2>
+          <p className="text-body leading-relaxed text-ink">
+            Antes de construir, miramos cada iniciativa por tres lentes: Cultura, Negocio y
+            Tecnología. Así evitamos automatizar lo que no conviene todavía.
+          </p>
+          <dl className="flex flex-col gap-2">
+            {[
+              { k: "Cultura", v: cnt.cultura },
+              { k: "Negocio", v: cnt.negocio },
+              { k: "Tecnología", v: cnt.tecnologia },
+            ].map((item) => (
+              <div key={item.k} className="border border-line bg-white p-3">
+                <dt className="text-body font-semibold text-navy">{item.k}</dt>
+                <dd className="mt-1 text-body leading-relaxed text-ink">{item.v}</dd>
+              </div>
+            ))}
+          </dl>
+        </section>
+
+        <section className="flex flex-col gap-3">
+          <h2 className="text-h2 font-bold text-navy">Promesa responsable</h2>
+          <dl className="flex flex-col gap-2">
+            {[
+              { k: "Capacidad", v: promise.capacidad },
+              { k: "Retorno", v: promise.retorno },
+              { k: "Riesgo", v: promise.riesgo },
+            ].map((item) => (
+              <div key={item.k} className="border border-line bg-white p-3">
+                <dt className="text-body font-semibold text-navy">{item.k}</dt>
+                <dd className="mt-1 text-body leading-relaxed text-ink">{item.v}</dd>
+              </div>
+            ))}
+          </dl>
         </section>
 
         <section className="flex flex-col gap-2 border-l-4 border-teal bg-white p-3">

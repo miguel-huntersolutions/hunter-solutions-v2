@@ -133,7 +133,7 @@ export function Tools() {
                   Reintentar
                 </button>{" "}
                 o{" "}
-                <a href="#diagnostico" className="font-semibold text-teal underline">
+                <a href="/#diagnostico" className="font-semibold text-teal underline">
                   hablar con el Agente de Diagnóstico
                 </a>
                 .
@@ -143,7 +143,7 @@ export function Tools() {
               <div className="mt-2 border border-line bg-white p-2 text-caption text-slate">
                 Alcanzó el límite de 5 ejecuciones por hora de esta herramienta. Si quiere seguir
                 explorando,{" "}
-                <a href="#contacto" className="font-semibold text-teal underline">
+                <a href="/#contacto" className="font-semibold text-teal underline">
                   agende la sesión de 30 minutos sin costo
                 </a>
                 .
