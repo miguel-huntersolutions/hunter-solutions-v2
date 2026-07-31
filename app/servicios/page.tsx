@@ -30,9 +30,7 @@ export default function ServiciosPage() {
           return (
             <section key={level.id} className="flex flex-col gap-3">
               <header className="flex flex-col gap-1">
-                <h2 className="text-h2 font-bold text-navy">
-                  Nivel {level.id}: {level.nombre}
-                </h2>
+                <h2 className="text-h2 font-bold text-navy">{level.nombre}</h2>
                 <p className="text-body font-semibold text-teal">
                   {formatLevelRange(level.id)} <span className="font-normal text-slate">(sin IVA)</span>
                 </p>
