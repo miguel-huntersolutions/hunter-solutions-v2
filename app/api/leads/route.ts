@@ -1,4 +1,5 @@
 import { z } from "zod"
+import { Resend } from "resend"
 import { getClientIp, rateLimit } from "@/lib/agents/runtime"
 
 /**
@@ -67,5 +68,89 @@ export async function POST(req: Request) {
     console.log("[leads] LEADS_WEBHOOK_URL no configurado; lead registrado en log:", lead)
   }
 
-  return Response.json({ ok: true })
+  // Notificación por correo con Resend. Si algo falla, no rompemos la respuesta al
+  // usuario: el lead ya quedó registrado arriba. Los remitentes/destinatarios y la
+  // API key viven en variables de entorno, nunca en el código.
+  const emailSent = await sendLeadEmail(lead)
+
+  return Response.json({ ok: true, emailSent })
+}
+
+type LeadPayload = {
+  nombre: string
+  email: string
+  sector?: string
+  reto?: string
+  mensaje?: string
+  origen: string
+  consentGrantedAt: string
+  consentVersion: string
+}
+
+async function sendLeadEmail(lead: LeadPayload): Promise<boolean> {
+  const apiKey = process.env.RESEND_API_KEY
+  const from = process.env.LEADS_FROM_EMAIL
+  const to = process.env.LEADS_TO_EMAIL
+
+  if (!apiKey || !from || !to) {
+    console.warn(
+      "[leads] RESEND_API_KEY, LEADS_FROM_EMAIL o LEADS_TO_EMAIL sin configurar; no se envía correo.",
+    )
+    return false
+  }
+
+  const rows: [string, string][] = [
+    ["Nombre", lead.nombre],
+    ["Correo", lead.email],
+    ["Sector", lead.sector ?? "—"],
+    ["Reto", lead.reto ?? lead.mensaje ?? "—"],
+    ["Origen", lead.origen],
+    ["Consentimiento", `${lead.consentGrantedAt} (${lead.consentVersion})`],
+  ]
+
+  const html = `
+    <div style="font-family:Arial,Helvetica,sans-serif;color:#1a2332;line-height:1.5">
+      <h2 style="margin:0 0 16px">Nueva solicitud de diagnóstico</h2>
+      <table style="border-collapse:collapse;width:100%;max-width:560px">
+        ${rows
+          .map(
+            ([k, v]) =>
+              `<tr>
+                <td style="padding:8px 12px;border:1px solid #e2e8f0;font-weight:bold;background:#f8fafc;white-space:nowrap;vertical-align:top">${escapeHtml(
+                  k,
+                )}</td>
+                <td style="padding:8px 12px;border:1px solid #e2e8f0">${escapeHtml(v)}</td>
+              </tr>`,
+          )
+          .join("")}
+      </table>
+    </div>`
+
+  const text = rows.map(([k, v]) => `${k}: ${v}`).join("\n")
+
+  try {
+    const resend = new Resend(apiKey)
+    const { error } = await resend.emails.send({
+      from,
+      to: to.split(",").map((address) => address.trim()),
+      replyTo: lead.email,
+      subject: `Nueva solicitud de diagnóstico — ${lead.nombre}`,
+      html,
+      text,
+    })
+    if (error) throw error
+    return true
+  } catch (error) {
+    console.error("[leads] fallo al enviar correo con Resend:", error)
+    return false
+  }
+}
+
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;")
 }

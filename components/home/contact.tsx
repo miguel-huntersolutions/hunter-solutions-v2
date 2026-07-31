@@ -1,9 +1,15 @@
 "use client"
 
 import { useState } from "react"
+import { MessageCircle } from "lucide-react"
 import { Section } from "@/components/ui/section"
 
 const SECTORS = ["Legal", "Manufactura", "Salud", "Alimentos", "Consumo", "Otro"] as const
+
+// WhatsApp de contacto (+57 304 391 3066) con un mensaje inicial prellenado.
+const WHATSAPP_URL =
+  "https://wa.me/573043913066?text=" +
+  encodeURIComponent("Hola, quiero agendar una sesión de diagnóstico de 30 minutos.")
 
 export function Contact() {
   const [status, setStatus] = useState<"idle" | "sending" | "ok" | "error">("idle")
@@ -125,6 +131,15 @@ export function Contact() {
           >
             {status === "sending" ? "Enviando…" : "Solicitar la sesión"}
           </button>
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 border border-teal px-3 py-1 text-caption font-semibold uppercase tracking-wide text-teal-dark transition-colors hover:bg-teal hover:text-white"
+          >
+            <MessageCircle size={16} aria-hidden />
+            Escríbanos por WhatsApp
+          </a>
           <p aria-live="polite" className="text-caption text-slate">
             {status === "ok" && "Recibido. El equipo le escribe para coordinar la sesión."}
             {status === "error" &&
