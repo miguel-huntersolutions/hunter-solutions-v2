@@ -1,13 +1,15 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { training } from "@/content"
-import { absoluteUrl } from "@/lib/seo"
+
+const description =
+  "Charlas ejecutivas y talleres prácticos de IA para comités directivos y equipos operativos. El material queda en su organización."
 
 export const metadata: Metadata = {
   title: "Formación en IA para equipos",
-  description:
-    "Charlas ejecutivas y talleres prácticos de IA para comités directivos y equipos operativos. El material queda en su organización.",
-  alternates: { canonical: absoluteUrl("/formacion") },
+  description,
+  alternates: { canonical: "/formacion" },
+  openGraph: { url: "/formacion", title: "Formación en IA para equipos", description },
 }
 
 export default function FormacionPage() {

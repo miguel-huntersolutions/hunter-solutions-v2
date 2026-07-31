@@ -1,13 +1,15 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { faqs } from "@/content"
-import { absoluteUrl } from "@/lib/seo"
+
+const description =
+  "Las preguntas que nos hacen antes de empezar: cómo trabajamos, qué se necesita, cómo se mide el retorno y cómo se gobierna el riesgo en Hunter Solutions Tech."
 
 export const metadata: Metadata = {
   title: "Preguntas frecuentes",
-  description:
-    "Las preguntas que nos hacen antes de empezar: cómo trabajamos, qué se necesita, cómo se mide el retorno y cómo se gobierna el riesgo en Hunter Solutions Tech.",
-  alternates: { canonical: absoluteUrl("/preguntas") },
+  description,
+  alternates: { canonical: "/preguntas" },
+  openGraph: { url: "/preguntas", title: "Preguntas frecuentes", description },
 }
 
 export default function PreguntasPage() {

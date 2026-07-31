@@ -5,7 +5,7 @@ export const brand: Brand = {
   legalName: "Hunter Solutions Tech",
   shortName: "Hunter Solutions Tech",
   descriptorCopy: "TECH | AI-NATIVE",
-  domain: "https://huntersolutions.tech",
+  domain: "https://www.huntersolutions.tech",
   email: "hola@huntersolutions.tech",
   whatsapp: "+573000000000",
   socials: [

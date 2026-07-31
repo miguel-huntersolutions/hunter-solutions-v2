@@ -4,11 +4,14 @@ import { governance, stages, cnt, promise } from "@/content"
 import { absoluteUrl } from "@/lib/seo"
 import { Logo } from "@/components/brand/logo"
 
+const description =
+  "Cómo Hunter Solutions Tech construye IA gobernada: arquitectura, observabilidad, guardrails, trazabilidad, supervisión humana y propiedad del activo. Documento completo, imprimible y sin formularios."
+
 export const metadata: Metadata = {
   title: "Gobernanza e ingeniería",
-  description:
-    "Cómo Hunter Solutions Tech construye IA gobernada: arquitectura, observabilidad, guardrails, trazabilidad, supervisión humana y propiedad del activo. Documento completo, imprimible y sin formularios.",
-  alternates: { canonical: absoluteUrl("/gobernanza") },
+  description,
+  alternates: { canonical: "/gobernanza" },
+  openGraph: { url: "/gobernanza", title: "Gobernanza e ingeniería", description },
 }
 
 export default function GobernanzaPage() {

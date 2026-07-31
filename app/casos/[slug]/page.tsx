@@ -16,10 +16,12 @@ export async function generateMetadata({
   const { slug } = await params
   const cs = publishedCases.find((c) => c.slug === slug)
   if (!cs) return {}
+  const path = `/casos/${cs.slug}`
   return {
     title: cs.titulo,
     description: cs.reto,
-    alternates: { canonical: absoluteUrl(`/casos/${cs.slug}`) },
+    alternates: { canonical: path },
+    openGraph: { url: path, title: cs.titulo, description: cs.reto },
   }
 }
 

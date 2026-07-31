@@ -1,9 +1,14 @@
 import { brand } from "@/content"
 
-export const SITE_URL = `https://${brand.domain}`
+// Dominio de producción canónico (con www, sin barra final). La variable de entorno
+// tiene prioridad; el fallback evita el bug de protocolo duplicado (https://https://...).
+export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "https://www.huntersolutions.tech").replace(
+  /\/+$/,
+  "",
+)
 
 export function absoluteUrl(path: string): string {
-  return `${SITE_URL}${path}`
+  return new URL(path, SITE_URL).toString()
 }
 
 /** Organization JSON-LD para el layout raíz */

@@ -22,10 +22,12 @@ export async function generateMetadata({
   const { slug } = await params
   const service = getServiceBySlug(slug)
   if (!service) return {}
+  const path = `/servicios/${service.slug}`
   return {
     title: service.nombre,
     description: service.descripcion,
-    alternates: { canonical: absoluteUrl(`/servicios/${service.slug}`) },
+    alternates: { canonical: path },
+    openGraph: { url: path, title: service.nombre, description: service.descripcion },
   }
 }
 

@@ -1,16 +1,18 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { formatLevelRange, levels, services } from "@/content"
-import { absoluteUrl } from "@/lib/seo"
 import { Sectors } from "@/components/home/sectors"
 import { EngagementModels } from "@/components/home/engagement-models"
 import { Tools } from "@/components/home/tools"
 
+const description =
+  "Servicios de IA aplicada organizados en tres niveles de inversión, con rangos publicados en COP."
+
 export const metadata: Metadata = {
   title: "Servicios y niveles de inversión",
-  description:
-    "Servicios de IA aplicada organizados en tres niveles de inversión, con rangos publicados en COP.",
-  alternates: { canonical: absoluteUrl("/servicios") },
+  description,
+  alternates: { canonical: "/servicios" },
+  openGraph: { url: "/servicios", title: "Servicios y niveles de inversión", description },
 }
 
 export default function ServiciosPage() {

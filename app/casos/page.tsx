@@ -1,13 +1,15 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { getServiceById, publishedCases, teamExperience } from "@/content"
-import { absoluteUrl } from "@/lib/seo"
+
+const description =
+  "Casos autorizados de IA aplicada: qué reto había, qué se construyó y qué cambió en la operación."
 
 export const metadata: Metadata = {
   title: "Casos",
-  description:
-    "Casos autorizados de IA aplicada: qué reto había, qué se construyó y qué cambió en la operación.",
-  alternates: { canonical: absoluteUrl("/casos") },
+  description,
+  alternates: { canonical: "/casos" },
+  openGraph: { url: "/casos", title: "Casos", description },
 }
 
 export default function CasosPage() {

@@ -1,13 +1,15 @@
 import type { Metadata } from "next"
 import { partners } from "@/content"
-import { absoluteUrl } from "@/lib/seo"
 import { PartnerForm } from "@/components/forms/partner-form"
+
+const description =
+  "Refiera oportunidades de IA en empresas medianas, Hunter Solutions Tech las ejecuta y usted participa del resultado."
 
 export const metadata: Metadata = {
   title: "Programa de Aliados",
-  description:
-    "Refiera oportunidades de IA en empresas medianas, Hunter Solutions Tech las ejecuta y usted participa del resultado.",
-  alternates: { canonical: absoluteUrl("/aliados") },
+  description,
+  alternates: { canonical: "/aliados" },
+  openGraph: { url: "/aliados", title: "Programa de Aliados", description },
 }
 
 export default function AliadosPage() {

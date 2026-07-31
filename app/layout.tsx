@@ -1,7 +1,7 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import { Open_Sans } from 'next/font/google'
-import { brand } from '@/content'
+import { SITE_URL } from '@/lib/seo'
 import { SiteHeader } from '@/components/layout/site-header'
 import { SiteFooter } from '@/components/layout/site-footer'
 import { CookieNotice } from '@/components/layout/cookie-notice'
@@ -15,7 +15,7 @@ const openSans = Open_Sans({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL(brand.domain),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: 'Hunter Solutions Tech: Automatización e IA que puedes probar',
     template: '%s | Hunter Solutions Tech',
@@ -23,6 +23,7 @@ export const metadata: Metadata = {
   description:
     'Generadores de Soluciones con Inteligencia Artificial. TECH | AI-NATIVE. Consultora AI-native en Colombia: automatización, agentes de IA y desarrollo a la medida por niveles de inversión claros. Prueba la IA en la página antes de agendar.',
   generator: 'v0.app',
+  alternates: { canonical: '/' },
   icons: {
     icon: [{ url: '/brand/favicon.svg', type: 'image/svg+xml' }],
   },
@@ -30,6 +31,10 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'es_CO',
     siteName: 'Hunter Solutions Tech',
+    url: '/',
+  },
+  twitter: {
+    card: 'summary_large_image',
   },
 }
 
