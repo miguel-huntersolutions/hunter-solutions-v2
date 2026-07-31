@@ -74,6 +74,11 @@ export const cases: CaseStudy[] = [
       encuadre:
         "Medición interna del equipo sobre los flujos de trabajo intervenidos; los tiempos exactos varían según el tipo de contrato.",
       fuente: "HST_Oferta_Cliente_Definitiva.docx — ejemplos de IA nativa",
+      metricas: [
+        { etiqueta: "Tiempo de preparación de un borrador (antes y después)", valor: "[COMPLETAR con dato real del cliente]" },
+        { etiqueta: "Reducción del tiempo de búsqueda de precedentes", valor: "[COMPLETAR con dato real del cliente]" },
+        { etiqueta: "Contratos indexados en el corpus", valor: "[COMPLETAR con dato real del cliente]" },
+      ],
     },
     servicioId: "agente-revision-legal",
     etapas: [
@@ -101,6 +106,11 @@ export const cases: CaseStudy[] = [
       encuadre:
         "Descripción cualitativa del cambio operativo; las cifras de tiempo específicas dependen del volumen de cada vacante.",
       fuente: "HST_Oferta_Cliente_Definitiva.docx — ejemplos de IA nativa",
+      metricas: [
+        { etiqueta: "Tiempo de filtrado de una vacante (antes y después)", valor: "[COMPLETAR con dato real del cliente]" },
+        { etiqueta: "Reducción del tiempo de preselección", valor: "[COMPLETAR con dato real del cliente]" },
+        { etiqueta: "Hojas de vida procesadas por mes", valor: "[COMPLETAR con dato real del cliente]" },
+      ],
     },
     servicioId: "automatizacion-reclutamiento",
     etapas: [

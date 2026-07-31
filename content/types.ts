@@ -89,7 +89,14 @@ export type CaseStudy = {
   reto: string
   queConstruimos: string
   comoFunciona: string
-  resultado: { texto: string; encuadre: string; fuente: string } | null
+  resultado: {
+    texto: string
+    encuadre: string
+    fuente: string
+    // 2 a 3 datos destacados. Los valores se dejan como placeholders para que el
+    // equipo los reemplace con la medición real de cada cliente; no se inventan cifras.
+    metricas?: { etiqueta: string; valor: string }[]
+  } | null
   servicioId: string
   etapas: { etapa: 1 | 2 | 3 | 4; queOcurrio: string }[]
   anonimizado: boolean

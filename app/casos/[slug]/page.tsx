@@ -86,10 +86,29 @@ export default async function CasePage({
         </div>
 
         {cs.resultado && (
-          <section className="flex max-w-[70ch] flex-col gap-1 border-l-4 border-teal bg-white p-3">
-            <h2 className="text-h3 font-bold text-navy">Resultado</h2>
-            <p className="text-body-lg leading-relaxed text-ink">{cs.resultado.texto}</p>
-            <p className="text-caption leading-relaxed text-slate">{cs.resultado.encuadre}</p>
+          <section className="flex max-w-[70ch] flex-col gap-3 border-l-4 border-teal bg-white p-3">
+            <div className="flex flex-col gap-1">
+              <h2 className="text-h3 font-bold text-navy">Resultado</h2>
+              <p className="text-body-lg leading-relaxed text-ink">{cs.resultado.texto}</p>
+              <p className="text-caption leading-relaxed text-slate">{cs.resultado.encuadre}</p>
+            </div>
+
+            {cs.resultado.metricas && cs.resultado.metricas.length > 0 && (
+              <div className="flex flex-col gap-2">
+                <ul className="grid gap-2 sm:grid-cols-3">
+                  {cs.resultado.metricas.map((m) => (
+                    <li key={m.etiqueta} className="flex flex-col gap-1 border border-line bg-bg p-2">
+                      <span className="text-body font-bold text-navy text-balance">{m.valor}</span>
+                      <span className="text-caption leading-relaxed text-slate">{m.etiqueta}</span>
+                    </li>
+                  ))}
+                </ul>
+                <p className="text-caption leading-relaxed text-slate">
+                  Datos de medición interna del equipo sobre los flujos intervenidos; varían según el
+                  caso y el volumen de cada cliente.
+                </p>
+              </div>
+            )}
           </section>
         )}
 
