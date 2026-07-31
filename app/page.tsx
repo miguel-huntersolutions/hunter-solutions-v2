@@ -1,6 +1,7 @@
 import { Hero } from "@/components/home/hero"
 import { DigitalWorkforce } from "@/components/home/digital-workforce"
 import { Problems } from "@/components/home/problems"
+import { AugmentTeam } from "@/components/home/augment-team"
 import { Process } from "@/components/home/process"
 import { Catalog } from "@/components/home/catalog"
 import { EngagementModels } from "@/components/home/engagement-models"
@@ -20,6 +21,7 @@ export default function HomePage() {
       <Hero />
       <DigitalWorkforce />
       <Problems />
+      <AugmentTeam />
       <Process />
       <Catalog />
       <EngagementModels />
