@@ -23,7 +23,7 @@ export function SiteHeader() {
     <SurfaceProvider tone="light">
       <header className="sticky top-0 z-40 border-b border-line bg-white">
         <div className="mx-auto flex h-8 max-w-[1200px] items-center justify-between px-2 md:h-9 md:px-3">
-          <Link href="/" aria-label="Hunter Solutions Tech — inicio" onClick={() => setOpen(false)}>
+          <Link href="/" aria-label="Hunter Solutions Tech: inicio" onClick={() => setOpen(false)}>
             <Logo variant="claro" height={32} />
           </Link>
 

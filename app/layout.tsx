@@ -17,7 +17,7 @@ const openSans = Open_Sans({
 export const metadata: Metadata = {
   metadataBase: new URL(brand.domain),
   title: {
-    default: 'Hunter Solutions Tech — Automatización e IA que puedes probar',
+    default: 'Hunter Solutions Tech: Automatización e IA que puedes probar',
     template: '%s | Hunter Solutions Tech',
   },
   description:

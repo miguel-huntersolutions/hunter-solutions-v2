@@ -51,7 +51,7 @@ export const governance: Governance = {
     },
   ],
   metodologia:
-    "Trabajamos en cuatro etapas — Entendemos, Definimos, Implementamos, Acompañamos — con entregables verificables en cada una y métricas acordadas antes de construir.",
+    "Trabajamos en cuatro etapas: Entendemos, Definimos, Implementamos y Acompañamos, con entregables verificables en cada una y métricas acordadas antes de construir.",
   propiedadDelActivo:
     "El código, la configuración y los datos son del cliente. Su información no se usa para entrenar modelos de terceros. Sin plataformas cerradas ni mensualidades obligatorias.",
 }

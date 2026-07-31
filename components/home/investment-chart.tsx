@@ -19,7 +19,7 @@ const data = levels.map((l) => {
     nivel: (l.nombre.split(" · ")[1] ?? l.nombre).toUpperCase(),
     // Tope de cada nivel, en millones, para dimensionar la barra.
     tope: l.rangoMax / 1_000_000,
-    etiqueta: esUltimo ? `desde ${fmt(l.rangoMin)}` : `${fmt(l.rangoMin)} – ${fmt(l.rangoMax)}`,
+    etiqueta: esUltimo ? `desde ${fmt(l.rangoMin)}` : `${fmt(l.rangoMin)} a ${fmt(l.rangoMax)}`,
   }
 })
 

@@ -116,7 +116,7 @@ export const services: Service[] = [
     nivel: 1,
     nombre: "Auditoría de datos y preparación para IA",
     descripcion:
-      "Diagnóstico del estado real de sus datos — calidad, acceso, estructura — y plan concreto para dejarlos listos para proyectos de IA.",
+      "Diagnóstico del estado real de sus datos: calidad, acceso y estructura, y un plan concreto para dejarlos listos para proyectos de IA.",
     queSolucionamos:
       "Proyectos de IA que fracasan a mitad de camino porque los datos que los alimentan estaban incompletos, duplicados o inaccesibles.",
     comoLoHacemos:
@@ -227,7 +227,7 @@ export const services: Service[] = [
     queSolucionamos:
       "Riesgo jurídico y horas facturables perdidas en revisar manualmente contratos que repiten estructuras conocidas.",
     comoLoHacemos:
-      "Indexamos su corpus contractual, entrenamos la revisión sobre sus políticas de riesgo y generamos borradores desde sus propias plantillas — siempre con validación del abogado responsable.",
+      "Indexamos su corpus contractual, entrenamos la revisión sobre sus políticas de riesgo y generamos borradores desde sus propias plantillas, siempre con validación del abogado responsable.",
     ejemplo:
       "Una firma legal consulta y compara cláusulas de todo su corpus documental en segundos y genera primeros borradores que sus abogados ajustan, en lugar de partir de cero.",
     sectoresRelevantes: ["Legal"],
@@ -270,7 +270,7 @@ export const services: Service[] = [
     nivel: 3,
     nombre: "Orquestación de procesos end-to-end",
     descripcion:
-      "Rediseño y automatización de un proceso de negocio completo — no tareas sueltas — con agentes que lo ejecutan de la entrada a la salida.",
+      "Rediseño y automatización de un proceso de negocio completo, no tareas sueltas, con agentes que lo ejecutan de la entrada a la salida.",
     queSolucionamos:
       "Procesos críticos fragmentados entre áreas, sistemas y correos, donde nadie ve el estado completo y los pilotos de IA nunca tocaron la operación real.",
     comoLoHacemos:

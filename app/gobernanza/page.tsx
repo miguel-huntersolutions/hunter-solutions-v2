@@ -69,7 +69,7 @@ export default function GobernanzaPage() {
             {stages.map((s) => (
               <li key={s.n} className="flex flex-col gap-1 border border-line bg-white p-2">
                 <span className="text-caption font-semibold uppercase tracking-wide text-teal">
-                  Etapa {s.n} — {s.nombre}
+                  Etapa {s.n}: {s.nombre}
                 </span>
                 <span className="text-body leading-relaxed text-ink">{s.descripcion}</span>
                 <span className="text-caption text-slate">Entregable: {s.entregable}</span>

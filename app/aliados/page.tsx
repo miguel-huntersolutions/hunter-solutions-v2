@@ -35,7 +35,7 @@ export default function AliadosPage() {
             {partners.pasos.map((p) => (
               <li key={p.n} className="flex flex-col gap-1 border border-line bg-white p-2">
                 <span className="text-caption font-semibold uppercase tracking-wide text-teal">
-                  Paso {p.n} — {p.titulo}
+                  Paso {p.n}: {p.titulo}
                 </span>
                 <span className="text-body leading-relaxed text-ink">{p.descripcion}</span>
               </li>

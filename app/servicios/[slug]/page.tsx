@@ -83,7 +83,7 @@ export default async function ServicePage({
 
         <header className="flex max-w-[70ch] flex-col gap-2">
           <p className="text-caption font-semibold uppercase tracking-wide text-teal">
-            Nivel {level.id} — {level.nombre} · {formatLevelRange(level.id)}
+            Nivel {level.id}: {level.nombre} · {formatLevelRange(level.id)}
             {" "}(sin IVA)
           </p>
           <h1 className="text-h1 font-bold text-navy text-balance">{service.nombre}</h1>

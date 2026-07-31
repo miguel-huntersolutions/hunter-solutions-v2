@@ -14,7 +14,7 @@ export const sectors: string[] = ["Legal", "Manufactura", "Salud", "Alimentos", 
 export const positioning: Positioning = {
   h1: "No leas sobre nuestra IA. Habla con ella.",
   apoyo:
-    "Construimos Fuerza Laboral Digital: agentes autónomos que se conectan a sus sistemas — incluido su ERP —, deciden con las reglas de su negocio y ejecutan procesos completos de principio a fin. Trabajamos con empresas medianas de los sectores Legal, Manufactura, Salud, Alimentos y Consumo en Colombia.",
+    "Construimos Fuerza Laboral Digital: agentes autónomos que se conectan a sus sistemas, incluido su ERP, deciden con las reglas de su negocio y ejecutan procesos completos de principio a fin. Trabajamos con empresas medianas de los sectores Legal, Manufactura, Salud, Alimentos y Consumo en Colombia.",
   invitacion: "Pruébelo ahora mismo: cuéntele su reto al Agente de Diagnóstico.",
   nuevosTitulo: "Nuevos como marca, no en oficio",
   nuevosArgumento:
@@ -197,7 +197,7 @@ export const faqs: Faq[] = [
   {
     pregunta: "¿Necesitamos un equipo técnico interno para trabajar con ustedes?",
     respuesta:
-      "No para empezar. El diagnóstico y los primeros proyectos los operamos nosotros con sus responsables de proceso. En la etapa de acompañamiento transferimos el conocimiento para que su equipo — técnico o no — opere la solución con autonomía.",
+      "No para empezar. El diagnóstico y los primeros proyectos los operamos nosotros con sus responsables de proceso. En la etapa de acompañamiento transferimos el conocimiento para que su equipo, técnico o no, opere la solución con autonomía.",
   },
   {
     pregunta: "¿Cuánto tarda un proyecto típico?",

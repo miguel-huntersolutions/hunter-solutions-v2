@@ -21,7 +21,7 @@ export default function DesignSystemPage() {
       <div className="mx-auto flex max-w-[1200px] flex-col gap-8 px-2 py-8 md:px-3 md:py-10">
         <header className="flex flex-col gap-2">
           <p className="text-caption font-semibold uppercase tracking-wide text-teal">
-            Referencia interna — noindex
+            Referencia interna: noindex
           </p>
           <h1 className="text-h1 font-bold text-navy">Design system Hunter Solutions Tech</h1>
         </header>
@@ -42,14 +42,14 @@ export default function DesignSystemPage() {
         </section>
 
         <section className="flex flex-col gap-3">
-          <h2 className="text-h2 font-bold text-navy">Tipografía — Open Sans</h2>
+          <h2 className="text-h2 font-bold text-navy">Tipografía: Open Sans</h2>
           <div className="flex flex-col gap-2 border border-line bg-white p-3">
-            <p className="text-h1 font-bold text-navy">H1 — Titular de página</p>
-            <p className="text-h2 font-bold text-navy">H2 — Titular de sección</p>
-            <p className="text-h3 font-bold text-navy">H3 — Titular de tarjeta</p>
-            <p className="text-body-lg leading-relaxed text-ink">Body large — párrafos de apoyo del hero.</p>
-            <p className="text-body leading-relaxed text-ink">Body — texto corriente del sitio.</p>
-            <p className="text-caption text-slate">Caption — metadatos, etiquetas y notas.</p>
+            <p className="text-h1 font-bold text-navy">H1: Titular de página</p>
+            <p className="text-h2 font-bold text-navy">H2: Titular de sección</p>
+            <p className="text-h3 font-bold text-navy">H3: Titular de tarjeta</p>
+            <p className="text-body-lg leading-relaxed text-ink">Body large: párrafos de apoyo del hero.</p>
+            <p className="text-body leading-relaxed text-ink">Body: texto corriente del sitio.</p>
+            <p className="text-caption text-slate">Caption: metadatos, etiquetas y notas.</p>
           </div>
         </section>
 

@@ -45,5 +45,5 @@ export function formatCop(value: number): string {
 export function formatLevelRange(levelId: 1 | 2 | 3): string {
   const l = getLevel(levelId)
   if (l.id === 3) return `Desde ${formatCop(l.rangoMin)}`
-  return `${formatCop(l.rangoMin)} – ${formatCop(l.rangoMax)}`
+  return `${formatCop(l.rangoMin)} a ${formatCop(l.rangoMax)}`
 }

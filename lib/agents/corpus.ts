@@ -23,7 +23,7 @@ import {
 export function buildAgentCorpus(): string {
   const lines: string[] = []
 
-  lines.push(`# ${brand.legalName} — corpus factual (generado del content model)`)
+  lines.push(`# ${brand.legalName}: corpus factual (generado del content model)`)
   lines.push("")
   lines.push("## Qué es")
   lines.push(positioning.apoyo)

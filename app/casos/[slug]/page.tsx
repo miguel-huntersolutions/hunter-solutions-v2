@@ -99,7 +99,7 @@ export default async function CasePage({
               return (
                 <li key={e.etapa} className="flex flex-col gap-1 border border-line bg-white p-2">
                   <span className="text-caption font-semibold uppercase tracking-wide text-teal">
-                    Etapa {e.etapa} — {stage?.nombre}
+                    Etapa {e.etapa}: {stage?.nombre}
                   </span>
                   <span className="text-body leading-relaxed text-ink">{e.queOcurrio}</span>
                 </li>
