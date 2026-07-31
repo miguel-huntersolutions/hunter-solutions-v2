@@ -7,6 +7,7 @@ import {
   principles,
   formatLevelRange,
 } from "@/content"
+import { SITE_URL } from "@/lib/seo"
 
 export const dynamic = "force-static"
 
@@ -24,11 +25,11 @@ export function GET() {
     "",
     "## Servicios",
     "",
-    ...services.map((s) => `- [${s.nombre}](${brand.domain}/servicios/${s.slug}): ${s.descripcion}`),
+    ...services.map((s) => `- [${s.nombre}](${SITE_URL}/servicios/${s.slug}): ${s.descripcion}`),
     "",
     "## Casos",
     "",
-    ...publishedCases.map((c) => `- [${c.titulo}](${brand.domain}/casos/${c.slug}): ${c.reto}`),
+    ...publishedCases.map((c) => `- [${c.titulo}](${SITE_URL}/casos/${c.slug}): ${c.reto}`),
     "",
     "## Principios de gobernanza de IA",
     "",
@@ -36,12 +37,12 @@ export function GET() {
     "",
     "## Páginas clave",
     "",
-    `- [Servicios](${brand.domain}/servicios)`,
-    `- [Casos](${brand.domain}/casos)`,
-    `- [Gobernanza de IA](${brand.domain}/gobernanza)`,
-    `- [Formación](${brand.domain}/formacion)`,
-    `- [Aliados](${brand.domain}/aliados)`,
-    `- [Política de privacidad](${brand.domain}/privacidad)`,
+    `- [Servicios](${SITE_URL}/servicios)`,
+    `- [Casos](${SITE_URL}/casos)`,
+    `- [Gobernanza de IA](${SITE_URL}/gobernanza)`,
+    `- [Formación](${SITE_URL}/formacion)`,
+    `- [Aliados](${SITE_URL}/aliados)`,
+    `- [Política de privacidad](${SITE_URL}/privacidad)`,
     "",
     `Contacto: ${brand.email}`,
   ]
