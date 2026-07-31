@@ -8,6 +8,7 @@ import { Logo } from "@/components/brand/logo"
 import { SurfaceProvider } from "@/components/brand/surface"
 
 const NAV = [
+  { href: "/fuerza-laboral-digital", label: "Fuerza Laboral Digital" },
   { href: "/servicios", label: "Servicios" },
   { href: "/casos", label: "Casos" },
   { href: "/gobernanza", label: "Gobernanza" },

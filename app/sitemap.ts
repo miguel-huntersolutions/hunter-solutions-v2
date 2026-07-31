@@ -8,6 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const staticRoutes = [
     "",
+    "/fuerza-laboral-digital",
     "/servicios",
     "/casos",
     "/gobernanza",
