@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next"
-import { brand } from "@/content"
+import { SITE_URL } from "@/lib/seo"
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -10,6 +10,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/api/", "/design-system"],
       },
     ],
-    sitemap: `${brand.domain}/sitemap.xml`,
+    sitemap: `${SITE_URL}/sitemap.xml`,
   }
 }

@@ -1,8 +1,9 @@
 import type { MetadataRoute } from "next"
-import { brand, services, publishedCases } from "@/content"
+import { services, publishedCases } from "@/content"
+import { SITE_URL } from "@/lib/seo"
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = brand.domain
+  const base = SITE_URL
   const now = new Date()
 
   const staticRoutes = [
