@@ -2,7 +2,6 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import {
-  brand,
   formatLevelRange,
   getLevel,
   getServiceBySlug,
@@ -45,31 +44,60 @@ export default async function ServicePage({
     .filter((s) => s.nivel === service.nivel && s.id !== service.id)
     .slice(0, 3)
 
-  const jsonLd = {
+  // Solo emitimos precio cuando el nivel tiene un rango numérico definido.
+  const hasPriceRange = Number.isFinite(level.rangoMin) && Number.isFinite(level.rangoMax)
+
+  const serviceJsonLd = {
     "@context": "https://schema.org",
     "@type": "Service",
     name: service.nombre,
     description: service.descripcion,
     url: absoluteUrl(`/servicios/${service.slug}`),
-    provider: { "@type": "Organization", name: brand.legalName, url: absoluteUrl("/") },
+    // Referencia a la Organization global por @id (definida en OrgJsonLd), sin duplicar sus datos.
+    provider: { "@id": absoluteUrl("/#organization") },
     areaServed: "CO",
-    offers: {
-      "@type": "Offer",
-      priceCurrency: "COP",
-      priceSpecification: {
-        "@type": "PriceSpecification",
-        minPrice: level.rangoMin,
-        ...(level.id !== 3 ? { maxPrice: level.rangoMax } : {}),
-        priceCurrency: "COP",
+    serviceType: level.nombre,
+    ...(hasPriceRange
+      ? {
+          offers: {
+            "@type": "Offer",
+            priceCurrency: "COP",
+            priceSpecification: {
+              "@type": "PriceSpecification",
+              priceCurrency: "COP",
+              minPrice: level.rangoMin,
+              // El Nivel 3 se comunica como "desde", así que no publicamos techo de precio.
+              ...(level.id !== 3 ? { maxPrice: level.rangoMax } : {}),
+            },
+          },
+        }
+      : {}),
+  }
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Inicio", item: absoluteUrl("/") },
+      { "@type": "ListItem", position: 2, name: "Servicios", item: absoluteUrl("/servicios") },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: service.nombre,
+        item: absoluteUrl(`/servicios/${service.slug}`),
       },
-    },
+    ],
   }
 
   return (
     <main className="bg-bg">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: jsonLdScript(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(serviceJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(breadcrumbJsonLd) }}
       />
 
       <div className="mx-auto flex max-w-[1200px] flex-col gap-6 px-2 py-8 md:px-3 md:py-10">

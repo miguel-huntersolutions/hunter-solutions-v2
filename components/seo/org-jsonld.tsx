@@ -4,6 +4,8 @@ export function OrgJsonLd() {
   const data = {
     "@context": "https://schema.org",
     "@type": "Organization",
+    // @id estable para que otras entidades (p. ej. Service.provider) la referencien sin duplicar datos.
+    "@id": `${brand.domain}/#organization`,
     name: brand.shortName,
     legalName: brand.legalName,
     url: brand.domain,
