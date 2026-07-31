@@ -19,10 +19,10 @@ export function Hero() {
             <Eyebrow tone="dark">Consultora AI-native · Colombia</Eyebrow>
             <HeroHeadline />
             <p className="max-w-[54ch] text-lead leading-relaxed text-line">
-              Multiplicamos la eficiencia de su equipo y reducimos su gasto operativo con una Fuerza
-              Laboral Digital que opera sus procesos de principio a fin, con supervisión humana. No
-              solo responde preguntas: se conecta a su ERP, decide con las reglas de su negocio y
-              ejecuta.
+              Ayudamos a empresas en Colombia a multiplicar la eficiencia de su equipo y a reducir el
+              gasto operativo con una Fuerza Laboral Digital: agentes de IA que operan sus procesos de
+              principio a fin, con supervisión humana. No solo responden preguntas: se conectan a su
+              ERP, deciden con las reglas de su negocio y ejecutan.
             </p>
 
             <div className="flex flex-wrap items-center gap-2">
