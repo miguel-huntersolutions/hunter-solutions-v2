@@ -24,6 +24,8 @@ export {
   formatResourceDate,
 } from "./resources"
 export type { Resource, ResourceSection, ResourceFaq, ResourceLink } from "./resources"
+export { sectorPages, getSectorPageBySlug } from "./sectores"
+export type { SectorPage, SectorFaq } from "./sectores"
 export type * from "./types"
 
 import { cases as allCases } from "./trust"

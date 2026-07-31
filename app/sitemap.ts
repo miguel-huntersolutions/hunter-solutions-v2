@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next"
-import { services, publishedCases, publishedResources } from "@/content"
+import { services, publishedCases, publishedResources, sectorPages } from "@/content"
 import { SITE_URL } from "@/lib/seo"
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -48,5 +48,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }))
 
-  return [...staticRoutes, ...serviceRoutes, ...caseRoutes, ...resourceRoutes]
+  const sectorRoutes = sectorPages.map((s) => ({
+    url: `${base}/sectores/${s.slug}`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }))
+
+  return [...staticRoutes, ...serviceRoutes, ...caseRoutes, ...resourceRoutes, ...sectorRoutes]
 }
