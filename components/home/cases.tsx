@@ -1,6 +1,6 @@
 import Link from "next/link"
 import Image from "next/image"
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, Sparkles } from "lucide-react"
 import { publishedCases } from "@/content"
 import { caseImage } from "@/content/media"
 import { Section } from "@/components/ui/section"
@@ -54,6 +54,22 @@ export function Cases() {
             </div>
           </article>
         ))}
+      </div>
+
+      <div className="mt-6 flex flex-col gap-4 rounded-2xl border border-line bg-navy p-6 md:flex-row md:items-start md:gap-5">
+        <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-teal/15 text-teal">
+          <Sparkles size={22} aria-hidden />
+        </span>
+        <div className="flex flex-col gap-2">
+          <h3 className="text-h3 font-bold text-white text-balance">
+            Usamos nuestra propia nómina digital
+          </h3>
+          <p className="max-w-[60ch] text-body leading-relaxed text-line">
+            No solo la construimos para otros: operamos con ella. Un agente apoya nuestra operación
+            interna y otro trabaja el posicionamiento de este sitio. Ser AI-native no es un eslogan,
+            es cómo trabajamos todos los días.
+          </p>
+        </div>
       </div>
     </Section>
   )
