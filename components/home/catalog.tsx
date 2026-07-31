@@ -9,7 +9,7 @@ export function Catalog() {
     <Section
       id="servicios"
       eyebrow="Catálogo por niveles"
-      title="Veinte servicios, tres niveles de inversión, rangos a la vista"
+      title="Un catálogo por niveles, con rangos a la vista"
       intro="Rangos de referencia en COP, sin IVA. Cada proyecto se cotiza según su alcance; los rangos existen para que conozca el orden de magnitud antes de conversar."
       tone="white"
     >

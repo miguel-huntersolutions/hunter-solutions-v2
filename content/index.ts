@@ -14,7 +14,7 @@ export {
   differentiators,
   faqs,
 } from "./narrative"
-export { levels, services } from "./commercial"
+export { levels, services, roles } from "./commercial"
 export { governance, cases, teamExperience, partners, training } from "./trust"
 export type * from "./types"
 

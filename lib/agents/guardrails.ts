@@ -87,7 +87,7 @@ export function correctiveInstruction(violations: GuardrailViolation[]): string 
 }
 
 export const SAFE_FALLBACK =
-  "Prefiero no improvisar una respuesta sobre eso. Lo que sí puedo decirle con certeza está publicado en la página: el catálogo de 20 servicios por niveles con sus rangos de referencia, la metodología de cuatro etapas y la gobernanza completa. Si quiere una lectura seria de su caso, agende la sesión de diagnóstico de 30 minutos sin costo en la sección de contacto."
+  "Prefiero no improvisar una respuesta sobre eso. Lo que sí puedo decirle con certeza está publicado en la página: el catálogo de servicios por niveles con sus rangos de referencia, la metodología de cuatro etapas y la gobernanza completa. Si quiere una lectura seria de su caso, agende la sesión de diagnóstico de 30 minutos sin costo en la sección de contacto."
 
 /** Nombres de servicio publicados, útil para trazas de monitoreo */
 export const PUBLISHED_SERVICE_NAMES = services.map((s) => s.nombre)

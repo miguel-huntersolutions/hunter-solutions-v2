@@ -63,6 +63,13 @@ export type Service = {
   esPuertaDeEntrada?: boolean
 }
 
+export type Role = {
+  id: string
+  icono: "cotizaciones" | "agendamiento" | "finanzas"
+  nombre: string
+  descripcion: string
+}
+
 export type Differentiator = { titulo: string; descripcion: string }
 
 export type Faq = { pregunta: string; respuesta: string }

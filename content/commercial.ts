@@ -1,4 +1,4 @@
-import type { Level, Service } from "./types"
+import type { Level, Role, Service } from "./types"
 
 // Rangos ratificados por los socios (sección 6 de la Oferta Definitiva).
 export const levels: Level[] = [
@@ -128,21 +128,6 @@ export const services: Service[] = [
 
   // ─── NIVEL 2 · IMPLEMENTA ───
   {
-    id: "agente-atencion-agendamiento",
-    slug: "agente-de-atencion-y-agendamiento",
-    nivel: 2,
-    nombre: "Agente de atención y agendamiento",
-    descripcion:
-      "Un agente que atiende consultas frecuentes y gestiona agendas de principio a fin, conectado a sus calendarios y sistemas de registro.",
-    queSolucionamos:
-      "Líneas de atención saturadas, citas perdidas por demoras en confirmar y personal calificado respondiendo siempre las mismas preguntas.",
-    comoLoHacemos:
-      "Integramos el agente a sus canales (web, WhatsApp) y a su sistema de agenda, con reglas de negocio explícitas, escalamiento a humano y trazabilidad de cada interacción.",
-    ejemplo:
-      "Los pacientes de un centro médico agendan, confirman y reprograman citas por WhatsApp a cualquier hora; el personal solo interviene en los casos que el agente escala.",
-    sectoresRelevantes: ["Salud", "Consumo", "Legal"],
-  },
-  {
     id: "procesamiento-documentos",
     slug: "procesamiento-inteligente-de-documentos",
     nivel: 2,
@@ -171,21 +156,6 @@ export const services: Service[] = [
     ejemplo:
       "Los abogados de una firma consultan en segundos qué cláusulas de indemnidad han usado en contratos similares de los últimos cinco años, con el enlace a cada contrato de origen.",
     sectoresRelevantes: ["Legal", "Salud", "Manufactura"],
-  },
-  {
-    id: "agente-backoffice",
-    slug: "agente-de-back-office",
-    nivel: 2,
-    nombre: "Agente de back-office administrativo y financiero",
-    descripcion:
-      "Agentes que ejecutan procesos administrativos completos: conciliaciones, cuentas por pagar, reportes regulatorios y seguimiento de cartera.",
-    queSolucionamos:
-      "Cierres contables que toman semanas, conciliaciones manuales propensas a error y equipos financieros dedicados a transcribir en lugar de analizar.",
-    comoLoHacemos:
-      "Mapeamos el proceso con sus reglas de negocio, construimos el agente que lo ejecuta contra sus sistemas contables y dejamos cada decisión trazada y auditable.",
-    ejemplo:
-      "La conciliación bancaria diaria de una importadora pasa de cuatro horas de trabajo manual a una revisión de 20 minutos sobre las excepciones que el agente no pudo resolver solo.",
-    sectoresRelevantes: ["Manufactura", "Consumo", "Alimentos"],
   },
   {
     id: "integracion-erp",
@@ -338,5 +308,28 @@ export const services: Service[] = [
     ejemplo:
       "Tras implementar su fuerza laboral digital, una empresa de consumo mantiene un ciclo mensual de revisión donde se miden los agentes contra sus métricas, se ajustan los que se desviaron y se priorizan las siguientes automatizaciones.",
     sectoresRelevantes: ["Consumo", "Manufactura", "Alimentos", "Salud", "Legal"],
+  },
+]
+
+// Roles de la Fuerza Laboral Digital: ejemplos de casos de uso, no productos sueltos con precio.
+// Se muestran como galería para ilustrar qué puede cumplir la nómina digital dentro de un proyecto.
+export const roles: Role[] = [
+  {
+    id: "cotizaciones-propuestas",
+    icono: "cotizaciones",
+    nombre: "Cotizaciones y propuestas",
+    descripcion: "Genera cotizaciones y propuestas en minutos, con sus reglas y plantillas.",
+  },
+  {
+    id: "atencion-agendamiento",
+    icono: "agendamiento",
+    nombre: "Atención y agendamiento",
+    descripcion: "Atiende consultas frecuentes y gestiona agendas de principio a fin.",
+  },
+  {
+    id: "administrativo-financiero",
+    icono: "finanzas",
+    nombre: "Administrativo y financiero",
+    descripcion: "Ejecuta conciliaciones, cuentas por pagar y seguimiento de cartera.",
   },
 ]

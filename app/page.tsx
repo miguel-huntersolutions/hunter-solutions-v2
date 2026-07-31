@@ -4,6 +4,7 @@ import { Problems } from "@/components/home/problems"
 import { AugmentTeam } from "@/components/home/augment-team"
 import { Process } from "@/components/home/process"
 import { Catalog } from "@/components/home/catalog"
+import { RolesGallery } from "@/components/home/roles-gallery"
 import { EngagementModels } from "@/components/home/engagement-models"
 import { Sectors } from "@/components/home/sectors"
 import { Cases } from "@/components/home/cases"
@@ -24,6 +25,7 @@ export default function HomePage() {
       <AugmentTeam />
       <Process />
       <Catalog />
+      <RolesGallery />
       <EngagementModels />
       <Recommender />
       <Tools />

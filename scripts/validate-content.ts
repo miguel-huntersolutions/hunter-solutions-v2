@@ -78,7 +78,7 @@ const levelSchema = z.object({
 })
 
 // ── T-CON-01 · servicios completos ──
-if (services.length !== 20) fail(`Debe haber 20 servicios; hay ${services.length}`)
+if (services.length !== 18) fail(`Debe haber 18 servicios; hay ${services.length}`)
 for (const s of services) {
   const r = serviceSchema.safeParse(s)
   if (!r.success) fail(`Servicio "${s.id}": ${r.error.issues.map((i) => i.path.join(".") + " " + i.message).join("; ")}`)
@@ -153,4 +153,4 @@ if (errors.length > 0) {
   for (const e of errors) console.error("  - " + e)
   process.exit(1)
 }
-console.log("✓ Contrato de contenido válido: 20 servicios, 3 niveles, 3 problemas, 4 etapas, 6 principios, 8 diferenciadores, 6 FAQ, casos autorizados:", cases.filter((c) => c.autorizacion).length)
+console.log("✓ Contrato de contenido válido: 18 servicios, 3 niveles, 3 problemas, 4 etapas, 6 principios, 8 diferenciadores, 6 FAQ, casos autorizados:", cases.filter((c) => c.autorizacion).length)

@@ -6,7 +6,7 @@ import { absoluteUrl } from "@/lib/seo"
 export const metadata: Metadata = {
   title: "Servicios y niveles de inversión",
   description:
-    "Veinte servicios de IA aplicada organizados en tres niveles de inversión, con rangos publicados en COP.",
+    "Servicios de IA aplicada organizados en tres niveles de inversión, con rangos publicados en COP.",
   alternates: { canonical: absoluteUrl("/servicios") },
 }
 
@@ -17,7 +17,7 @@ export default function ServiciosPage() {
         <header className="flex max-w-[70ch] flex-col gap-2">
           <p className="text-caption font-semibold uppercase tracking-wide text-teal">Catálogo</p>
           <h1 className="text-h1 font-bold text-navy text-balance">
-            Veinte servicios, tres niveles, rangos publicados
+            Servicios por niveles, con rangos publicados
           </h1>
           <p className="text-body-lg leading-relaxed text-slate">
             Cada servicio pertenece a un nivel de inversión con rango publicado en pesos
