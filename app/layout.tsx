@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     template: '%s | Hunter Solutions Tech',
   },
   description:
-    'Consultora AI-native en Colombia. Automatización, agentes de IA y desarrollo a la medida por niveles de inversión claros. Prueba la IA en la página antes de agendar.',
+    'Generadores de Soluciones con Inteligencia Artificial. TECH | AI-NATIVE. Consultora AI-native en Colombia: automatización, agentes de IA y desarrollo a la medida por niveles de inversión claros. Prueba la IA en la página antes de agendar.',
   generator: 'v0.app',
   icons: {
     icon: [{ url: '/brand/favicon.svg', type: 'image/svg+xml' }],

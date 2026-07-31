@@ -35,6 +35,9 @@ export function SiteFooter() {
               Consultora AI-native en Colombia. Automatización, agentes de IA y desarrollo a la
               medida con niveles de inversión claros.
             </p>
+            <p className="max-w-[36ch] text-caption font-semibold leading-relaxed text-teal">
+              Generadores de Soluciones con Inteligencia Artificial. TECH | AI-NATIVE.
+            </p>
           </div>
 
           {COLUMNS.map((col) => (
