@@ -8,6 +8,7 @@ import { Sectors } from "@/components/home/sectors"
 import { Cases } from "@/components/home/cases"
 import { Tools } from "@/components/home/tools"
 import { Recommender } from "@/components/home/recommender"
+import { DigitalAnatomy } from "@/components/home/digital-anatomy"
 import { GovernanceStrip } from "@/components/home/governance-strip"
 import { Differentiators } from "@/components/home/differentiators"
 import { Faq } from "@/components/home/faq"
@@ -26,6 +27,7 @@ export default function HomePage() {
       <Tools />
       <Sectors />
       <Cases />
+      <DigitalAnatomy />
       <GovernanceStrip />
       <Differentiators />
       <Faq />
