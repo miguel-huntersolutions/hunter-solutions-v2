@@ -1,9 +1,10 @@
 import Link from "next/link"
 import { ArrowRight, MessageSquare } from "lucide-react"
-import { positioning, sectors } from "@/content"
+import { sectors } from "@/content"
 import { AgentPanel } from "@/components/agents/agent-panel"
 import { SurfaceProvider } from "@/components/brand/surface"
 import { Eyebrow } from "@/components/ui/section"
+import { HeroHeadline } from "@/components/home/hero-headline"
 
 export function Hero() {
   return (
@@ -16,7 +17,7 @@ export function Hero() {
         <div className="relative mx-auto grid max-w-[1200px] items-center gap-8 px-2 py-14 md:px-3 lg:grid-cols-[1.05fr_1fr] lg:py-20">
           <div className="flex flex-col items-start gap-5">
             <Eyebrow tone="dark">Consultora AI-native · Colombia</Eyebrow>
-            <h1 className="text-h1 font-bold text-balance md:text-display">{positioning.h1}</h1>
+            <HeroHeadline />
             <p className="max-w-[54ch] text-lead leading-relaxed text-line">
               Multiplicamos la eficiencia de su equipo y reducimos su gasto operativo con una Fuerza
               Laboral Digital que opera sus procesos de principio a fin, con supervisión humana. No

@@ -80,6 +80,8 @@
 
   --animate-*: initial;
   --animate-fade-up: fade-up 0.5s ease-out both;
+  --animate-hero-line: hero-line 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-hero-underline: hero-underline 0.7s ease-out 0.7s both;
 }
 
 :root {
@@ -171,6 +173,61 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* Reveal escalonado de las líneas del titular del hero */
+@keyframes hero-line {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+/* Trazo del subrayado teal bajo "Fuerza Laboral Digital" */
+@keyframes hero-underline {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@layer components {
+  .hero-line {
+    animation: var(--animate-hero-line);
+  }
+
+  /* Frase resaltada en teal con subrayado que se dibuja */
+  .hero-highlight {
+    position: relative;
+    color: var(--hst-teal);
+    white-space: nowrap;
+  }
+  .hero-highlight::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -0.08em;
+    height: 0.09em;
+    background-color: var(--hst-teal);
+    border-radius: 2px;
+    transform-origin: left center;
+    animation: var(--animate-hero-underline);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-highlight::after {
+      animation: none;
+    }
   }
 }
 
