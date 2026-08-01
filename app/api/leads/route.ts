@@ -89,13 +89,17 @@ type LeadPayload = {
 
 async function sendLeadEmail(lead: LeadPayload): Promise<boolean> {
   const apiKey = process.env.RESEND_API_KEY
-  const from = process.env.LEADS_FROM_EMAIL
   const to = process.env.LEADS_TO_EMAIL
 
-  if (!apiKey || !from || !to) {
-    console.warn(
-      "[leads] RESEND_API_KEY, LEADS_FROM_EMAIL o LEADS_TO_EMAIL sin configurar; no se envía correo.",
-    )
+  // Remitente en el dominio verificado en Resend: contacto.huntersolutions.tech.
+  // Solo respetamos LEADS_FROM_EMAIL si apunta a ese subdominio verificado; de lo
+  // contrario usamos el remitente por defecto para evitar el 403 de dominio no verificado.
+  const DEFAULT_FROM = "HST Diagnóstico <diagnostico@contacto.huntersolutions.tech>"
+  const envFrom = process.env.LEADS_FROM_EMAIL
+  const from = envFrom && envFrom.includes("@contacto.huntersolutions.tech") ? envFrom : DEFAULT_FROM
+
+  if (!apiKey || !to) {
+    console.warn("[leads] RESEND_API_KEY o LEADS_TO_EMAIL sin configurar; no se envía correo.")
     return false
   }
 
