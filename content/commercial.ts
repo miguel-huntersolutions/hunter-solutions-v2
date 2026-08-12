@@ -312,7 +312,7 @@ export const services: Service[] = [
 ]
 
 // Roles de la Fuerza Laboral Digital: ejemplos de casos de uso, no productos sueltos con precio.
-// Se muestran como galería para ilustrar qué puede cumplir la nómina digital dentro de un proyecto.
+// Se muestran como galería para ilustrar qué pueden cumplir las Capacidades Digitales dentro de un proyecto.
 export const roles: Role[] = [
   {
     id: "cotizaciones-propuestas",

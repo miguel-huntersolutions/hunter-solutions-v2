@@ -14,7 +14,7 @@ export function RolesGallery() {
       id="roles"
       eyebrow="Casos de uso"
       title="Qué roles puede cumplir su Fuerza Laboral Digital"
-      intro="Estos son ejemplos de roles que la nómina digital cumple dentro de un proyecto, no productos sueltos con precio. Cada rol se implementa según su alcance, dentro de uno de los tres niveles de inversión."
+      intro="Estos son ejemplos de roles que sus Capacidades Digitales cumplen dentro de un proyecto, no productos sueltos con precio. Cada rol se implementa según su alcance, dentro de uno de los tres niveles de inversión."
       tone="white"
     >
       <div className="grid gap-4 md:grid-cols-3">
@@ -36,9 +36,9 @@ export function RolesGallery() {
       </div>
 
       <p className="mt-5 max-w-[70ch] text-caption leading-relaxed text-slate">
-        Así como su empresa tiene una nómina de personas, la Fuerza Laboral Digital suma estos roles
-        a su operación. No se contratan por separado: se definen dentro del proyecto que mejor se
-        ajusta a su necesidad.
+        Así como su empresa cuenta con un equipo de personas, la Fuerza Laboral Digital suma estos
+        roles a su operación. No se contratan por separado: se definen dentro del proyecto que mejor
+        se ajusta a su necesidad.
       </p>
     </Section>
   )

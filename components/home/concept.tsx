@@ -15,7 +15,7 @@ const columns = [
   {
     icon: Handshake,
     titulo: "Juntos",
-    texto: "Más capacidad y menos carga operativa, sin crecer la nómina de personas.",
+    texto: "Más capacidad y menos carga operativa, sin sumar personal.",
     destacado: true,
   },
 ]
@@ -25,8 +25,8 @@ export function Concept() {
     <Section
       id="fuerza-laboral"
       eyebrow="Fuerza Laboral Digital"
-      title="Su nómina de personas ya existe. Le construimos la digital."
-      intro="Así como su empresa tiene una nómina de personas, desarrollamos su nómina digital: colaboradores de IA que, como cualquier miembro del equipo, tienen un rol, se integran a sus sistemas y operan sus procesos con supervisión humana. No reemplazamos a su equipo, lo potenciamos."
+      title="Su equipo ya existe. Le sumamos Capacidades Digitales."
+      intro="Así como su empresa cuenta con un equipo de personas, desarrollamos sus Capacidades Digitales: colaboradores de IA que, como cualquier miembro del equipo, tienen un rol, se integran a sus sistemas y operan sus procesos con supervisión humana. No reemplazamos a su equipo, lo potenciamos."
       tone="white"
     >
       <div className="grid gap-4 md:grid-cols-3">

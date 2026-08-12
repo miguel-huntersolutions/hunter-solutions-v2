@@ -72,10 +72,10 @@ export function Cases() {
         </span>
         <div className="flex flex-col gap-2">
           <h3 className="text-h3 font-bold text-white text-balance">
-            Usamos nuestra propia nómina digital
+            Usamos nuestras propias Capacidades Digitales
           </h3>
           <p className="max-w-[60ch] text-body leading-relaxed text-line">
-            No solo la construimos para otros: operamos con ella. Un agente apoya nuestra operación
+            No solo las construimos para otros: operamos con ellas. Un agente apoya nuestra operación
             interna y otro trabaja el posicionamiento de este sitio. Ser AI-native no es un eslogan,
             es cómo trabajamos todos los días.
           </p>

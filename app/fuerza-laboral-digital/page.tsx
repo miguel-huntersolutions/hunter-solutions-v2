@@ -22,7 +22,7 @@ const pillarFaqs = [
   {
     pregunta: "¿Qué es exactamente una Fuerza Laboral Digital?",
     respuesta:
-      "Es un conjunto de agentes de IA que operan procesos completos de su empresa, conectados a sus sistemas y con supervisión humana. Se gobierna como una nómina de personas: cada agente tiene un rol definido, una responsabilidad y trazabilidad de lo que hace.",
+      "Es un conjunto de agentes de IA que operan procesos completos de su empresa, conectados a sus sistemas y con supervisión humana. Se gobierna como un equipo de personas: cada agente tiene un rol definido, una responsabilidad y trazabilidad de lo que hace.",
   },
   {
     pregunta: "¿En qué se diferencia de una automatización tradicional?",
@@ -164,10 +164,10 @@ export default function FuerzaLaboralDigitalPage() {
 
         <section className="flex flex-col gap-3">
           <h2 className="text-h2 font-bold text-navy text-balance">
-            Es una nómina de agentes que trabajan, no una herramienta que consultan
+            Son Capacidades Digitales que trabajan, no una herramienta que consultan
           </h2>
           <p className="text-body leading-relaxed text-ink">
-            Piense en su nómina de personas: cada quien tiene un rol, una responsabilidad y responde
+            Piense en su equipo de personas: cada quien tiene un rol, una responsabilidad y responde
             por sus resultados. La Fuerza Laboral Digital funciona igual. Cada agente recibe un rol
             claro, opera un proceso concreto y deja registro de lo que hizo. Usted suma capacidad
             operativa sin sumar carga a su equipo, y libera a las personas para el trabajo que
