@@ -23,7 +23,7 @@ export default function AliadosPage() {
           <h1 className="text-h1 font-bold text-navy text-balance">
             Usted abre la puerta, nosotros ejecutamos, ambos ganamos
           </h1>
-          <p className="text-body-lg leading-relaxed text-slate">{partners.queEs}</p>
+          <p className="text-lead leading-relaxed text-slate">{partners.queEs}</p>
         </header>
 
         <section className="flex max-w-[70ch] flex-col gap-2 border-l-4 border-teal bg-white p-3">

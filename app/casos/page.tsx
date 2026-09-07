@@ -23,7 +23,7 @@ export default function CasosPage() {
           <h1 className="text-h1 font-bold text-navy text-balance">
             Casos: qué construimos y qué cambió
           </h1>
-          <p className="text-body-lg leading-relaxed text-slate">
+          <p className="text-lead leading-relaxed text-slate">
             Publicamos solo casos con autorización registrada. Los casos anonimizados protegen la
             identidad del cliente; los resultados se presentan con su encuadre y fuente.
           </p>

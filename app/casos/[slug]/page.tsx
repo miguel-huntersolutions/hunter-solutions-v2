@@ -71,7 +71,7 @@ export default async function CasePage({
             {cs.anonimizado && " · Caso anonimizado por confidencialidad"}
           </p>
           <h1 className="text-h1 font-bold text-navy text-balance">{cs.titulo}</h1>
-          <p className="text-body-lg leading-relaxed text-slate">{cs.reto}</p>
+          <p className="text-lead leading-relaxed text-slate">{cs.reto}</p>
         </header>
 
         <div className="grid gap-4 md:grid-cols-2">
@@ -89,7 +89,7 @@ export default async function CasePage({
           <section className="flex max-w-[70ch] flex-col gap-3 border-l-4 border-teal bg-white p-3">
             <div className="flex flex-col gap-1">
               <h2 className="text-h3 font-bold text-navy">Resultado</h2>
-              <p className="text-body-lg leading-relaxed text-ink">{cs.resultado.texto}</p>
+              <p className="text-lead leading-relaxed text-ink">{cs.resultado.texto}</p>
               <p className="text-caption leading-relaxed text-slate">{cs.resultado.encuadre}</p>
             </div>
 

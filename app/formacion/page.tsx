@@ -21,7 +21,7 @@ export default function FormacionPage() {
           <h1 className="text-h1 font-bold text-navy text-balance">
             Formación en IA para equipos que van a convivir con agentes
           </h1>
-          <p className="text-body-lg leading-relaxed text-slate">{training.paraQuien}</p>
+          <p className="text-lead leading-relaxed text-slate">{training.paraQuien}</p>
         </header>
 
         <section className="grid gap-3 md:grid-cols-2">

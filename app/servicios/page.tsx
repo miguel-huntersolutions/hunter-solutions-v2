@@ -24,7 +24,7 @@ export default function ServiciosPage() {
           <h1 className="text-h1 font-bold text-navy text-balance">
             Servicios por niveles, con rangos publicados
           </h1>
-          <p className="text-body-lg leading-relaxed text-slate">
+          <p className="text-lead leading-relaxed text-slate">
             Cada servicio pertenece a un nivel de inversión con rango publicado en pesos
             colombianos, sin IVA. La cifra exacta se define en la propuesta según el alcance.
           </p>

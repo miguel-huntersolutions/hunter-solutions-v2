@@ -47,7 +47,7 @@ export default function DesignSystemPage() {
             <p className="text-h1 font-bold text-navy">H1: Titular de página</p>
             <p className="text-h2 font-bold text-navy">H2: Titular de sección</p>
             <p className="text-h3 font-bold text-navy">H3: Titular de tarjeta</p>
-            <p className="text-body-lg leading-relaxed text-ink">Body large: párrafos de apoyo del hero.</p>
+            <p className="text-lead leading-relaxed text-ink">Lead: párrafos de apoyo del hero.</p>
             <p className="text-body leading-relaxed text-ink">Body: texto corriente del sitio.</p>
             <p className="text-caption text-slate">Caption: metadatos, etiquetas y notas.</p>
           </div>

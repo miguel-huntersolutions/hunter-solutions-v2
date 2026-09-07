@@ -82,7 +82,7 @@ export default async function SectorPage({
           </p>
           <h1 className="text-h1 font-bold text-navy text-balance">{sector.h1}</h1>
           {/* BLUF: dolor operativo + respuesta directa en el primer párrafo */}
-          <p className="text-body-lg leading-relaxed text-ink">{sector.bluf}</p>
+          <p className="text-lead leading-relaxed text-ink">{sector.bluf}</p>
         </header>
 
         <section className="flex flex-col gap-3">
@@ -134,7 +134,7 @@ export default async function SectorPage({
               href={`/casos/${sector.caso.slug}`}
               className="group flex flex-col gap-2 border-l-4 border-teal bg-white p-4 transition-colors hover:bg-teal-soft"
             >
-              <span className="text-body-lg font-semibold text-navy group-hover:text-teal-dark">
+              <span className="text-lead font-semibold text-navy group-hover:text-teal-dark">
                 {sector.caso.titulo}
               </span>
               <span className="text-body leading-relaxed text-ink">{sector.caso.resumen}</span>
@@ -145,7 +145,7 @@ export default async function SectorPage({
             </Link>
           ) : (
             <div className="flex flex-col gap-2 border-l-4 border-line bg-white p-4">
-              <span className="text-body-lg font-semibold text-slate">
+              <span className="text-lead font-semibold text-slate">
                 [COMPLETAR con un caso autorizado del sector {sector.sector}]
               </span>
               <span className="text-body leading-relaxed text-slate">

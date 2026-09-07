@@ -23,7 +23,7 @@ export default function PreguntasPage() {
           <h1 className="text-h1 font-bold text-navy text-balance">
             Las preguntas que nos hacen antes de empezar
           </h1>
-          <p className="text-body-lg leading-relaxed text-slate">
+          <p className="text-lead leading-relaxed text-slate">
             Respuestas directas a lo que más nos consultan sobre cómo trabajamos, qué se necesita y
             cómo medimos el valor.
           </p>

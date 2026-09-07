@@ -35,7 +35,7 @@ export default function GobernanzaPage() {
           <h1 className="text-h1 font-bold text-navy text-balance">
             Gobernanza e ingeniería: cómo se construye y se controla lo que entregamos
           </h1>
-          <p className="text-body-lg leading-relaxed text-slate">
+          <p className="text-lead leading-relaxed text-slate">
             Este documento está pensado para reenviarse tal cual a un CIO o a un líder técnico. No
             hay formulario ni captura de correo: imprima o comparta la URL.
           </p>

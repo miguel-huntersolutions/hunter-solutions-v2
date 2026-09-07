@@ -117,7 +117,7 @@ export default async function ServicePage({
             {" "}(sin IVA)
           </p>
           <h1 className="text-h1 font-bold text-navy text-balance">{service.nombre}</h1>
-          <p className="text-body-lg leading-relaxed text-slate">{service.descripcion}</p>
+          <p className="text-lead leading-relaxed text-slate">{service.descripcion}</p>
         </header>
 
         <div className="grid gap-4 md:grid-cols-3">
