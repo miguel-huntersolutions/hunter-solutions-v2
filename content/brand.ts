@@ -6,7 +6,7 @@ export const brand: Brand = {
   shortName: "Hunter Solutions Tech",
   descriptorCopy: "TECH | AI-NATIVE",
   domain: "https://www.huntersolutions.tech",
-  email: "hola@huntersolutions.tech",
+  email: "comercial@huntersolutions.tech",
   whatsapp: "+573043913066",
   socials: [
     { red: "LinkedIn", url: "https://www.linkedin.com/company/hunter-solutions-tech" },
