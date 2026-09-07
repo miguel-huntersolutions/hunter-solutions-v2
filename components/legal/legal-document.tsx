@@ -1,3 +1,4 @@
+import { brand } from "@/content/brand"
 import type { LegalDoc } from "@/content/legal"
 
 export function LegalDocument({ doc }: { doc: LegalDoc }) {
@@ -10,8 +11,8 @@ export function LegalDocument({ doc }: { doc: LegalDoc }) {
           <p className="border border-line bg-white px-2 py-1 text-caption text-slate">
             Documento en revisión: este texto es un borrador operativo y está pendiente de
             ratificación por el equipo legal. Para cualquier consulta escriba a{" "}
-            <a href="mailto:hola@huntersolutions.tech" className="underline">
-              hola@huntersolutions.tech
+            <a href={`mailto:${brand.email}`} className="underline">
+              {brand.email}
             </a>
             .
           </p>

@@ -52,7 +52,7 @@ export default async function SectorPage({
   }
 
   return (
-    <main className="bg-bg">
+    <div className="bg-bg">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: jsonLdScript(breadcrumbJsonLd) }}
@@ -201,6 +201,6 @@ export default async function SectorPage({
           </div>
         </footer>
       </div>
-    </main>
+    </div>
   )
 }

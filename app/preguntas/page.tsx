@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 export default function PreguntasPage() {
   return (
-    <main className="bg-bg">
+    <div className="bg-bg">
       <div className="mx-auto flex max-w-[820px] flex-col gap-6 px-2 py-8 md:py-10">
         <header className="flex flex-col gap-2">
           <p className="text-caption font-semibold uppercase tracking-wide text-teal">
@@ -52,6 +52,6 @@ export default function PreguntasPage() {
           </Link>
         </footer>
       </div>
-    </main>
+    </div>
   )
 }

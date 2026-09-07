@@ -17,7 +17,7 @@ const COLORS = [
 
 export default function DesignSystemPage() {
   return (
-    <main className="bg-bg">
+    <div className="bg-bg">
       <div className="mx-auto flex max-w-[1200px] flex-col gap-8 px-2 py-8 md:px-3 md:py-10">
         <header className="flex flex-col gap-2">
           <p className="text-caption font-semibold uppercase tracking-wide text-teal">
@@ -108,6 +108,6 @@ export default function DesignSystemPage() {
           </div>
         </section>
       </div>
-    </main>
+    </div>
   )
 }

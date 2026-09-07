@@ -57,7 +57,7 @@ export function Hero() {
             <div
               aria-hidden
               className="pointer-events-none absolute -inset-6 rounded-2xl bg-cover bg-center opacity-40 blur-[1px]"
-              style={{ backgroundImage: "url('/abstract/digital-workforce.png')" }}
+              style={{ backgroundImage: "url('/abstract/digital-workforce.webp')" }}
             />
             <div className="relative min-h-[420px]">
               <AgentPanel

@@ -90,7 +90,7 @@ export default async function ServicePage({
   }
 
   return (
-    <main className="bg-bg">
+    <div className="bg-bg">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: jsonLdScript(serviceJsonLd) }}
@@ -191,6 +191,6 @@ export default async function ServicePage({
           </section>
         )}
       </div>
-    </main>
+    </div>
   )
 }

@@ -1,13 +1,13 @@
 import type { Brand, Claim } from "./types"
 
-// TODO negocio: confirmar correo, WhatsApp y URLs de redes definitivos.
+// TODO negocio: confirmar URLs de redes definitivas.
 export const brand: Brand = {
   legalName: "Hunter Solutions Tech",
   shortName: "Hunter Solutions Tech",
   descriptorCopy: "TECH | AI-NATIVE",
   domain: "https://www.huntersolutions.tech",
   email: "hola@huntersolutions.tech",
-  whatsapp: "+573000000000",
+  whatsapp: "+573043913066",
   socials: [
     { red: "LinkedIn", url: "https://www.linkedin.com/company/hunter-solutions-tech" },
     { red: "Instagram", url: "https://www.instagram.com/huntersolutions.tech" },

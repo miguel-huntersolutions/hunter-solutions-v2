@@ -30,7 +30,7 @@ export default function RecursosPage() {
   }
 
   return (
-    <main className="bg-bg">
+    <div className="bg-bg">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: jsonLdScript(breadcrumbJsonLd) }}
@@ -94,6 +94,6 @@ export default function RecursosPage() {
           })}
         </ul>
       </div>
-    </main>
+    </div>
   )
 }

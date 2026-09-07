@@ -27,6 +27,8 @@ export function AgentPanel({ endpoint, title, placeholder, suggestions = [], ton
   const scrollRef = useRef<HTMLDivElement>(null)
 
   const dark = tone === "dark"
+  const last = messages[messages.length - 1]
+  const lastAssistantMessage = last?.role === "assistant" ? last.content : ""
 
   async function send(text: string) {
     const content = text.trim()
@@ -84,11 +86,10 @@ export function AgentPanel({ endpoint, title, placeholder, suggestions = [], ton
         </span>
       </div>
 
-      <div
-        ref={scrollRef}
-        className="flex flex-1 flex-col gap-2 overflow-y-auto p-2"
-        aria-live="polite"
-      >
+      {/* Sin aria-live sobre el hilo: con la respuesta llegando por chunks, un lector
+          de pantalla releería la conversación entera en cada actualización. El anuncio
+          lo hace la región viva de más abajo, una sola vez y con la respuesta completa. */}
+      <div ref={scrollRef} className="flex flex-1 flex-col gap-2 overflow-y-auto p-2">
         {messages.length === 0 && suggestions.length > 0 && (
           <div className="flex flex-col items-start gap-1">
             <p className={`text-caption ${dark ? "text-line" : "text-slate"}`}>
@@ -134,6 +135,10 @@ export function AgentPanel({ endpoint, title, placeholder, suggestions = [], ton
           </div>
         )}
       </div>
+
+      <p className="sr-only" aria-live="polite" aria-atomic="true">
+        {status === "loading" ? "" : lastAssistantMessage}
+      </p>
 
       <form onSubmit={onSubmit} className={`flex border-t ${dark ? "border-slate" : "border-line"}`}>
         <label htmlFor={`agent-input-${title}`} className="sr-only">

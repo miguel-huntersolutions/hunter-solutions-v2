@@ -47,7 +47,7 @@ export async function POST(
     return Response.json({ error: "Agente no encontrado" }, { status: 404 })
   }
 
-  if (!rateLimit(`${agent}:${getClientIp(req)}`)) {
+  if (!(await rateLimit(`${agent}:${getClientIp(req)}`))) {
     return Response.json(
       { error: "Límite de mensajes alcanzado. Intente de nuevo en unos minutos." },
       { status: 429 },

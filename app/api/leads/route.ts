@@ -24,7 +24,7 @@ const leadSchema = z.object({
 })
 
 export async function POST(req: Request) {
-  if (!rateLimit(`leads:${getClientIp(req)}`)) {
+  if (!(await rateLimit(`leads:${getClientIp(req)}`))) {
     return Response.json({ error: "Demasiadas solicitudes" }, { status: 429 })
   }
 
@@ -52,6 +52,7 @@ export async function POST(req: Request) {
   }
 
   const webhook = process.env.LEADS_WEBHOOK_URL
+  let webhookOk = false
   if (webhook) {
     try {
       const res = await fetch(webhook, {
@@ -61,19 +62,48 @@ export async function POST(req: Request) {
         signal: AbortSignal.timeout(8_000),
       })
       if (!res.ok) throw new Error(`webhook status ${res.status}`)
+      webhookOk = true
     } catch (error) {
-      console.error("[leads] fallo al enviar al CRM, lead registrado en log:", lead, error)
+      console.error("[leads] fallo al enviar al CRM:", traceable(lead), error)
     }
-  } else {
-    console.log("[leads] LEADS_WEBHOOK_URL no configurado; lead registrado en log:", lead)
   }
 
-  // Notificación por correo con Resend. Si algo falla, no rompemos la respuesta al
-  // usuario: el lead ya quedó registrado arriba. Los remitentes/destinatarios y la
-  // API key viven en variables de entorno, nunca en el código.
+  // Notificación por correo con Resend. Los remitentes/destinatarios y la API key
+  // viven en variables de entorno, nunca en el código.
   const emailSent = await sendLeadEmail(lead)
 
+  // Si ningún canal aceptó el lead, no lo registramos en el log (contendría datos
+  // personales con retención indefinida, justo lo contrario de lo que promete la
+  // política de privacidad) y tampoco fingimos éxito: el formulario muestra su
+  // estado de error, que ya ofrece el correo y el WhatsApp como alternativa.
+  if (!webhookOk && !emailSent) {
+    console.error("[leads] lead sin canal de entrega disponible:", traceable(lead))
+    return Response.json(
+      { error: "No pudimos registrar la solicitud en este momento." },
+      { status: 502 },
+    )
+  }
+
   return Response.json({ ok: true, emailSent })
+}
+
+/**
+ * Traza mínima para diagnosticar entregas fallidas sin dejar datos personales en
+ * los logs: el correo va enmascarado y el texto libre del visitante no se registra.
+ */
+function traceable(lead: LeadPayload) {
+  return {
+    email: maskEmail(lead.email),
+    sector: lead.sector,
+    origen: lead.origen,
+    consentGrantedAt: lead.consentGrantedAt,
+  }
+}
+
+function maskEmail(email: string): string {
+  const [local, domain] = email.split("@")
+  if (!domain) return "***"
+  return `${local.slice(0, 1)}***@${domain}`
 }
 
 type LeadPayload = {
@@ -95,8 +125,13 @@ async function sendLeadEmail(lead: LeadPayload): Promise<boolean> {
   // Solo respetamos LEADS_FROM_EMAIL si apunta a ese subdominio verificado; de lo
   // contrario usamos el remitente por defecto para evitar el 403 de dominio no verificado.
   const DEFAULT_FROM = "HST Diagnóstico <diagnostico@contacto.huntersolutions.tech>"
-  const envFrom = process.env.LEADS_FROM_EMAIL
-  const from = envFrom && envFrom.includes("@contacto.huntersolutions.tech") ? envFrom : DEFAULT_FROM
+  // endsWith y no includes: "algo@contacto.huntersolutions.tech.otrodominio.com"
+  // contiene el subdominio verificado pero no pertenece a él. Se compara sobre la
+  // dirección sola, porque el valor puede venir como "Nombre <correo@dominio>".
+  const VERIFIED_DOMAIN = "@contacto.huntersolutions.tech"
+  const envFrom = process.env.LEADS_FROM_EMAIL?.trim()
+  const address = envFrom?.replace(/^.*<|>$/g, "")
+  const from = envFrom && address?.endsWith(VERIFIED_DOMAIN) ? envFrom : DEFAULT_FROM
 
   if (!apiKey || !to) {
     console.warn("[leads] RESEND_API_KEY o LEADS_TO_EMAIL sin configurar; no se envía correo.")

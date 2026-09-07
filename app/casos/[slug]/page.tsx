@@ -48,7 +48,7 @@ export default async function CasePage({
   }
 
   return (
-    <main className="bg-bg">
+    <div className="bg-bg">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: jsonLdScript(jsonLd) }}
@@ -156,6 +156,6 @@ export default async function CasePage({
           </div>
         </section>
       </div>
-    </main>
+    </div>
   )
 }

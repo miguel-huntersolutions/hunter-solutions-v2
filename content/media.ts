@@ -1,13 +1,14 @@
 // content/media.ts — mapeo de presentación (imágenes) al contenido.
 // Se mantiene aparte del modelo de contenido validado por Zod: aquí solo
 // viven rutas a imágenes decorativas/editoriales, no datos de negocio.
+// Las fotografías se guardan en WebP: eran PNG sin pérdida de ~1,5 MB cada una.
 
 export const sectorImages: Record<string, string> = {
-  Legal: "/sectores/legal.png",
-  Manufactura: "/sectores/manufactura.png",
-  Salud: "/sectores/salud.png",
-  Alimentos: "/sectores/alimentos.png",
-  Consumo: "/sectores/consumo.png",
+  Legal: "/sectores/legal.webp",
+  Manufactura: "/sectores/manufactura.webp",
+  Salud: "/sectores/salud.webp",
+  Alimentos: "/sectores/alimentos.webp",
+  Consumo: "/sectores/consumo.webp",
 }
 
 export const sectorBlurb: Record<string, string> = {
@@ -20,12 +21,12 @@ export const sectorBlurb: Record<string, string> = {
 
 // Imagen por slug de caso publicado.
 export const caseImages: Record<string, string> = {
-  "gestion-inteligente-de-contratos-legales": "/casos/contratos.png",
-  "procesamiento-automatico-de-hojas-de-vida": "/casos/hojas-de-vida.png",
+  "gestion-inteligente-de-contratos-legales": "/casos/contratos.webp",
+  "procesamiento-automatico-de-hojas-de-vida": "/casos/hojas-de-vida.webp",
 }
 
 export function caseImage(slug: string): string {
   return caseImages[slug] ?? "/placeholder.svg"
 }
 
-export const heroAbstract = "/abstract/digital-workforce.png"
+export const heroAbstract = "/abstract/digital-workforce.webp"

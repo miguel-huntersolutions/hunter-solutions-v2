@@ -81,7 +81,7 @@ export default async function ArticlePage({
     : null
 
   return (
-    <main className="bg-bg">
+    <div className="bg-bg">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdScript(articleJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdScript(breadcrumbJsonLd) }} />
       {faqJsonLd && (
@@ -226,6 +226,6 @@ export default async function ArticlePage({
           </div>
         </footer>
       </article>
-    </main>
+    </div>
   )
 }

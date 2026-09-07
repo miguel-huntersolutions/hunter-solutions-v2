@@ -18,7 +18,7 @@ export default function GobernanzaPage() {
   const fecha = new Date().toISOString().slice(0, 10)
 
   return (
-    <main className="bg-bg print:bg-white">
+    <div className="bg-bg print:bg-white">
       <div className="mx-auto flex max-w-[820px] flex-col gap-6 px-2 py-8 md:py-10">
         {/* Encabezado de impresión (E10-S4) */}
         <div className="hidden items-center justify-between border-b border-line pb-2 print:flex">
@@ -180,6 +180,6 @@ export default function GobernanzaPage() {
           </Link>
         </footer>
       </div>
-    </main>
+    </div>
   )
 }

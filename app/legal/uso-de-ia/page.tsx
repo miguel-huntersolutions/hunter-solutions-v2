@@ -6,12 +6,13 @@ export const metadata: Metadata = {
   title: "Cómo usamos la IA",
   description:
     "Qué hacen los agentes de IA de este sitio, qué límites tienen y qué pasa con sus conversaciones.",
+  alternates: { canonical: "/legal/uso-de-ia" },
 }
 
 export default function UsoDeIaPage() {
   return (
-    <main className="bg-bg">
+    <div className="bg-bg">
       <LegalDocument doc={usoDeIa} />
-    </main>
+    </div>
   )
 }

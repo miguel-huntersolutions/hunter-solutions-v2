@@ -123,7 +123,7 @@ export default function FuerzaLaboralDigitalPage() {
   }
 
   return (
-    <main className="bg-bg">
+    <div className="bg-bg">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: jsonLdScript(faqJsonLd) }}
@@ -368,6 +368,6 @@ export default function FuerzaLaboralDigitalPage() {
           </div>
         </footer>
       </div>
-    </main>
+    </div>
   )
 }

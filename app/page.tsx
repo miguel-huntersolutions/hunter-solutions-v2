@@ -1,4 +1,5 @@
 import { Hero } from "@/components/home/hero"
+import { StatBand } from "@/components/home/stat-band"
 import { Concept } from "@/components/home/concept"
 import { Problems } from "@/components/home/problems"
 import { RolesGallery } from "@/components/home/roles-gallery"
@@ -23,6 +24,7 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      <StatBand />
       <Concept />
       <Problems />
       <RolesGallery />
