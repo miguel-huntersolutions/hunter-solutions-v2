@@ -6,6 +6,7 @@
     "dev": "next dev",
     "prebuild": "tsx scripts/validate-content.ts",
     "validate:content": "tsx scripts/validate-content.ts",
+    "newsletter:import": "tsx scripts/import-newsletter.ts",
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",

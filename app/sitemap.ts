@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next"
 import { services, publishedCases, publishedResources, sectorPages } from "@/content"
 import { SITE_URL } from "@/lib/seo"
+import { publishedIssues } from "@/lib/newsletter"
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = SITE_URL
@@ -10,6 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "",
     "/fuerza-laboral-digital",
     "/recursos",
+    "/newsletter",
     "/servicios",
     "/casos",
     "/gobernanza",
@@ -55,5 +57,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }))
 
-  return [...staticRoutes, ...serviceRoutes, ...caseRoutes, ...resourceRoutes, ...sectorRoutes]
+  // Solo ediciones publicadas; un borrador ni siquiera se genera como ruta.
+  const newsletterRoutes = publishedIssues().map((i) => ({
+    url: `${base}/newsletter/${i.slug}`,
+    lastModified: new Date(i.datePublished),
+    changeFrequency: "yearly" as const,
+    priority: 0.6,
+  }))
+
+  return [
+    ...staticRoutes,
+    ...serviceRoutes,
+    ...caseRoutes,
+    ...resourceRoutes,
+    ...sectorRoutes,
+    ...newsletterRoutes,
+  ]
 }
