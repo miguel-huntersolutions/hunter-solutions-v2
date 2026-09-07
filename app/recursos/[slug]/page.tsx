@@ -1,10 +1,10 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { notFound } from "next/navigation"
-import { ArrowRight, Clock } from "lucide-react"
+import { ArrowRight, ChevronRight, Clock } from "lucide-react"
 import {
   brand,
-  resources,
+  publishedResources,
   getResourceBySlug,
   readingMinutes,
   formatResourceDate,
@@ -12,8 +12,11 @@ import {
 import { absoluteUrl, jsonLdScript } from "@/lib/seo"
 
 export function generateStaticParams() {
-  return resources.map((r) => ({ slug: r.slug }))
+  return publishedResources.map((r) => ({ slug: r.slug }))
 }
+
+/** Un slug que no corresponde a un artículo publicado es 404, no una página vacía. */
+export const dynamicParams = false
 
 export async function generateMetadata({
   params,
@@ -88,56 +91,73 @@ export default async function ArticlePage({
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLdScript(faqJsonLd) }} />
       )}
 
-      <article className="mx-auto flex max-w-[820px] flex-col gap-8 px-2 py-8 md:py-12">
-        <nav aria-label="Ruta de navegación" className="text-caption text-slate">
-          <Link href="/" className="underline hover:text-teal">
-            Inicio
-          </Link>
-          <span aria-hidden className="mx-1.5">
-            /
-          </span>
-          <Link href="/recursos" className="underline hover:text-teal">
-            Recursos
-          </Link>
-          <span aria-hidden className="mx-1.5">
-            /
-          </span>
-          <span className="text-navy">{r.titulo}</span>
-        </nav>
+      {/* Cabecera navy a sangre: da entrada al artículo en vez de arrancar con
+          texto sobre el gris de fondo. Misma textura que el hero de la portada. */}
+      <header className="relative overflow-hidden bg-navy text-white">
+        <div aria-hidden className="hst-grid absolute inset-0 opacity-70" />
+        <div className="relative mx-auto flex max-w-[820px] flex-col gap-3 px-2 py-8 md:py-10">
+          <nav aria-label="Ruta de navegación" className="text-caption text-line">
+            <Link href="/" className="underline decoration-white/30 underline-offset-2 hover:text-white">
+              Inicio
+            </Link>
+            <span aria-hidden className="mx-1.5 text-white/40">
+              /
+            </span>
+            <Link href="/recursos" className="underline decoration-white/30 underline-offset-2 hover:text-white">
+              Recursos
+            </Link>
+          </nav>
 
-        <header className="flex flex-col gap-3">
-          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-caption text-slate">
+          <span className="text-caption font-semibold uppercase tracking-[0.2em] text-teal">Recurso</span>
+          <h1 className="text-h1 font-extrabold leading-[1.1] text-white text-balance">{r.titulo}</h1>
+
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-caption text-line">
             <time dateTime={r.datePublished}>{formatResourceDate(r.datePublished)}</time>
-            <span aria-hidden>·</span>
+            <span aria-hidden className="text-white/40">·</span>
             <span className="inline-flex items-center gap-1">
               <Clock size={14} aria-hidden />
               {readingMinutes(r)} min de lectura
             </span>
-            {r.estado === "borrador" && (
-              <span className="rounded-sm bg-white px-1.5 py-0.5 text-caption font-semibold uppercase tracking-wide text-teal-dark">
-                Borrador
-              </span>
-            )}
           </div>
-          <h1 className="text-h1 font-bold text-navy text-balance">{r.titulo}</h1>
-          {/* BLUF: respuesta directa en el primer párrafo */}
-          <p className="text-body-lg leading-relaxed text-ink">{r.bluf}</p>
-        </header>
+        </div>
+      </header>
 
-        {/* Tabla de contenidos */}
-        <nav aria-label="Tabla de contenidos" className="flex flex-col gap-2 border-l-4 border-teal bg-white p-4">
-          <h2 className="text-caption font-semibold uppercase tracking-wide text-slate">En este artículo</h2>
-          <ol className="flex flex-col gap-1">
+      <article className="mx-auto flex max-w-[820px] flex-col gap-10 px-2 py-8 md:py-12">
+        {/* BLUF: la respuesta directa, marcada como tal. Usa text-lead, que sí
+            existe en la escala; antes pedía una clase inexistente y salía
+            al mismo tamaño que el cuerpo. */}
+        <p className="max-w-[62ch] border-l-4 border-teal bg-white p-4 text-lead leading-relaxed text-ink">
+          {r.bluf}
+        </p>
+
+        {/* Tabla de contenidos, numerada igual que los encabezados del cuerpo */}
+        <nav aria-label="Tabla de contenidos" className="hst-card max-w-[62ch] p-4">
+          <h2 className="mb-2 text-caption font-semibold uppercase tracking-wide text-slate">
+            En este artículo
+          </h2>
+          <ol className="flex flex-col gap-1.5">
             {r.secciones.map((s, i) => (
-              <li key={s.id}>
-                <a href={`#${s.id}`} className="text-body text-navy underline decoration-line underline-offset-2 hover:text-teal">
-                  {i + 1}. {s.h2}
+              <li key={s.id} className="flex gap-2.5">
+                <span aria-hidden className="text-caption font-bold tabular-nums text-teal">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <a
+                  href={`#${s.id}`}
+                  className="text-body leading-snug text-navy underline decoration-line underline-offset-2 hover:text-teal"
+                >
+                  {s.h2}
                 </a>
               </li>
             ))}
             {r.faq && (
-              <li>
-                <a href="#preguntas-frecuentes" className="text-body text-navy underline decoration-line underline-offset-2 hover:text-teal">
+              <li className="flex gap-2.5">
+                <span aria-hidden className="text-caption font-bold tabular-nums text-teal">
+                  {String(r.secciones.length + 1).padStart(2, "0")}
+                </span>
+                <a
+                  href="#preguntas-frecuentes"
+                  className="text-body leading-snug text-navy underline decoration-line underline-offset-2 hover:text-teal"
+                >
                   Preguntas frecuentes
                 </a>
               </li>
@@ -145,21 +165,28 @@ export default async function ArticlePage({
           </ol>
         </nav>
 
-        {/* Cuerpo en prosa con H2 autoconclusivos */}
-        <div className="flex flex-col gap-8">
-          {r.secciones.map((s) => (
-            <section key={s.id} id={s.id} className="flex scroll-mt-24 flex-col gap-3">
-              <h2 className="text-h2 font-bold text-navy text-balance">{s.h2}</h2>
-              {s.parrafos.map((p, i) => (
-                <p key={i} className="text-body leading-relaxed text-ink">
+        {/* Cuerpo. El encabezado de sección lleva número y filete, para que el
+            artículo tenga ritmo visible; la prosa se limita a ~62ch, una medida
+            de lectura cómoda (antes ocupaba los 820px, cerca de 100 caracteres). */}
+        <div className="flex flex-col gap-10">
+          {r.secciones.map((s, i) => (
+            <section key={s.id} id={s.id} className="flex scroll-mt-24 flex-col gap-4">
+              <div className="border-b-2 border-navy pb-2">
+                <span className="text-caption font-bold uppercase tracking-[0.2em] text-teal">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <h2 className="text-h2 font-bold text-navy text-balance">{s.h2}</h2>
+              </div>
+              {s.parrafos.map((p, j) => (
+                <p key={j} className="max-w-[62ch] text-body leading-relaxed text-ink">
                   {p}
                 </p>
               ))}
               {s.lista && (
-                <ul className="flex flex-col gap-2">
-                  {s.lista.map((item, i) => (
-                    <li key={i} className="flex gap-2 text-body leading-relaxed text-ink">
-                      <span aria-hidden className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-teal" />
+                <ul className="flex max-w-[62ch] flex-col gap-2.5 border-l-2 border-line pl-4">
+                  {s.lista.map((item, j) => (
+                    <li key={j} className="flex gap-2.5 text-body leading-relaxed text-ink">
+                      <span aria-hidden className="mt-2 h-1.5 w-1.5 shrink-0 bg-teal" />
                       {item}
                     </li>
                   ))}
@@ -171,15 +198,27 @@ export default async function ArticlePage({
 
         {/* FAQ opcional */}
         {r.faq && (
-          <section id="preguntas-frecuentes" className="flex scroll-mt-24 flex-col gap-3">
-            <h2 className="text-h2 font-bold text-navy text-balance">Preguntas frecuentes</h2>
-            <div className="flex flex-col">
+          <section id="preguntas-frecuentes" className="flex scroll-mt-24 flex-col gap-4">
+            <div className="border-b-2 border-navy pb-2">
+              <span className="text-caption font-bold uppercase tracking-[0.2em] text-teal">
+                {String(r.secciones.length + 1).padStart(2, "0")}
+              </span>
+              <h2 className="text-h2 font-bold text-navy text-balance">Preguntas frecuentes</h2>
+            </div>
+            <div className="flex max-w-[62ch] flex-col gap-2">
               {r.faq.map((f) => (
-                <details key={f.pregunta} className="group border-b border-line bg-white">
-                  <summary className="cursor-pointer list-none p-3 text-body font-semibold text-navy transition-colors hover:text-teal">
+                <details key={f.pregunta} className="hst-card group overflow-hidden">
+                  <summary className="flex cursor-pointer list-none items-start gap-2 p-3 text-body font-semibold text-navy transition-colors hover:text-teal">
+                    <ChevronRight
+                      size={18}
+                      aria-hidden
+                      className="mt-0.5 shrink-0 text-teal transition-transform group-open:rotate-90"
+                    />
                     {f.pregunta}
                   </summary>
-                  <p className="px-3 pb-3 text-body leading-relaxed text-slate">{f.respuesta}</p>
+                  <p className="px-3 pb-3 pl-[2.4rem] text-body leading-relaxed text-slate">
+                    {f.respuesta}
+                  </p>
                 </details>
               ))}
             </div>
@@ -195,7 +234,7 @@ export default async function ArticlePage({
                 <li key={l.href}>
                   <Link
                     href={l.href}
-                    className="group flex items-center gap-2 border border-line bg-white p-3 text-body text-navy transition-colors hover:border-teal hover:text-teal-dark"
+                    className="hst-card hst-card-hover group flex items-center gap-2 p-3 text-body text-navy transition-colors hover:text-teal-dark"
                   >
                     <ArrowRight size={16} aria-hidden className="shrink-0 text-teal" />
                     <span className="leading-snug">{l.label}</span>
@@ -207,20 +246,20 @@ export default async function ArticlePage({
         )}
 
         {/* CTA al diagnóstico */}
-        <footer className="flex flex-col gap-3 border-l-4 border-teal bg-white p-4">
-          <h2 className="text-h3 font-bold text-navy">¿Quiere verlo en su operación?</h2>
-          <p className="text-body leading-relaxed text-ink">
+        <footer className="border-l-4 border-teal bg-navy p-5 text-white">
+          <h2 className="text-h3 font-bold text-white">¿Quiere verlo en su operación?</h2>
+          <p className="mt-2 max-w-[58ch] text-body leading-relaxed text-line">
             La mejor forma de decidir es ver la IA operar sobre un proceso suyo. Agende una sesión de
             diagnóstico de 30 minutos, sin costo, y le mostramos cómo se vería en su empresa.
           </p>
-          <div className="flex flex-wrap items-center gap-3">
+          <div className="mt-4 flex flex-wrap items-center gap-4">
             <Link
               href="/#contacto"
-              className="bg-navy px-4 py-2 text-caption font-semibold uppercase tracking-wide text-white transition-colors hover:bg-teal"
+              className="bg-teal px-4 py-2 text-caption font-semibold uppercase tracking-wide text-white transition-colors hover:bg-teal-dark"
             >
               Agendar diagnóstico
             </Link>
-            <Link href="/recursos" className="text-caption text-slate underline hover:text-teal">
+            <Link href="/recursos" className="text-caption text-line underline hover:text-white">
               Ver todos los recursos
             </Link>
           </div>

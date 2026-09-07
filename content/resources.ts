@@ -278,8 +278,12 @@ export const resources: Resource[] = [
 /** Artículos visibles públicamente: solo los que están publicados. */
 export const publishedResources = resources.filter((r) => r.estado === "publicado")
 
+/**
+ * Solo artículos publicados: un borrador no debe servirse por URL directa.
+ * Mismo criterio que getIssueBySlug en lib/newsletter.ts.
+ */
 export function getResourceBySlug(slug: string) {
-  return resources.find((r) => r.slug === slug)
+  return publishedResources.find((r) => r.slug === slug)
 }
 
 /** Cuenta las palabras del cuerpo de un artículo para estimar el tiempo de lectura. */
