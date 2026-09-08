@@ -15,7 +15,15 @@ import {
   stages,
 } from "../content/narrative"
 import { levels, services } from "../content/commercial"
-import { cases, governance, partners, teamExperience, training } from "../content/trust"
+import {
+  cases,
+  governance,
+  lineaConfianza,
+  partners,
+  pruebaPropia,
+  teamExperience,
+  training,
+} from "../content/trust"
 import { sectorPages } from "../content/sectores"
 import { resources } from "../content/resources"
 
@@ -147,8 +155,22 @@ if (!promise.retorno.includes("no como cifra garantizada"))
   fail('promise.retorno debe conservar el encuadre literal "no como cifra garantizada"')
 
 // ── T-CON-06 · vocabulario prohibido (excepción: promise.capacidad) ──
-scanProhibited({ brand, claims, sectors, problems, principles, stages, levels, services, differentiators, faqs, cases }, "content")
+scanProhibited({ brand, claims, sectors, problems, principles, stages, levels, services, differentiators, faqs, cases, pruebaPropia, lineaConfianza }, "content")
 scanProhibited({ retorno: promise.retorno, riesgo: promise.riesgo }, "content.promise")
+
+// ── T-CON-13 · bloque de prueba de la home ──
+// Sus textos viven en content/ y no en el componente, así que se validan como
+// cualquier otro contenido publicado.
+for (const [campo, valor] of Object.entries(pruebaPropia)) {
+  if (typeof valor !== "string" || valor.trim().length === 0)
+    fail(`pruebaPropia.${campo} vacío`)
+}
+for (const [campo, valor] of Object.entries(lineaConfianza)) {
+  if (typeof valor !== "string" || valor.trim().length === 0)
+    fail(`lineaConfianza.${campo} vacío`)
+}
+if (!lineaConfianza.enlaceHref.startsWith("/"))
+  fail("lineaConfianza.enlaceHref debe ser una ruta interna")
 
 // ── T-CON-12 · el titular habla de trabajo, no de tecnología ──
 // El H1 es la promesa comercial: la IA es el cómo, no el qué. Si vuelve a
@@ -188,7 +210,7 @@ function scanPlaceholders(value: unknown, path: string) {
 scanPlaceholders(
   { brand, claims, sectors, positioning, problems, principles, stages, levels, services,
     differentiators, faqs, promise, governance, partners, teamExperience, training, sectorPages,
-    resources },
+    resources, pruebaPropia, lineaConfianza },
   "content",
 )
 // Los casos se escanean sin resultado.metricas, que es la excepción documentada.

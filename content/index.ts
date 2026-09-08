@@ -15,7 +15,15 @@ export {
   faqs,
 } from "./narrative"
 export { levels, services, roles } from "./commercial"
-export { governance, cases, teamExperience, partners, training } from "./trust"
+export {
+  governance,
+  cases,
+  teamExperience,
+  partners,
+  training,
+  pruebaPropia,
+  lineaConfianza,
+} from "./trust"
 export {
   resources,
   publishedResources,

@@ -134,3 +134,21 @@ export type Positioning = {
   nuevosTitulo: string
   nuevosArgumento: string
 }
+
+/** Tercera tarjeta del bloque de prueba: la operación propia de HST. */
+export type PruebaPropia = {
+  sector: string
+  titulo: string
+  texto: string
+  nota: string
+}
+
+/**
+ * Línea de confianza bajo las tarjetas de prueba. El enlace va aparte del texto
+ * para que la frase completa viva aquí y el componente solo la componga.
+ */
+export type LineaConfianza = {
+  texto: string
+  enlaceTexto: string
+  enlaceHref: string
+}
