@@ -9,13 +9,20 @@ import type {
   Stage,
 } from "./types"
 
-export const sectors: string[] = ["Legal", "Manufactura", "Salud", "Alimentos", "Consumo"]
+// Sectores foco de cara al cliente. Manufactura y Consumo dejaron de serlo en
+// 2026-09; siguen como experiencia del equipo y conservan sus páginas por SEO
+// (content/sectores.ts, marcadas con foco: false).
+export const sectors: string[] = ["Salud", "Alimentos", "Legal", "Comercial", "Agrícola"]
 
 export const positioning: Positioning = {
-  h1: "No leas sobre nuestra IA. Habla con ella.",
+  // El titular habla de trabajo y de plata, no de tecnología. Vive aquí una sola
+  // vez: lo leen el hero, la metadata de la home, la imagen OG, llms.txt y el
+  // corpus de los agentes. El validador impide que vuelva a hablar de IA.
+  h1: "Hay trabajo en su empresa que hoy nadie hace. Nosotros lo hacemos.",
+  h1Lineas: ["Hay trabajo en su empresa que hoy nadie hace.", "Nosotros lo hacemos."],
   apoyo:
-    "Construimos Fuerza Laboral Digital: agentes autónomos que se conectan a sus sistemas, incluido su ERP, deciden con las reglas de su negocio y ejecutan procesos completos de principio a fin. Trabajamos con empresas medianas de los sectores Legal, Manufactura, Salud, Alimentos y Consumo en Colombia.",
-  invitacion: "Pruébelo ahora mismo: cuéntele su reto al Agente de Diagnóstico.",
+    "Cobranza que no se persigue, documentos que no se revisan, clientes que no reciben respuesta a tiempo. Construimos capacidades digitales que se conectan a sus sistemas y ejecutan ese trabajo, con supervisión de su equipo.",
+  invitacion: "Cuéntele su reto al Agente de Diagnóstico y sepa por dónde empezar.",
   nuevosTitulo: "Nuevos como marca, no en oficio",
   nuevosArgumento:
     "Ser una marca joven nos permite construir AI-Native desde el primer día, sin sistemas heredados que defender. Lo que nos respalda no es una cifra de años corporativos: es la experiencia real del equipo operando procesos en manufactura e importación, administración y finanzas, atención y agendamiento, y el sector legal.",
@@ -47,7 +54,7 @@ export const problems: Problem[] = [
     descripcion:
       "Su equipo de tecnología y su junta preguntan lo mismo: dónde quedan los datos, quién responde si la IA se equivoca y qué pasa si el proveedor desaparece.",
     respuestaHst:
-      "Publicamos nuestra gobernanza completa: guardrails explícitos, trazabilidad de decisiones, despliegue en su perímetro si lo prefiere, y propiedad total del código y los datos por parte del cliente.",
+      "Publicamos nuestra gobernanza completa: guardrails explícitos, trazabilidad de decisiones, despliegue en su perímetro si lo prefiere, y propiedad del código y los datos por parte del cliente.",
     servicioRecomendadoId: "gobernanza-guardrails",
   },
 ]
@@ -69,7 +76,7 @@ export const principles: Principle[] = [
       "El código, la configuración y los datos son del cliente. Sin plataformas cerradas ni mensualidades obligatorias.",
   },
   {
-    titulo: "Supervisión humana siempre",
+    titulo: "Supervisión humana en cada agente",
     descripcion:
       "Cada agente opera con límites explícitos y una persona responsable puede ver, corregir y detener lo que hace.",
   },

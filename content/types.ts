@@ -127,8 +127,28 @@ export type Cnt = {
 
 export type Positioning = {
   h1: string
+  /** El H1 partido en líneas, para animarlas por separado sin duplicar el texto */
+  h1Lineas: string[]
   apoyo: string
   invitacion: string
   nuevosTitulo: string
   nuevosArgumento: string
+}
+
+/** Tercera tarjeta del bloque de prueba: la operación propia de HST. */
+export type PruebaPropia = {
+  sector: string
+  titulo: string
+  texto: string
+  nota: string
+}
+
+/**
+ * Línea de confianza bajo las tarjetas de prueba. El enlace va aparte del texto
+ * para que la frase completa viva aquí y el componente solo la componga.
+ */
+export type LineaConfianza = {
+  texto: string
+  enlaceTexto: string
+  enlaceHref: string
 }

@@ -2,7 +2,7 @@
 // Ningún componente contiene una cifra, un precio ni un nombre de servicio literal:
 // todo se lee de aquí y se valida en prebuild (scripts/validate-content.ts).
 
-export { brand, claims } from "./brand"
+export { brand, claims, whatsappUrl } from "./brand"
 export {
   sectors,
   positioning,
@@ -15,7 +15,15 @@ export {
   faqs,
 } from "./narrative"
 export { levels, services, roles } from "./commercial"
-export { governance, cases, teamExperience, partners, training } from "./trust"
+export {
+  governance,
+  cases,
+  teamExperience,
+  partners,
+  training,
+  pruebaPropia,
+  lineaConfianza,
+} from "./trust"
 export {
   resources,
   publishedResources,

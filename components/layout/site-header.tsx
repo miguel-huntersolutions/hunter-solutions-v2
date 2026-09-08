@@ -8,15 +8,8 @@ import { Logo } from "@/components/brand/logo"
 import { SurfaceProvider } from "@/components/brand/surface"
 
 const NAV = [
-  { href: "/fuerza-laboral-digital", label: "Fuerza Laboral Digital" },
   { href: "/servicios", label: "Servicios" },
   { href: "/casos", label: "Casos" },
-  { href: "/gobernanza", label: "Gobernanza" },
-  { href: "/formacion", label: "Formación" },
-  { href: "/recursos", label: "Recursos" },
-  { href: "/newsletter", label: "Newsletter" },
-  { href: "/aliados", label: "Aliados" },
-  { href: "/preguntas", label: "Preguntas" },
 ] as const
 
 export function SiteHeader() {
@@ -51,7 +44,7 @@ export function SiteHeader() {
               href="/#contacto"
               className="bg-navy px-3 py-1 text-caption font-semibold uppercase tracking-wide text-white transition-colors hover:bg-teal"
             >
-              Agendar diagnóstico
+              Hablemos
             </Link>
           </nav>
 
@@ -87,7 +80,7 @@ export function SiteHeader() {
                   onClick={() => setOpen(false)}
                   className="block bg-navy px-2 py-2 text-body font-semibold text-white"
                 >
-                  Agendar diagnóstico
+                  Hablemos
                 </Link>
               </li>
             </ul>

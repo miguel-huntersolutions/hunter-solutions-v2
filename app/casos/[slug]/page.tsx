@@ -36,6 +36,13 @@ export default async function CasePage({
 
   const service = getServiceById(cs.servicioId)
 
+  // Las métricas sin dato medido llevan un marcador de relleno en content/trust.ts.
+  // Sirven de recordatorio interno, pero no pueden salir a producción: se filtran
+  // aquí y, si no queda ninguna, la rejilla entera no se pinta.
+  const metricasPublicables = (cs.resultado?.metricas ?? []).filter(
+    (m) => !m.valor.trim().startsWith("["),
+  )
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -59,7 +66,7 @@ export default async function CasePage({
           <Link href="/" className="underline">
             Inicio
           </Link>{" "}
-          / <Link href="/#casos" className="underline">
+          / <Link href="/casos" className="underline">
             Casos
           </Link>{" "}
           / <span className="text-navy">{cs.titulo}</span>
@@ -93,10 +100,10 @@ export default async function CasePage({
               <p className="text-caption leading-relaxed text-slate">{cs.resultado.encuadre}</p>
             </div>
 
-            {cs.resultado.metricas && cs.resultado.metricas.length > 0 && (
+            {metricasPublicables.length > 0 && (
               <div className="flex flex-col gap-2">
                 <ul className="grid gap-2 sm:grid-cols-3">
-                  {cs.resultado.metricas.map((m) => (
+                  {metricasPublicables.map((m) => (
                     <li key={m.etiqueta} className="flex flex-col gap-1 border border-line bg-bg p-2">
                       <span className="text-body font-bold text-navy text-balance">{m.valor}</span>
                       <span className="text-caption leading-relaxed text-slate">{m.etiqueta}</span>

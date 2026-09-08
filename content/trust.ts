@@ -1,4 +1,12 @@
-import type { CaseStudy, Governance, Partners, TeamExperience, Training } from "./types"
+import type {
+  CaseStudy,
+  Governance,
+  LineaConfianza,
+  Partners,
+  PruebaPropia,
+  TeamExperience,
+  Training,
+} from "./types"
 
 export const governance: Governance = {
   arquitectura: [
@@ -99,7 +107,7 @@ export const cases: CaseStudy[] = [
     queConstruimos:
       "Un sistema que procesa automáticamente las hojas de vida recibidas: extrae la información relevante, la estructura contra los criterios del perfil y la entrega integrada a los sistemas de recursos humanos.",
     comoFunciona:
-      "Cada hoja de vida se lee sin importar el formato, se extraen datos y experiencia contra criterios objetivos definidos con el equipo de talento, y el resultado queda estructurado en la plataforma de RR. HH. La decisión de entrevistar es siempre de una persona.",
+      "Cada hoja de vida se lee sin importar el formato, se extraen datos y experiencia contra criterios objetivos definidos con el equipo de talento, y el resultado queda estructurado en la plataforma de RR. HH. La decisión de entrevistar es de una persona.",
     resultado: {
       texto:
         "El equipo pasó de dedicar la mayor parte del proceso a leer documentos, a dedicarlo a entrevistar candidatos filtrados con criterios trazables.",
@@ -181,4 +189,25 @@ export const training: Training = {
     "El material completo del taller, las guías de uso y los ejemplos construidos quedan en la organización para reutilizarse internamente.",
   comoSeAgenda:
     "Agende una sesión de 30 minutos para definir el formato, el público y los casos de su sector que usaremos como base.",
+}
+
+/**
+ * Tercera prueba del bloque de la home: no es un caso de cliente, es la
+ * operación propia. Va aquí y no en el componente porque el contrato de
+ * contenido tiene que poder escanearla.
+ */
+export const pruebaPropia: PruebaPropia = {
+  sector: "Hunter Solutions Tech",
+  titulo: "Operamos nuestra propia empresa con esto",
+  texto:
+    "Nuestros agentes gestionan la operación interna de HST todos los días. Es la demostración que mostramos en la primera reunión.",
+  nota: "Se lo mostramos en vivo en el diagnóstico.",
+}
+
+/** Línea de confianza que cierra el bloque de prueba y enlaza a gobernanza. */
+export const lineaConfianza: LineaConfianza = {
+  texto:
+    "Su código y sus datos son suyos. Cada decisión del agente queda registrada y las sensibles las aprueba una persona.",
+  enlaceTexto: "Así lo gobernamos.",
+  enlaceHref: "/gobernanza",
 }

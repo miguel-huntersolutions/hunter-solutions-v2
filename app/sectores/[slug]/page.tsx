@@ -145,12 +145,11 @@ export default async function SectorPage({
             </Link>
           ) : (
             <div className="flex flex-col gap-2 border-l-4 border-line bg-white p-4">
-              <span className="text-lead font-semibold text-slate">
-                [COMPLETAR con un caso autorizado del sector {sector.sector}]
+              <span className="text-lead font-semibold text-navy">
+                Aún no publicamos un caso autorizado de este sector.
               </span>
               <span className="text-body leading-relaxed text-slate">
-                Aún no publicamos un caso autorizado de este sector. Mientras tanto, con gusto le
-                compartimos ejemplos aplicables en una conversación.
+                Mientras tanto, con gusto le compartimos ejemplos aplicables en una conversación.
               </span>
               <Link
                 href="/#contacto"

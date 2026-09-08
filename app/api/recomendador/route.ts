@@ -1,3 +1,9 @@
+/**
+ * @deprecated 2026-09: la recomendación de nivel la hace el Agente de Diagnóstico
+ * (app/api/agents/[agent]/route.ts, rol "diagnostico"), que cierra cada respuesta
+ * con capacidad, nivel y rango publicado. Esta ruta se conserva porque puede tener
+ * tráfico; su sección salió de la home en el Prompt 1.
+ */
 import { Output, generateText } from "ai"
 import { z } from "zod"
 import { formatLevelRange, getLevel, getServiceById, problems, sectors, services } from "@/content"

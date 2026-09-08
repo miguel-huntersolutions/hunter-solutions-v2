@@ -1,6 +1,7 @@
 "use client"
 
 import { useRef, useState } from "react"
+import { track } from "@vercel/analytics"
 import { SendHorizontal } from "lucide-react"
 
 type Message = { role: "user" | "assistant"; content: string }
@@ -56,6 +57,10 @@ export function AgentPanel({ endpoint, title, placeholder, suggestions = [], ton
         scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight })
       }
       setStatus("idle")
+      // Mismo criterio que <Analytics /> en app/layout.tsx: solo en producción.
+      if (process.env.NODE_ENV === "production") {
+        track("diagnostico_respondido", { endpoint })
+      }
     } catch {
       setMessages(next)
       setStatus("error")
@@ -69,7 +74,7 @@ export function AgentPanel({ endpoint, title, placeholder, suggestions = [], ton
 
   return (
     <div
-      className={`flex h-full min-h-[320px] flex-col overflow-hidden rounded-xl border shadow-lg ${
+      className={`flex h-full min-h-[320px] flex-col overflow-hidden border shadow-sm ${
         dark ? "border-white/10 bg-ink" : "border-line bg-white"
       }`}
     >
@@ -100,7 +105,7 @@ export function AgentPanel({ endpoint, title, placeholder, suggestions = [], ton
                 key={s}
                 type="button"
                 onClick={() => send(s)}
-                className={`rounded-lg border px-2 py-1.5 text-left text-caption transition-colors ${
+                className={`border px-2 py-1.5 text-left text-caption transition-colors ${
                   dark
                     ? "border-white/15 bg-white/5 text-line hover:border-teal hover:text-white"
                     : "border-line bg-bg text-slate hover:border-teal hover:text-navy"
@@ -115,10 +120,10 @@ export function AgentPanel({ endpoint, title, placeholder, suggestions = [], ton
         {messages.map((m, i) => (
           <div
             key={i}
-            className={`max-w-[85%] rounded-2xl px-3 py-2 text-caption leading-relaxed whitespace-pre-wrap ${
+            className={`max-w-[85%] px-3 py-2 text-caption leading-relaxed whitespace-pre-wrap ${
               m.role === "user"
-                ? `self-end rounded-br-sm ${dark ? "bg-teal text-white" : "bg-navy text-white"}`
-                : `self-start rounded-bl-sm ${dark ? "bg-navy text-line" : "bg-bg text-ink"}`
+                ? `self-end ${dark ? "bg-teal text-white" : "bg-navy text-white"}`
+                : `self-start ${dark ? "bg-navy text-line" : "bg-bg text-ink"}`
             }`}
           >
             {m.content || "…"}
@@ -156,7 +161,7 @@ export function AgentPanel({ endpoint, title, placeholder, suggestions = [], ton
         <button
           type="submit"
           disabled={status === "loading"}
-          className="m-1.5 flex items-center gap-1 rounded-lg bg-teal px-3 py-1.5 text-caption font-semibold uppercase tracking-wide text-white transition-colors hover:bg-teal-dark disabled:opacity-60"
+          className="m-1.5 flex items-center gap-1 bg-teal px-3 py-1.5 text-caption font-semibold uppercase tracking-wide text-white transition-colors hover:bg-teal-dark disabled:opacity-60"
         >
           {status === "loading" ? "Pensando…" : "Enviar"}
           <SendHorizontal size={16} aria-hidden />

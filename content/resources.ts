@@ -233,7 +233,7 @@ export const resources: Resource[] = [
         h2: "El agente propone y la persona dispone en lo que importa",
         parrafos: [
           "Autonomía total no es el objetivo; el objetivo es capacidad con control. Por eso definimos, junto con usted, qué decisiones puede tomar el agente por su cuenta y cuáles deben pasar por aprobación humana antes de ejecutarse.",
-          "Ese umbral se ajusta a su apetito de riesgo. Un pago por encima de cierto monto, una respuesta legal delicada o una excepción poco común pueden requerir siempre un visto bueno humano, mientras el resto fluye sin fricción.",
+          "Ese umbral se ajusta a su apetito de riesgo. Un pago por encima de cierto monto, una respuesta legal delicada o una excepción poco común pueden requerir un visto bueno humano, mientras el resto fluye sin fricción.",
         ],
       },
       {
@@ -261,7 +261,7 @@ export const resources: Resource[] = [
       {
         pregunta: "¿Quién es responsable de lo que hace el agente?",
         respuesta:
-          "La organización mantiene la responsabilidad. Por eso definimos umbrales de aprobación humana y dejamos trazabilidad de cada acción, para que siempre haya un dueño y un registro auditable.",
+          "La organización mantiene la responsabilidad. Por eso definimos umbrales de aprobación humana y dejamos trazabilidad de cada acción, para que haya un dueño y un registro auditable.",
       },
     ],
     relacionados: [

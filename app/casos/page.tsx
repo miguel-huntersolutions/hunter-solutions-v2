@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { getServiceById, publishedCases, teamExperience } from "@/content"
+import { getServiceById, pruebaPropia, publishedCases, teamExperience } from "@/content"
 
 const description =
   "Casos autorizados de IA aplicada: qué reto había, qué se construyó y qué cambió en la operación."
@@ -55,6 +55,17 @@ export default function CasosPage() {
               </Link>
             )
           })}
+        </section>
+
+        {/* La operación propia como tercera prueba: viene de content/trust.ts,
+            el mismo dato que usa el bloque Prueba de la home. */}
+        <section className="flex flex-col gap-2 border-l-4 border-teal bg-white p-4">
+          <p className="text-caption font-semibold uppercase tracking-wide text-teal-dark">
+            {pruebaPropia.sector}
+          </p>
+          <h2 className="text-h3 font-bold text-navy text-balance">{pruebaPropia.titulo}</h2>
+          <p className="text-body leading-relaxed text-ink">{pruebaPropia.texto}</p>
+          <p className="text-caption leading-relaxed text-slate">{pruebaPropia.nota}</p>
         </section>
 
         <section className="flex flex-col gap-3">
