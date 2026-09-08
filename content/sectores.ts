@@ -6,6 +6,8 @@
 export type SectorFaq = { pregunta: string; respuesta: string }
 
 export type SectorPage = {
+  /** false: sigue publicada por SEO, pero no se ofrece como sector foco */
+  foco?: boolean
   /** slug de URL: /sectores/[slug] */
   slug: string
   /** nombre del sector, coincide con content/narrative.ts */
@@ -73,6 +75,7 @@ export const sectorPages: SectorPage[] = [
   },
   {
     slug: "manufactura",
+    foco: false,
     sector: "Manufactura",
     keyword: "IA para el sector de manufactura en Colombia",
     description:
@@ -187,6 +190,7 @@ export const sectorPages: SectorPage[] = [
   },
   {
     slug: "consumo",
+    foco: false,
     sector: "Consumo",
     keyword: "IA para el sector de consumo masivo en Colombia",
     description:

@@ -191,6 +191,17 @@ scanProhibited(
 )
 scanProhibited({ retorno: promise.retorno, riesgo: promise.riesgo }, "content.promise")
 
+// ── T-CON-14 · los sectores de un servicio existen ──
+// Sin esto, cambiar la lista de sectores foco deja servicios apuntando a sectores
+// fantasma y el recomendador filtrando por un valor que nunca casa.
+const SECTORES = new Set(sectors)
+for (const s of services) {
+  for (const sec of s.sectoresRelevantes) {
+    if (!SECTORES.has(sec))
+      fail(`services.${s.id}.sectoresRelevantes: "${sec}" no está en sectors`)
+  }
+}
+
 // ── T-CON-13 · bloque de prueba de la home ──
 // Sus textos viven en content/ y no en el componente, así que se validan como
 // cualquier otro contenido publicado.

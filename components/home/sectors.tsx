@@ -7,21 +7,25 @@ import { Section } from "@/components/ui/section"
 
 /** Mapa nombre de sector → slug de su página de detalle. */
 const sectorSlug: Record<string, string> = Object.fromEntries(
-  sectorPages.map((s) => [s.sector, s.slug]),
+  sectorPages.filter((s) => s.foco !== false).map((s) => [s.sector, s.slug]),
 )
+
+// Solo se listan los sectores foco que ya tienen página, imagen y descripción.
+// Comercial y Agrícola entran cuando exista su contenido.
+const sectoresListados = sectors.filter((s) => sectorSlug[s])
 
 export function Sectors() {
   return (
     <Section
       id="sectores"
       eyebrow="Dónde trabajamos"
-      title="Cinco sectores, un mismo método"
+      title="Un mismo método, sector a sector"
       intro="Conocemos la operación de las empresas medianas colombianas por dentro. Estos son los sectores donde nuestros agentes ya generan valor."
       align="center"
       tone="bg"
     >
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-        {sectors.map((s) => {
+        {sectoresListados.map((s) => {
           const slug = sectorSlug[s]
           const card = (
             <>

@@ -9,7 +9,10 @@ import type {
   Stage,
 } from "./types"
 
-export const sectors: string[] = ["Legal", "Manufactura", "Salud", "Alimentos", "Consumo"]
+// Sectores foco de cara al cliente. Manufactura y Consumo dejaron de serlo en
+// 2026-09; siguen como experiencia del equipo y conservan sus páginas por SEO
+// (content/sectores.ts, marcadas con foco: false).
+export const sectors: string[] = ["Salud", "Alimentos", "Legal", "Comercial", "Agrícola"]
 
 export const positioning: Positioning = {
   // El titular habla de trabajo y de plata, no de tecnología. Vive aquí una sola
