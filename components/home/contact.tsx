@@ -2,13 +2,15 @@
 
 import { useState } from "react"
 import { MessageCircle } from "lucide-react"
+import { brand } from "@/content/brand"
 import { Section } from "@/components/ui/section"
 
 const SECTORS = ["Legal", "Manufactura", "Salud", "Alimentos", "Consumo", "Otro"] as const
 
-// WhatsApp de contacto (+57 304 391 3066) con un mensaje inicial prellenado.
+// WhatsApp de contacto con un mensaje inicial prellenado. El número vive en el
+// content model (brand.whatsapp); wa.me solo acepta dígitos, sin "+" ni espacios.
 const WHATSAPP_URL =
-  "https://wa.me/573043913066?text=" +
+  `https://wa.me/${brand.whatsapp.replace(/\D/g, "")}?text=` +
   encodeURIComponent("Hola, quiero agendar una sesión de diagnóstico de 30 minutos.")
 
 export function Contact() {
@@ -143,7 +145,7 @@ export function Contact() {
           <p aria-live="polite" className="text-caption text-slate">
             {status === "ok" && "Recibido. El equipo le escribe para coordinar la sesión."}
             {status === "error" &&
-              "No pudimos registrar la solicitud. Escríbanos directamente a hola@huntersolutions.tech."}
+              `No pudimos registrar la solicitud. Escríbanos directamente a ${brand.email}.`}
           </p>
         </div>
       </form>

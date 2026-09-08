@@ -1,19 +1,38 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useSyncExternalStore } from "react"
 
 const STORAGE_KEY = "hst-cookie-notice-v1"
 
-export function CookieNotice() {
-  const [visible, setVisible] = useState(false)
+// localStorage es un store externo: se lee con useSyncExternalStore en vez de
+// sincronizarlo a estado desde un efecto (que provoca renders en cascada).
+const listeners = new Set<() => void>()
 
-  useEffect(() => {
-    try {
-      if (!window.localStorage.getItem(STORAGE_KEY)) setVisible(true)
-    } catch {
-      // Si localStorage no está disponible, no mostramos el aviso repetidamente.
-    }
-  }, [])
+function subscribe(listener: () => void) {
+  listeners.add(listener)
+  return () => {
+    listeners.delete(listener)
+  }
+}
+
+/** Si localStorage no está disponible tratamos el aviso como ya visto, para no
+ * mostrarlo en bucle a quien tenga el almacenamiento bloqueado. */
+function isAcknowledged(): boolean {
+  try {
+    return Boolean(window.localStorage.getItem(STORAGE_KEY))
+  } catch {
+    return true
+  }
+}
+
+/** En el servidor no hay localStorage: el aviso no se pinta en el HTML y aparece
+ * tras la hidratación, sin desajuste. */
+function isAcknowledgedOnServer(): boolean {
+  return true
+}
+
+export function CookieNotice() {
+  const acknowledged = useSyncExternalStore(subscribe, isAcknowledged, isAcknowledgedOnServer)
 
   function acknowledge() {
     try {
@@ -21,10 +40,10 @@ export function CookieNotice() {
     } catch {
       // noop
     }
-    setVisible(false)
+    for (const listener of listeners) listener()
   }
 
-  if (!visible) return null
+  if (acknowledged) return null
 
   return (
     <div

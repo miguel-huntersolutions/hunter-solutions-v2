@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { brand } from "@/content/brand"
 
 /** Formulario de postulación al Programa de Aliados (E13-S2): origen "aliados". */
 export function PartnerForm() {
@@ -100,7 +101,7 @@ export function PartnerForm() {
         <p aria-live="polite" className="text-caption text-slate">
           {status === "ok" && "Recibido. El equipo le escribe para agendar la conversación."}
           {status === "error" &&
-            "No pudimos registrar la postulación. Escríbanos a hola@huntersolutions.tech."}
+            `No pudimos registrar la postulación. Escríbanos a ${brand.email}.`}
         </p>
       </div>
     </form>

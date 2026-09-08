@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 export default function PreguntasPage() {
   return (
-    <main className="bg-bg">
+    <div className="bg-bg">
       <div className="mx-auto flex max-w-[820px] flex-col gap-6 px-2 py-8 md:py-10">
         <header className="flex flex-col gap-2">
           <p className="text-caption font-semibold uppercase tracking-wide text-teal">
@@ -23,7 +23,7 @@ export default function PreguntasPage() {
           <h1 className="text-h1 font-bold text-navy text-balance">
             Las preguntas que nos hacen antes de empezar
           </h1>
-          <p className="text-body-lg leading-relaxed text-slate">
+          <p className="text-lead leading-relaxed text-slate">
             Respuestas directas a lo que más nos consultan sobre cómo trabajamos, qué se necesita y
             cómo medimos el valor.
           </p>
@@ -52,6 +52,6 @@ export default function PreguntasPage() {
           </Link>
         </footer>
       </div>
-    </main>
+    </div>
   )
 }

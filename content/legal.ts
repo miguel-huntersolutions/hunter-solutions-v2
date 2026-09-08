@@ -21,7 +21,7 @@ export const privacidad: LegalDoc = {
     {
       titulo: "1. Responsable del tratamiento",
       parrafos: [
-        "Hunter Solutions Tech S.A.S. (en adelante, «HST»), sociedad colombiana, es la responsable del tratamiento de los datos personales recogidos a través de este sitio web, del correo hola@huntersolutions.tech y de sus canales de atención.",
+        "Hunter Solutions Tech S.A.S. (en adelante, «HST»), sociedad colombiana, es la responsable del tratamiento de los datos personales recogidos a través de este sitio web, del correo comercial@huntersolutions.tech y de sus canales de atención.",
         "Esta política se expide en cumplimiento de la Ley 1581 de 2012, el Decreto 1377 de 2013 y las demás normas que los complementen o modifiquen.",
       ],
     },
@@ -42,7 +42,7 @@ export const privacidad: LegalDoc = {
       titulo: "4. Derechos del titular",
       parrafos: [
         "Como titular usted puede conocer, actualizar, rectificar y suprimir sus datos, solicitar prueba de la autorización otorgada, ser informado sobre el uso que se les ha dado y revocar la autorización en cualquier momento.",
-        "Para ejercer estos derechos escriba a hola@huntersolutions.tech indicando su nombre y la solicitud. Responderemos en los plazos previstos por la Ley 1581 de 2012: consultas en máximo diez (10) días hábiles y reclamos en máximo quince (15) días hábiles.",
+        "Para ejercer estos derechos escriba a comercial@huntersolutions.tech indicando su nombre y la solicitud. Responderemos en los plazos previstos por la Ley 1581 de 2012: consultas en máximo diez (10) días hábiles y reclamos en máximo quince (15) días hábiles.",
       ],
     },
     {

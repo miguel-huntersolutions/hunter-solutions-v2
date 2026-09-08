@@ -1,4 +1,5 @@
 import { brand } from "@/content"
+import { jsonLdScript } from "@/lib/seo"
 
 export function OrgJsonLd() {
   const data = {
@@ -27,8 +28,7 @@ export function OrgJsonLd() {
   return (
     <script
       type="application/ld+json"
-      // eslint-disable-next-line react/no-danger
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+      dangerouslySetInnerHTML={{ __html: jsonLdScript(data) }}
     />
   )
 }

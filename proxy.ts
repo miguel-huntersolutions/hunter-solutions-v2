@@ -4,7 +4,7 @@ import type { NextRequest } from "next/server"
 // Solo el dominio de producción canónico debe ser indexable.
 const PRODUCTION_HOST = "www.huntersolutions.tech"
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const response = NextResponse.next()
 
   // El header host puede incluir el puerto (p. ej. localhost:3000); lo ignoramos.

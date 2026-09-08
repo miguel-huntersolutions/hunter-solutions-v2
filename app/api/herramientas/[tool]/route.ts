@@ -1,6 +1,6 @@
 import { generateText } from "ai"
 import { z } from "zod"
-import { AGENT_MODEL, getClientIp } from "@/lib/agents/runtime"
+import { AGENT_MODEL, getClientIp, rateLimit } from "@/lib/agents/runtime"
 import { SAFE_FALLBACK, validateAgentOutput } from "@/lib/agents/guardrails"
 import { getServiceById, problems } from "@/content"
 
@@ -26,22 +26,9 @@ const TOOLS: Record<string, { system: string; servicioId: string }> = {
   },
 }
 
-// Rate limiting E11: 5 ejecuciones/hora por herramienta y por IP.
-const WINDOW_MS = 3_600_000
-const MAX_RUNS = 5
-const runs = new Map<string, number[]>()
-
-function toolRateLimit(key: string): boolean {
-  const now = Date.now()
-  const list = (runs.get(key) ?? []).filter((t) => t > now - WINDOW_MS)
-  if (list.length >= MAX_RUNS) {
-    runs.set(key, list)
-    return false
-  }
-  list.push(now)
-  runs.set(key, list)
-  return true
-}
+// Rate limiting E11: 5 ejecuciones/hora por herramienta y por IP, sobre el
+// contador compartido de lib/agents/runtime (Redis si está configurado).
+const TOOL_LIMIT = { windowMs: 3_600_000, max: 5 }
 
 export async function POST(req: Request, { params }: { params: Promise<{ tool: string }> }) {
   const { tool } = await params
@@ -50,7 +37,7 @@ export async function POST(req: Request, { params }: { params: Promise<{ tool: s
     return Response.json({ error: "Herramienta no encontrada" }, { status: 404 })
   }
 
-  if (!toolRateLimit(`${tool}:${getClientIp(req)}`)) {
+  if (!(await rateLimit(`herramienta:${tool}:${getClientIp(req)}`, TOOL_LIMIT))) {
     return Response.json(
       { error: "limite", mensaje: "Alcanzó el límite de 5 ejecuciones por hora de esta herramienta." },
       { status: 429 },

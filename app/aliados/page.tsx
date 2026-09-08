@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 export default function AliadosPage() {
   return (
-    <main className="bg-bg">
+    <div className="bg-bg">
       <div className="mx-auto flex max-w-[1200px] flex-col gap-6 px-2 py-8 md:px-3 md:py-10">
         <header className="flex max-w-[70ch] flex-col gap-2">
           <p className="text-caption font-semibold uppercase tracking-wide text-teal">
@@ -23,7 +23,7 @@ export default function AliadosPage() {
           <h1 className="text-h1 font-bold text-navy text-balance">
             Usted abre la puerta, nosotros ejecutamos, ambos ganamos
           </h1>
-          <p className="text-body-lg leading-relaxed text-slate">{partners.queEs}</p>
+          <p className="text-lead leading-relaxed text-slate">{partners.queEs}</p>
         </header>
 
         <section className="flex max-w-[70ch] flex-col gap-2 border-l-4 border-teal bg-white p-3">
@@ -54,6 +54,6 @@ export default function AliadosPage() {
           <PartnerForm />
         </section>
       </div>
-    </main>
+    </div>
   )
 }

@@ -62,7 +62,7 @@ export function buildAgentCorpus(): string {
   }
   lines.push("")
 
-  lines.push("## Catálogo de servicios (20)")
+  lines.push(`## Catálogo de servicios (${services.length})`)
   for (const s of services) {
     lines.push(`### ${s.nombre} (Nivel ${s.nivel}${s.esPuertaDeEntrada ? " · punto de entrada recomendado" : ""})`)
     lines.push(`Descripción: ${s.descripcion}`)

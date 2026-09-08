@@ -13,3 +13,6 @@ __v0_jsx-dev-runtime.ts
 node_modules
 .next/
 .DS_Store
+# TypeScript (generados por next build ahora que la verificación de tipos está activa)
+*.tsbuildinfo
+next-env.d.ts

@@ -64,7 +64,7 @@ function materialize(rec: z.infer<typeof llmSchema>) {
 }
 
 export async function POST(req: Request) {
-  if (!rateLimit(`recomendador:${getClientIp(req)}`)) {
+  if (!(await rateLimit(`recomendador:${getClientIp(req)}`))) {
     return Response.json({ error: "Límite alcanzado. Intente en unos minutos." }, { status: 429 })
   }
 

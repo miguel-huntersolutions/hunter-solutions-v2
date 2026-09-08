@@ -123,7 +123,7 @@ export default function FuerzaLaboralDigitalPage() {
   }
 
   return (
-    <main className="bg-bg">
+    <div className="bg-bg">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: jsonLdScript(faqJsonLd) }}
@@ -153,7 +153,7 @@ export default function FuerzaLaboralDigitalPage() {
             Fuerza Laboral Digital: agentes de IA que operan sus procesos, no solo los conversan
           </h1>
           {/* BLUF: respuesta directa en el primer párrafo */}
-          <p className="text-body-lg leading-relaxed text-ink">
+          <p className="text-lead leading-relaxed text-ink">
             Una Fuerza Laboral Digital es un equipo de agentes de IA que se conectan a su ERP y
             operan procesos completos de la empresa con supervisión humana. A diferencia de una
             automatización, que ejecuta un paso fijo, o de un chatbot, que solo responde preguntas,
@@ -368,6 +368,6 @@ export default function FuerzaLaboralDigitalPage() {
           </div>
         </footer>
       </div>
-    </main>
+    </div>
   )
 }

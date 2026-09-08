@@ -38,7 +38,17 @@ export function Differentiators() {
         })}
       </div>
 
-
+      <div className="mt-6 rounded-xl border border-line bg-bg p-4">
+        <h3 className="mb-3 text-h3 font-bold text-navy">Dónde hemos operado</h3>
+        <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+          {teamExperience.map((t) => (
+            <article key={t.dominio} className="rounded-lg border-l-4 border-teal bg-white p-3 shadow-sm">
+              <h4 className="text-caption font-bold text-navy">{t.dominio}</h4>
+              <p className="mt-1 text-caption leading-relaxed text-slate">{t.descripcion}</p>
+            </article>
+          ))}
+        </div>
+      </div>
     </Section>
   )
 }

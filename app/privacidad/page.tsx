@@ -7,11 +7,12 @@ export const metadata: Metadata = {
   title: "Política de privacidad",
   description:
     "Política de tratamiento de datos personales de Hunter Solutions Tech (Ley 1581 de 2012) y Asistente de Privacidad.",
+  alternates: { canonical: "/privacidad" },
 }
 
 export default function PrivacidadPage() {
   return (
-    <main className="bg-bg">
+    <div className="bg-bg">
       <LegalDocument doc={privacidad} />
       <div className="mx-auto max-w-[70ch] px-2 pb-10">
         <h2 className="mb-2 text-h3 font-bold text-navy">
@@ -29,6 +30,6 @@ export default function PrivacidadPage() {
           ]}
         />
       </div>
-    </main>
+    </div>
   )
 }

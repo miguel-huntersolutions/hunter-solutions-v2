@@ -17,7 +17,7 @@ const COLORS = [
 
 export default function DesignSystemPage() {
   return (
-    <main className="bg-bg">
+    <div className="bg-bg">
       <div className="mx-auto flex max-w-[1200px] flex-col gap-8 px-2 py-8 md:px-3 md:py-10">
         <header className="flex flex-col gap-2">
           <p className="text-caption font-semibold uppercase tracking-wide text-teal">
@@ -47,7 +47,7 @@ export default function DesignSystemPage() {
             <p className="text-h1 font-bold text-navy">H1: Titular de página</p>
             <p className="text-h2 font-bold text-navy">H2: Titular de sección</p>
             <p className="text-h3 font-bold text-navy">H3: Titular de tarjeta</p>
-            <p className="text-body-lg leading-relaxed text-ink">Body large: párrafos de apoyo del hero.</p>
+            <p className="text-lead leading-relaxed text-ink">Lead: párrafos de apoyo del hero.</p>
             <p className="text-body leading-relaxed text-ink">Body: texto corriente del sitio.</p>
             <p className="text-caption text-slate">Caption: metadatos, etiquetas y notas.</p>
           </div>
@@ -108,6 +108,6 @@ export default function DesignSystemPage() {
           </div>
         </section>
       </div>
-    </main>
+    </div>
   )
 }

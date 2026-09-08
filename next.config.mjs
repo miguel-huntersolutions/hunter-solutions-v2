@@ -1,8 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  typescript: {
-    ignoreBuildErrors: true,
-  },
   images: {
     // Optimización activada: Next entrega AVIF/WebP con tamaños responsivos
     // (antes estaba en unoptimized: true, que servía los PNG originales sin transformar).

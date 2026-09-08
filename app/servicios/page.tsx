@@ -17,14 +17,14 @@ export const metadata: Metadata = {
 
 export default function ServiciosPage() {
   return (
-    <main className="bg-bg">
+    <div className="bg-bg">
       <div className="mx-auto flex max-w-[1200px] flex-col gap-8 px-2 py-8 md:px-3 md:py-10">
         <header className="flex max-w-[70ch] flex-col gap-2">
           <p className="text-caption font-semibold uppercase tracking-wide text-teal">Catálogo</p>
           <h1 className="text-h1 font-bold text-navy text-balance">
             Servicios por niveles, con rangos publicados
           </h1>
-          <p className="text-body-lg leading-relaxed text-slate">
+          <p className="text-lead leading-relaxed text-slate">
             Cada servicio pertenece a un nivel de inversión con rango publicado en pesos
             colombianos, sin IVA. La cifra exacta se define en la propuesta según el alcance.
           </p>
@@ -79,6 +79,6 @@ export default function ServiciosPage() {
       <Sectors />
       <EngagementModels />
       <ToolsLazy />
-    </main>
+    </div>
   )
 }

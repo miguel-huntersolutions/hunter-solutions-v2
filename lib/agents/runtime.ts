@@ -27,22 +27,96 @@ export function buildSystemPrompt(role: string): string {
   ].join("\n")
 }
 
-// ── Rate limiting simple por IP (en memoria, por instancia) ──
-const WINDOW_MS = 60_000
-const MAX_REQUESTS = 10
+// ── Rate limiting por IP ──
+//
+// Los endpoints de LLM son públicos y sin autenticación, así que el límite tiene
+// que ser real: un Map en memoria vive dentro de una sola instancia serverless y
+// deja de contar en cuanto Vercel abre otra. Si hay un Redis REST configurado
+// (Upstash o Vercel KV) el contador es compartido entre instancias; si no, se
+// degrada al Map local y se avisa una vez por proceso.
+//
+// Variables de entorno (cualquiera de los dos pares):
+//   UPSTASH_REDIS_REST_URL / UPSTASH_REDIS_REST_TOKEN
+//   KV_REST_API_URL        / KV_REST_API_TOKEN
+
+const DEFAULT_WINDOW_MS = 60_000
+const DEFAULT_MAX = 10
+
+const REDIS_URL = process.env.UPSTASH_REDIS_REST_URL ?? process.env.KV_REST_API_URL
+const REDIS_TOKEN = process.env.UPSTASH_REDIS_REST_TOKEN ?? process.env.KV_REST_API_TOKEN
+
+export type RateLimitOptions = { windowMs?: number; max?: number }
+
+// ── Respaldo en memoria (desarrollo, o Redis caído) ──
 const hits = new Map<string, number[]>()
 
-export function rateLimit(ip: string): boolean {
+function memoryRateLimit(key: string, windowMs: number, max: number): boolean {
   const now = Date.now()
-  const windowStart = now - WINDOW_MS
-  const list = (hits.get(ip) ?? []).filter((t) => t > windowStart)
-  if (list.length >= MAX_REQUESTS) {
-    hits.set(ip, list)
+  const list = (hits.get(key) ?? []).filter((t) => t > now - windowMs)
+  if (list.length >= max) {
+    hits.set(key, list)
     return false
   }
   list.push(now)
-  hits.set(ip, list)
+  hits.set(key, list)
   return true
+}
+
+let warnedNoRedis = false
+function warnOnceNoRedis() {
+  if (warnedNoRedis) return
+  warnedNoRedis = true
+  console.warn(
+    "[rate-limit] sin Redis REST configurado; el límite es por instancia y no protege en serverless.",
+  )
+}
+
+/**
+ * Ventana fija en Redis: `SET key 0 EX ttl NX` crea el contador con su TTL solo
+ * si no existía, e `INCR` devuelve el conteo. Dos comandos en un pipeline, así
+ * que la clave nunca queda sin expiración.
+ */
+async function redisRateLimit(key: string, windowMs: number, max: number): Promise<boolean> {
+  const ttl = Math.ceil(windowMs / 1000)
+  const res = await fetch(`${REDIS_URL}/pipeline`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${REDIS_TOKEN}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify([
+      ["SET", key, "0", "EX", String(ttl), "NX"],
+      ["INCR", key],
+    ]),
+    signal: AbortSignal.timeout(2_000),
+    cache: "no-store",
+  })
+  if (!res.ok) throw new Error(`redis status ${res.status}`)
+  const body = (await res.json()) as { result?: unknown; error?: string }[]
+  const incr = body?.[1]
+  if (!incr || incr.error || typeof incr.result !== "number") {
+    throw new Error(`redis pipeline inesperado: ${JSON.stringify(body)}`)
+  }
+  return incr.result <= max
+}
+
+/** `true` si la petición cabe dentro del límite; `false` si hay que responder 429. */
+export async function rateLimit(key: string, options: RateLimitOptions = {}): Promise<boolean> {
+  const windowMs = options.windowMs ?? DEFAULT_WINDOW_MS
+  const max = options.max ?? DEFAULT_MAX
+
+  if (!REDIS_URL || !REDIS_TOKEN) {
+    warnOnceNoRedis()
+    return memoryRateLimit(key, windowMs, max)
+  }
+
+  try {
+    return await redisRateLimit(`rl:${key}`, windowMs, max)
+  } catch (error) {
+    // Redis caído no puede tumbar el sitio: degradamos al contador local.
+    console.warn("[rate-limit] Redis no disponible, se usa el contador local:", error)
+    return memoryRateLimit(key, windowMs, max)
+  }
 }
 
 export function getClientIp(req: Request): string {
