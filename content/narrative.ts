@@ -12,10 +12,14 @@ import type {
 export const sectors: string[] = ["Legal", "Manufactura", "Salud", "Alimentos", "Consumo"]
 
 export const positioning: Positioning = {
-  h1: "No leas sobre nuestra IA. Habla con ella.",
+  // El titular habla de trabajo y de plata, no de tecnología. Vive aquí una sola
+  // vez: lo leen el hero, la metadata de la home, la imagen OG, llms.txt y el
+  // corpus de los agentes. El validador impide que vuelva a hablar de IA.
+  h1: "Hay trabajo en su empresa que hoy nadie hace. Nosotros lo hacemos.",
+  h1Lineas: ["Hay trabajo en su empresa que hoy nadie hace.", "Nosotros lo hacemos."],
   apoyo:
-    "Construimos Fuerza Laboral Digital: agentes autónomos que se conectan a sus sistemas, incluido su ERP, deciden con las reglas de su negocio y ejecutan procesos completos de principio a fin. Trabajamos con empresas medianas de los sectores Legal, Manufactura, Salud, Alimentos y Consumo en Colombia.",
-  invitacion: "Pruébelo ahora mismo: cuéntele su reto al Agente de Diagnóstico.",
+    "Cobranza que no se persigue, documentos que no se revisan, clientes que no reciben respuesta a tiempo. Construimos capacidades digitales que se conectan a sus sistemas y ejecutan ese trabajo, con supervisión de su equipo.",
+  invitacion: "Cuéntele su reto al Agente de Diagnóstico y sepa por dónde empezar.",
   nuevosTitulo: "Nuevos como marca, no en oficio",
   nuevosArgumento:
     "Ser una marca joven nos permite construir AI-Native desde el primer día, sin sistemas heredados que defender. Lo que nos respalda no es una cifra de años corporativos: es la experiencia real del equipo operando procesos en manufactura e importación, administración y finanzas, atención y agendamiento, y el sector legal.",

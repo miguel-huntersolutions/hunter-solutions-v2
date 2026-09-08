@@ -127,6 +127,8 @@ export type Cnt = {
 
 export type Positioning = {
   h1: string
+  /** El H1 partido en líneas, para animarlas por separado sin duplicar el texto */
+  h1Lineas: string[]
   apoyo: string
   invitacion: string
   nuevosTitulo: string

@@ -150,6 +150,22 @@ if (!promise.retorno.includes("no como cifra garantizada"))
 scanProhibited({ brand, claims, sectors, problems, principles, stages, levels, services, differentiators, faqs, cases }, "content")
 scanProhibited({ retorno: promise.retorno, riesgo: promise.riesgo }, "content.promise")
 
+// ── T-CON-12 · el titular habla de trabajo, no de tecnología ──
+// El H1 es la promesa comercial: la IA es el cómo, no el qué. Si vuelve a
+// nombrar la tecnología, el build falla y obliga a reescribirlo a propósito.
+const H1_VETADO: [RegExp, string][] = [
+  [/\bIA\b/, "IA"],
+  [/inteligencia artificial/i, "inteligencia artificial"],
+  [/\bagentes?\b/i, "agentes"],
+  [/fuerza laboral digital/i, "Fuerza Laboral Digital"],
+]
+for (const [re, etiqueta] of H1_VETADO) {
+  if (re.test(positioning.h1)) fail(`positioning.h1 no puede nombrar "${etiqueta}": ${positioning.h1}`)
+}
+if (positioning.h1Lineas.join(" ") !== positioning.h1) {
+  fail("positioning.h1Lineas debe reconstruir exactamente positioning.h1")
+}
+
 // ── T-CON-11 · marcadores de relleno fuera de producción ──
 // Un "[COMPLETAR ...]" o "[PENDIENTE ...]" en contenido visible es un texto que
 // el cliente termina leyendo. Se permite solo en resultado.metricas[].valor de
