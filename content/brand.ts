@@ -39,3 +39,11 @@ export const claims: Record<string, Claim> = {
     vigencia: "2026",
   },
 }
+
+/**
+ * Enlace de WhatsApp con mensaje prellenado. El número vive una sola vez, aquí;
+ * wa.me solo acepta dígitos, sin "+" ni espacios.
+ */
+export function whatsappUrl(mensaje: string): string {
+  return `https://wa.me/${brand.whatsapp.replace(/\D/g, "")}?text=${encodeURIComponent(mensaje)}`
+}

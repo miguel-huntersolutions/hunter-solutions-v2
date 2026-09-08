@@ -30,6 +30,7 @@ export function buildAgentCorpus(): string {
   lines.push(positioning.nuevosArgumento)
   lines.push("")
   lines.push(`Sectores atendidos: ${sectors.join(", ")}. Ámbito: Colombia, empresas medianas.`)
+  lines.push("Experiencia adicional del equipo: manufactura e importación, consumo masivo.")
   lines.push("")
 
   lines.push("## Problemas que resuelve (frenos a la adopción)")

@@ -10,11 +10,18 @@ const COLUMNS = [
       { href: "/servicios", label: "Servicios" },
       { href: "/casos", label: "Casos" },
       { href: "/gobernanza", label: "Gobernanza de IA" },
+      { href: "/nosotros", label: "Nosotros" },
+      { href: "/preguntas", label: "Preguntas frecuentes" },
+    ],
+  },
+  {
+    title: "Más",
+    links: [
+      { href: "/fuerza-laboral-digital", label: "Fuerza Laboral Digital" },
       { href: "/formacion", label: "Formación" },
       { href: "/recursos", label: "Recursos" },
       { href: "/newsletter", label: "Radar IA Semanal" },
       { href: "/aliados", label: "Aliados" },
-      { href: "/preguntas", label: "Preguntas frecuentes" },
     ],
   },
   {
@@ -23,6 +30,7 @@ const COLUMNS = [
       { href: "/privacidad", label: "Política de privacidad" },
       { href: "/terminos", label: "Términos de uso" },
       { href: "/legal/uso-de-ia", label: "Uso de IA en este sitio" },
+      { href: "/llms.txt", label: "Versión para agentes de IA" },
     ],
   },
 ] as const
@@ -31,12 +39,12 @@ export function SiteFooter() {
   return (
     <SurfaceProvider tone="dark">
       <footer className="bg-navy text-white">
-        <div className="mx-auto grid max-w-[1200px] gap-6 px-2 py-8 md:grid-cols-3 md:px-3">
+        <div className="mx-auto grid max-w-[1200px] gap-6 px-2 py-8 md:grid-cols-4 md:px-3">
           <div className="flex flex-col items-start gap-3">
             <Logo variant="negativo" height={32} />
             <p className="max-w-[36ch] text-caption leading-relaxed text-line">
-              Consultora AI-native en Colombia. Automatización, agentes de IA y desarrollo a la
-              medida con niveles de inversión claros.
+              Consultora AI-native en Colombia. Capacidades digitales que ejecutan el trabajo que
+              hoy nadie hace.
             </p>
             <p className="max-w-[36ch] text-caption font-semibold leading-relaxed text-teal">
               Generadores de Soluciones con Inteligencia Artificial. TECH | AI-NATIVE.

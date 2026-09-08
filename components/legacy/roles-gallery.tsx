@@ -13,8 +13,8 @@ export function RolesGallery() {
     <Section
       id="roles"
       eyebrow="Casos de uso"
-      title="Qué roles puede cumplir su Fuerza Laboral Digital"
-      intro="Estos son ejemplos de roles que la nómina digital cumple dentro de un proyecto, no productos sueltos con precio. Cada rol se implementa según su alcance, dentro de uno de los tres niveles de inversión."
+      title="Ejemplos de lo que un agente opera"
+      intro="Roles que un agente cumple dentro de un proyecto, no productos sueltos con precio. Cada uno se implementa según su alcance, dentro de uno de los tres niveles de inversión."
       tone="white"
     >
       <div className="grid gap-4 md:grid-cols-3">

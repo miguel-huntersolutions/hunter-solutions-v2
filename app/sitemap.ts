@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next"
 import { services, publishedCases, publishedResources, sectorPages } from "@/content"
 import { SITE_URL } from "@/lib/seo"
 import { publishedIssues } from "@/lib/newsletter"
+import { RUTAS_CON_ESPEJO } from "@/lib/markdown"
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = SITE_URL
@@ -13,6 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/recursos",
     "/newsletter",
     "/servicios",
+    "/nosotros",
     "/casos",
     "/gobernanza",
     "/formacion",
@@ -65,7 +67,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }))
 
+  // Versión para agentes: el espejo Markdown y la oferta en JSON.
+  const agentRoutes = [
+    ...RUTAS_CON_ESPEJO.map((r) => (r === "/" ? "/llm" : `/llm${r}`)),
+    "/oferta.json",
+  ].map((path) => ({
+    url: `${base}${path}`,
+    lastModified: now,
+    changeFrequency: "weekly" as const,
+    priority: 0.4,
+  }))
+
   return [
+    ...agentRoutes,
     ...staticRoutes,
     ...serviceRoutes,
     ...caseRoutes,

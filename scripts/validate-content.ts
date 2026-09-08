@@ -8,13 +8,24 @@ import {
   differentiators,
   faqs,
   principles,
+  positioning,
   problems,
   promise,
   sectors,
   stages,
 } from "../content/narrative"
 import { levels, services } from "../content/commercial"
-import { cases } from "../content/trust"
+import {
+  cases,
+  governance,
+  lineaConfianza,
+  partners,
+  pruebaPropia,
+  teamExperience,
+  training,
+} from "../content/trust"
+import { sectorPages } from "../content/sectores"
+import { resources } from "../content/resources"
 
 const errors: string[] = []
 const fail = (msg: string) => errors.push(msg)
@@ -29,7 +40,20 @@ const PROHIBIDAS = [
   "llave en mano",
   "líder del mercado",
   "ia native",
+  "nómina digital",
+  "nomina digital",
+  "bajo costo",
+  "compañía joven",
+  "arquitectos de soluciones",
+  "100%",
 ]
+
+// Absolutos: se vetan como promesa, no como palabra. "Supervisión humana siempre"
+// es una promesa absoluta; "No siempre necesita lo más sofisticado" y "Autonomía
+// total no es el objetivo" son justo lo contrario, así que una negación cercana
+// desactiva la regla.
+const ABSOLUTOS = /\b(siempre|total)\b/gi
+const NEGACION_CERCA = /\bno\b/i
 
 function scanProhibited(value: unknown, path: string) {
   if (typeof value === "string") {
@@ -38,6 +62,19 @@ function scanProhibited(value: unknown, path: string) {
       // "no como cifra garantizada" es el encuadre literal obligatorio de la promesa
       if (p === "garantizado" && lower.includes("cifra garantizada")) continue
       if (lower.includes(p)) fail(`Vocabulario prohibido "${p}" en ${path}`)
+    }
+
+    ABSOLUTOS.lastIndex = 0
+    let m: RegExpExecArray | null
+    while ((m = ABSOLUTOS.exec(value)) !== null) {
+      const alrededor = value.slice(Math.max(0, m.index - 14), m.index + m[0].length + 14)
+      if (NEGACION_CERCA.test(alrededor)) continue
+      fail(`Promesa absoluta "${m[0]}" en ${path}: ${value.slice(Math.max(0, m.index - 40), m.index + 40)}`)
+    }
+
+    // El guion largo no se usa en copy; las referencias internas de `fuente` sí lo llevan.
+    if (value.includes("\u2014") && !path.endsWith(".fuente")) {
+      fail(`Guion largo en ${path}. Use punto, coma o dos puntos.`)
     }
   } else if (Array.isArray(value)) {
     value.forEach((v, i) => scanProhibited(v, `${path}[${i}]`))
@@ -144,8 +181,93 @@ if (!promise.retorno.includes("no como cifra garantizada"))
   fail('promise.retorno debe conservar el encuadre literal "no como cifra garantizada"')
 
 // ── T-CON-06 · vocabulario prohibido (excepción: promise.capacidad) ──
-scanProhibited({ brand, claims, sectors, problems, principles, stages, levels, services, differentiators, faqs, cases }, "content")
+scanProhibited(
+  {
+    brand, claims, sectors, positioning, problems, principles, stages, levels, services,
+    differentiators, faqs, cases, pruebaPropia, lineaConfianza, governance, partners,
+    teamExperience, training, sectorPages, resources,
+  },
+  "content",
+)
 scanProhibited({ retorno: promise.retorno, riesgo: promise.riesgo }, "content.promise")
+
+// ── T-CON-14 · los sectores de un servicio existen ──
+// Sin esto, cambiar la lista de sectores foco deja servicios apuntando a sectores
+// fantasma y el recomendador filtrando por un valor que nunca casa.
+const SECTORES = new Set(sectors)
+for (const s of services) {
+  for (const sec of s.sectoresRelevantes) {
+    if (!SECTORES.has(sec))
+      fail(`services.${s.id}.sectoresRelevantes: "${sec}" no está en sectors`)
+  }
+}
+
+// ── T-CON-13 · bloque de prueba de la home ──
+// Sus textos viven en content/ y no en el componente, así que se validan como
+// cualquier otro contenido publicado.
+for (const [campo, valor] of Object.entries(pruebaPropia)) {
+  if (typeof valor !== "string" || valor.trim().length === 0)
+    fail(`pruebaPropia.${campo} vacío`)
+}
+for (const [campo, valor] of Object.entries(lineaConfianza)) {
+  if (typeof valor !== "string" || valor.trim().length === 0)
+    fail(`lineaConfianza.${campo} vacío`)
+}
+if (!lineaConfianza.enlaceHref.startsWith("/"))
+  fail("lineaConfianza.enlaceHref debe ser una ruta interna")
+
+// ── T-CON-12 · el titular habla de trabajo, no de tecnología ──
+// El H1 es la promesa comercial: la IA es el cómo, no el qué. Si vuelve a
+// nombrar la tecnología, el build falla y obliga a reescribirlo a propósito.
+const H1_VETADO: [RegExp, string][] = [
+  [/\bIA\b/, "IA"],
+  [/inteligencia artificial/i, "inteligencia artificial"],
+  [/\bagentes?\b/i, "agentes"],
+  [/fuerza laboral digital/i, "Fuerza Laboral Digital"],
+]
+for (const [re, etiqueta] of H1_VETADO) {
+  if (re.test(positioning.h1)) fail(`positioning.h1 no puede nombrar "${etiqueta}": ${positioning.h1}`)
+}
+if (positioning.h1Lineas.join(" ") !== positioning.h1) {
+  fail("positioning.h1Lineas debe reconstruir exactamente positioning.h1")
+}
+
+// ── T-CON-11 · marcadores de relleno fuera de producción ──
+// Un "[COMPLETAR ...]" o "[PENDIENTE ...]" en contenido visible es un texto que
+// el cliente termina leyendo. Se permite solo en resultado.metricas[].valor de
+// los casos: ahí es un recordatorio interno y la ficha ya no lo pinta.
+const MARCADORES = ["[completar", "[pendiente"]
+
+function scanPlaceholders(value: unknown, path: string) {
+  if (typeof value === "string") {
+    const lower = value.toLowerCase()
+    for (const m of MARCADORES) {
+      if (lower.includes(m)) fail(`Marcador de relleno "${m}...]" en ${path}`)
+    }
+  } else if (Array.isArray(value)) {
+    value.forEach((v, i) => scanPlaceholders(v, `${path}[${i}]`))
+  } else if (value && typeof value === "object") {
+    for (const [k, v] of Object.entries(value)) scanPlaceholders(v, `${path}.${k}`)
+  }
+}
+
+scanPlaceholders(
+  { brand, claims, sectors, positioning, problems, principles, stages, levels, services,
+    differentiators, faqs, promise, governance, partners, teamExperience, training, sectorPages,
+    resources, pruebaPropia, lineaConfianza },
+  "content",
+)
+// Los casos se escanean sin resultado.metricas, que es la excepción documentada.
+for (const c of cases) {
+  const { resultado, ...resto } = c
+  scanPlaceholders(resto, `cases.${c.id}`)
+  if (resultado) {
+    // metricas es la excepción documentada: se descarta a propósito.
+    const { metricas: _metricas, ...restoResultado } = resultado
+    void _metricas
+    scanPlaceholders(restoResultado, `cases.${c.id}.resultado`)
+  }
+}
 
 // ── Resultado ──
 if (errors.length > 0) {

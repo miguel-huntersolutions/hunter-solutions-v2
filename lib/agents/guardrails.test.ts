@@ -74,6 +74,39 @@ describe("validateAgentOutput · respuestas limpias", () => {
   })
 })
 
+describe("validateAgentOutput · expresión retirada", () => {
+  it("bloquea \"nómina digital\" en cualquier grafía", () => {
+    expect(tipos("Le construimos su nómina digital.")).toEqual(["expresion_retirada"])
+    expect(tipos("Trabajamos con NOMINA DIGITAL desde el día uno.")).toEqual(["expresion_retirada"])
+  })
+
+  it("no confunde el nombre vigente de la oferta", () => {
+    expect(tipos("Le construimos una Fuerza Laboral Digital.")).toEqual([])
+  })
+})
+
+describe("validateAgentOutput · cierre fijo del Agente de Diagnóstico", () => {
+  // El rol obliga a terminar cada respuesta con esta frase literal. Si los
+  // patrones de importe o de garantía la marcaran, el agente entraría en el
+  // reintento correctivo en TODAS sus respuestas y acabaría en SAFE_FALLBACK.
+  const CIERRE =
+    "Si quiere que lo revisemos con su caso real, agende 30 minutos sin costo en la sección Hablemos de esta página."
+
+  it("no dispara ninguna violación por sí solo", () => {
+    expect(tipos(CIERRE)).toEqual([])
+  })
+
+  it("tampoco dentro de una respuesta completa con capacidad, nivel y rango", () => {
+    const respuesta = [
+      "Su cartera se está quedando sin quien la persiga, que es un problema de proceso, no de personas.",
+      "La capacidad que aplica es un Agente de Cobranza.",
+      "El servicio es Automatización de un proceso documental, en el Nivel 2 · Implementa: $10.000.000 COP a $50.000.000 COP, sin IVA.",
+      CIERRE,
+    ].join(" ")
+    expect(tipos(respuesta)).toEqual([])
+  })
+})
+
 describe("validateAgentOutput · huecos conocidos", () => {
   // Documentados, NO aprobados: si un cambio futuro los cierra, estos tests
   // fallan y hay que actualizarlos a propósito.

@@ -6,6 +6,8 @@
 export type SectorFaq = { pregunta: string; respuesta: string }
 
 export type SectorPage = {
+  /** false: sigue publicada por SEO, pero no se ofrece como sector foco */
+  foco?: boolean
   /** slug de URL: /sectores/[slug] */
   slug: string
   /** nombre del sector, coincide con content/narrative.ts */
@@ -57,7 +59,7 @@ export const sectorPages: SectorPage[] = [
       {
         pregunta: "¿La IA reemplaza el criterio del abogado?",
         respuesta:
-          "No. El agente hace el trabajo de base —buscar, comparar y redactar un primer borrador— y el abogado responsable valida y decide. Ninguna pieza sale sin revisión humana.",
+          "No. El agente hace el trabajo de base (buscar, comparar y redactar un primer borrador) y el abogado responsable valida y decide. Ninguna pieza sale sin revisión humana.",
       },
       {
         pregunta: "¿Qué pasa con la confidencialidad de los documentos?",
@@ -73,12 +75,13 @@ export const sectorPages: SectorPage[] = [
   },
   {
     slug: "manufactura",
+    foco: false,
     sector: "Manufactura",
     keyword: "IA para el sector de manufactura en Colombia",
     description:
       "IA para manufactura en Colombia: agentes que operan compras, aduanas, inventarios y facturación conectados a su ERP, con supervisión humana en lo sensible.",
     h1: "IA para manufactura: procesos de compras, inventario y facturación que se operan solos",
-    bluf: "En manufactura, el back office administrativo —órdenes de compra, trámites de aduana, conciliación de inventario y facturación— consume equipos enteros en tareas repetitivas y propensas a error. Los agentes de Hunter Solutions Tech se conectan a su ERP y operan esos procesos de principio a fin, escalando a una persona solo las excepciones, para que su operación gane velocidad sin sumar carga administrativa.",
+    bluf: "En manufactura, el back office administrativo (órdenes de compra, trámites de aduana, conciliación de inventario y facturación) consume equipos enteros en tareas repetitivas y propensas a error. Los agentes de Hunter Solutions Tech se conectan a su ERP y operan esos procesos de principio a fin, escalando a una persona solo las excepciones, para que su operación gane velocidad sin sumar carga administrativa.",
     solucion: [
       "Órdenes de compra y conciliación de inventario operadas sobre su ERP, con las reglas de su negocio.",
       "Procesamiento automático de documentos de aduana, remisiones y facturas, con extracción y validación de datos.",
@@ -133,7 +136,7 @@ export const sectorPages: SectorPage[] = [
       {
         pregunta: "¿Los agentes toman decisiones clínicas?",
         respuesta:
-          "No. Los agentes operan tareas administrativas —agendar, tramitar, organizar información—. Cualquier decisión clínica queda siempre en manos del personal de salud.",
+          "No. Los agentes operan tareas administrativas: agendar, tramitar, organizar información. Cualquier decisión clínica queda en manos del personal de salud.",
       },
       {
         pregunta: "¿Cómo se protegen los datos sensibles del paciente?",
@@ -187,6 +190,7 @@ export const sectorPages: SectorPage[] = [
   },
   {
     slug: "consumo",
+    foco: false,
     sector: "Consumo",
     keyword: "IA para el sector de consumo masivo en Colombia",
     description:
@@ -194,7 +198,7 @@ export const sectorPages: SectorPage[] = [
     h1: "IA para consumo y retail: atención, cartera y datos de venta que se convierten en decisiones",
     bluf: "En consumo masivo y retail, el alto volumen de atención, gestión de cartera, procesamiento de documentos y contratación satura a los equipos y ralentiza las decisiones. Los agentes de Hunter Solutions Tech operan esos procesos de alto volumen conectados a sus sistemas y convierten los datos de venta en información accionable, para que su equipo decida con evidencia y dedique el tiempo a lo estratégico.",
     solucion: [
-      "Procesos de alto volumen —como la preselección de hojas de vida— operados con criterios trazables y auditables.",
+      "Procesos de alto volumen, como la preselección de hojas de vida, operados con criterios trazables y auditables.",
       "Atención y gestión de cartera apoyadas por agentes conectados a sus sistemas, con escalamiento a una persona cuando aplica.",
       "Datos de venta consolidados y consultables en lenguaje natural, para convertir información dispersa en decisiones.",
     ],

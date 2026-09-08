@@ -17,13 +17,13 @@ const openSans = Open_Sans({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: 'Hunter Solutions Tech: Automatización e IA que puedes probar',
+    default: 'Hunter Solutions Tech | El trabajo que hoy nadie hace en su empresa, hecho',
     template: '%s | Hunter Solutions Tech',
   },
   description:
-    'Generadores de Soluciones con Inteligencia Artificial. TECH | AI-NATIVE. Consultora AI-native en Colombia: automatización, agentes de IA y desarrollo a la medida por niveles de inversión claros. Prueba la IA en la página antes de agendar.',
+    'Capacidades digitales que se conectan a sus sistemas y ejecutan el trabajo que hoy nadie hace. Consultora AI-native en Colombia.',
   generator: 'v0.app',
-  alternates: { canonical: '/' },
+  alternates: { canonical: '/', types: { 'text/markdown': '/llm' } },
   icons: {
     icon: [{ url: '/brand/favicon.svg', type: 'image/svg+xml' }],
   },

@@ -47,7 +47,7 @@ export const services: Service[] = [
       "Sesiones con sus responsables de proceso, análisis de sistemas y datos disponibles, y priorización de oportunidades por valor y viabilidad con supuestos explícitos.",
     ejemplo:
       "Una empresa de consumo masivo descubre que su mayor oportunidad no está en atención al cliente, como suponía, sino en la conciliación de facturas con proveedores: un proceso que consume 3 personas y es automatizable en el Nivel 2.",
-    sectoresRelevantes: ["Legal", "Manufactura", "Salud", "Alimentos", "Consumo"],
+    sectoresRelevantes: ["Legal", "Comercial", "Salud", "Alimentos", "Agrícola"],
     esPuertaDeEntrada: true,
   },
   {
@@ -63,7 +63,7 @@ export const services: Service[] = [
       "Formatos de charla ejecutiva (2 horas) y taller práctico (medio día) sobre casos del propio sector, con material que queda en la organización.",
     ejemplo:
       "El comité directivo de una firma legal sale de un taller de medio día habiendo construido, con sus propios contratos de ejemplo, un asistente que responde preguntas sobre cláusulas.",
-    sectoresRelevantes: ["Legal", "Manufactura", "Salud", "Alimentos", "Consumo"],
+    sectoresRelevantes: ["Legal", "Comercial", "Salud", "Alimentos", "Agrícola"],
   },
   {
     id: "automatizacion-documental",
@@ -78,7 +78,7 @@ export const services: Service[] = [
       "Seleccionamos un solo flujo de alto volumen, construimos la extracción con validación humana de excepciones y lo conectamos al sistema donde el dato debe quedar.",
     ejemplo:
       "Las órdenes de compra que llegan por correo en PDF a una manufacturera se leen, se validan contra el catálogo y se registran en el ERP; una persona solo revisa las que el sistema marca como dudosas.",
-    sectoresRelevantes: ["Manufactura", "Alimentos", "Consumo"],
+    sectoresRelevantes: ["Comercial", "Alimentos", "Agrícola"],
   },
   {
     id: "piloto-asistente-conocimiento",
@@ -93,7 +93,7 @@ export const services: Service[] = [
       "Indexamos un conjunto definido de documentos, montamos el asistente con citas a la fuente y medimos qué preguntas responde bien antes de ampliar el corpus.",
     ejemplo:
       "El personal de una clínica consulta protocolos de atención en lenguaje natural y recibe la respuesta con el enlace a la página exacta del protocolo vigente.",
-    sectoresRelevantes: ["Salud", "Legal", "Manufactura"],
+    sectoresRelevantes: ["Salud", "Legal", "Comercial"],
   },
   {
     id: "prueba-concepto-agente",
@@ -108,7 +108,7 @@ export const services: Service[] = [
       "Definimos un caso de dos a cuatro semanas con criterios de éxito medibles, construimos el agente en un entorno controlado y presentamos resultados contra esos criterios.",
     ejemplo:
       "Un agente que clasifica y responde borradores para el 40% más repetitivo de los correos de servicio al cliente de una empresa de alimentos, evaluado durante tres semanas con métricas acordadas.",
-    sectoresRelevantes: ["Consumo", "Alimentos", "Salud"],
+    sectoresRelevantes: ["Comercial", "Alimentos", "Salud", "Agrícola"],
   },
   {
     id: "auditoria-datos",
@@ -123,7 +123,7 @@ export const services: Service[] = [
       "Inventariamos las fuentes relevantes al caso de uso objetivo, evaluamos calidad y accesibilidad, y entregamos un plan de preparación priorizado por esfuerzo e impacto.",
     ejemplo:
       "Antes de automatizar su facturación, una importadora descubre que el 20% de sus registros de proveedores estaba duplicado; la auditoría entrega el plan para corregirlo en cuatro semanas.",
-    sectoresRelevantes: ["Manufactura", "Consumo", "Alimentos"],
+    sectoresRelevantes: ["Comercial", "Alimentos", "Agrícola"],
   },
 
   // ─── NIVEL 2 · IMPLEMENTA ───
@@ -140,7 +140,7 @@ export const services: Service[] = [
       "Construimos el pipeline de extracción con validación contra sus reglas de negocio, cola de excepciones para revisión humana e integración directa con el sistema de destino.",
     ejemplo:
       "El área de talento de una compañía recibe cientos de hojas de vida al mes; el sistema las procesa, extrae la información relevante y la deja estructurada en su plataforma de recursos humanos.",
-    sectoresRelevantes: ["Legal", "Manufactura", "Salud", "Consumo"],
+    sectoresRelevantes: ["Legal", "Comercial", "Salud"],
   },
   {
     id: "cerebro-corporativo",
@@ -155,7 +155,7 @@ export const services: Service[] = [
       "Indexamos su corpus con permisos por rol, montamos el asistente con citas verificables a la fuente y establecemos el proceso de actualización continua del conocimiento.",
     ejemplo:
       "Los abogados de una firma consultan en segundos qué cláusulas de indemnidad han usado en contratos similares de los últimos cinco años, con el enlace a cada contrato de origen.",
-    sectoresRelevantes: ["Legal", "Salud", "Manufactura"],
+    sectoresRelevantes: ["Legal", "Salud", "Comercial"],
   },
   {
     id: "integracion-erp",
@@ -170,7 +170,7 @@ export const services: Service[] = [
       "Construimos la capa de integración con permisos acotados por operación, validaciones previas a cada escritura y registro completo de cada transacción ejecutada por un agente.",
     ejemplo:
       "Un agente registra pedidos que llegan por correo directamente en el ERP de una empresa de alimentos, validando inventario y condiciones comerciales antes de confirmar cada uno.",
-    sectoresRelevantes: ["Manufactura", "Alimentos", "Consumo"],
+    sectoresRelevantes: ["Comercial", "Alimentos", "Agrícola"],
   },
   {
     id: "automatizacion-reclutamiento",
@@ -182,10 +182,10 @@ export const services: Service[] = [
     queSolucionamos:
       "Procesos de selección donde el equipo de talento dedica la mayor parte del tiempo a leer hojas de vida en lugar de entrevistar a los candidatos correctos.",
     comoLoHacemos:
-      "Definimos con su equipo los criterios objetivos del perfil, automatizamos la extracción y el filtrado inicial con esos criterios trazables, y dejamos la decisión final siempre en manos humanas.",
+      "Definimos con su equipo los criterios objetivos del perfil, automatizamos la extracción y el filtrado inicial con esos criterios trazables, y dejamos la decisión final en manos humanas.",
     ejemplo:
       "Una operación que recibe cientos de hojas de vida al mes pasa de dos semanas a dos días entre la publicación de la vacante y la lista corta de candidatos entrevistables.",
-    sectoresRelevantes: ["Consumo", "Manufactura", "Salud"],
+    sectoresRelevantes: ["Comercial", "Salud"],
   },
   {
     id: "agente-revision-legal",
@@ -197,7 +197,7 @@ export const services: Service[] = [
     queSolucionamos:
       "Riesgo jurídico y horas facturables perdidas en revisar manualmente contratos que repiten estructuras conocidas.",
     comoLoHacemos:
-      "Indexamos su corpus contractual, entrenamos la revisión sobre sus políticas de riesgo y generamos borradores desde sus propias plantillas, siempre con validación del abogado responsable.",
+      "Indexamos su corpus contractual, entrenamos la revisión sobre sus políticas de riesgo y generamos borradores desde sus propias plantillas, con validación del abogado responsable.",
     ejemplo:
       "Una firma legal consulta y compara cláusulas de todo su corpus documental en segundos y genera primeros borradores que sus abogados ajustan, en lugar de partir de cero.",
     sectoresRelevantes: ["Legal"],
@@ -215,7 +215,7 @@ export const services: Service[] = [
       "Instrumentamos cada agente con trazabilidad de decisiones, construimos el tablero de operación con alertas y colas de aprobación, y definimos los límites de actuación autónoma.",
     ejemplo:
       "El gerente de operaciones revisa cada mañana un tablero que muestra cuántas transacciones ejecutaron los agentes, cuáles quedaron en espera de aprobación y por qué.",
-    sectoresRelevantes: ["Manufactura", "Salud", "Legal", "Consumo"],
+    sectoresRelevantes: ["Comercial", "Salud", "Legal"],
   },
 
   // ─── NIVEL 3 · ESCALA ───
@@ -232,7 +232,7 @@ export const services: Service[] = [
       "Diseñamos la arquitectura multi-agente con responsabilidad única por agente, orquestación central, integración con sus sistemas de registro y un modelo de gobierno operado por su equipo.",
     ejemplo:
       "En una importadora, un orquestador coordina agentes de compras, aduanas, inventario y facturación: una orden de importación fluye de principio a fin con intervención humana solo en las aprobaciones definidas.",
-    sectoresRelevantes: ["Manufactura", "Consumo", "Alimentos"],
+    sectoresRelevantes: ["Comercial", "Alimentos", "Agrícola"],
   },
   {
     id: "orquestacion-end-to-end",
@@ -247,7 +247,7 @@ export const services: Service[] = [
       "Modelamos el proceso de punta a punta, definimos qué ejecutan los agentes y qué aprueban las personas, e implementamos por fases con métricas de operación desde la primera.",
     ejemplo:
       "El ciclo pedido-facturación-cobro de una empresa de consumo se orquesta completo: el estado de cada pedido es visible en tiempo real y las excepciones llegan a la persona correcta con el contexto ya preparado.",
-    sectoresRelevantes: ["Consumo", "Alimentos", "Manufactura"],
+    sectoresRelevantes: ["Comercial", "Alimentos", "Agrícola"],
   },
   {
     id: "plataforma-perimetro",
@@ -259,10 +259,10 @@ export const services: Service[] = [
     queSolucionamos:
       "El bloqueo regulatorio o de política interna: la IA aporta valor, pero los datos no pueden procesarse fuera del perímetro de la organización.",
     comoLoHacemos:
-      "Desplegamos la arquitectura en su nube privada o sus servidores, con modelos que corren dentro del perímetro cuando se requiere, y su equipo de TI con control total del entorno.",
+      "Desplegamos la arquitectura en su nube privada o sus servidores, con modelos que corren dentro del perímetro cuando se requiere, y su equipo de TI con control del entorno.",
     ejemplo:
       "Una organización de salud opera su Cerebro Corporativo y sus agentes de atención dentro de su propia infraestructura: ninguna historia clínica sale de su perímetro.",
-    sectoresRelevantes: ["Salud", "Legal", "Manufactura"],
+    sectoresRelevantes: ["Salud", "Legal", "Comercial"],
   },
   {
     id: "gobernanza-guardrails",
@@ -277,7 +277,7 @@ export const services: Service[] = [
       "Definimos con sus áreas de riesgo y cumplimiento las políticas de actuación de cada agente, implementamos los guardrails técnicos que las hacen cumplir y establecemos el ciclo de auditoría.",
     ejemplo:
       "El comité de riesgos de una compañía de alimentos aprueba el despliegue de agentes en producción porque cada decisión queda trazada, cada límite es verificable y existe un procedimiento de detención inmediata.",
-    sectoresRelevantes: ["Salud", "Legal", "Alimentos", "Manufactura"],
+    sectoresRelevantes: ["Salud", "Legal", "Alimentos", "Comercial", "Agrícola"],
   },
   {
     id: "modernizacion-ai-native",
@@ -292,7 +292,7 @@ export const services: Service[] = [
       "Priorizamos por valor de negocio qué modernizar primero, construimos las capas de datos e integración que los agentes necesitan y migramos por fases sin detener la operación.",
     ejemplo:
       "Una manufacturera con veinte años de sistemas a la medida obtiene una capa de integración moderna sobre la cual sus primeros agentes operan sin esperar a reemplazar el ERP.",
-    sectoresRelevantes: ["Manufactura", "Consumo", "Salud"],
+    sectoresRelevantes: ["Comercial", "Salud"],
   },
   {
     id: "acompanamiento-evolutivo",
@@ -307,12 +307,12 @@ export const services: Service[] = [
       "Establecemos el ciclo de monitoreo y evaluación continua, auditamos los guardrails periódicamente y evolucionamos los agentes con las prioridades de su negocio, transfiriendo capacidad a su equipo en cada ciclo.",
     ejemplo:
       "Tras implementar su fuerza laboral digital, una empresa de consumo mantiene un ciclo mensual de revisión donde se miden los agentes contra sus métricas, se ajustan los que se desviaron y se priorizan las siguientes automatizaciones.",
-    sectoresRelevantes: ["Consumo", "Manufactura", "Alimentos", "Salud", "Legal"],
+    sectoresRelevantes: ["Comercial", "Alimentos", "Salud", "Legal", "Agrícola"],
   },
 ]
 
 // Roles de la Fuerza Laboral Digital: ejemplos de casos de uso, no productos sueltos con precio.
-// Se muestran como galería para ilustrar qué puede cumplir la nómina digital dentro de un proyecto.
+// Se muestran como galería para ilustrar qué puede cumplir un agente dentro de un proyecto.
 export const roles: Role[] = [
   {
     id: "cotizaciones-propuestas",

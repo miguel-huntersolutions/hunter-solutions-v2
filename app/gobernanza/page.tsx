@@ -85,8 +85,8 @@ export default function GobernanzaPage() {
           <h2 className="text-h2 font-bold text-navy">Anatomía de un colaborador digital</h2>
           <p className="text-body leading-relaxed text-ink">
             Un agente se gestiona como un miembro del equipo, desde su rol hasta su crecimiento. Una
-            nómina digital se gobierna como una de personas: con roles claros, supervisión y
-            crecimiento.
+            fuerza laboral digital se gobierna como un equipo de personas: con roles claros,
+            supervisión y trazabilidad.
           </p>
           <ol className="flex flex-col gap-2">
             {[
