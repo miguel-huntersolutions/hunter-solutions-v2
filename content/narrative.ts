@@ -51,7 +51,7 @@ export const problems: Problem[] = [
     descripcion:
       "Su equipo de tecnología y su junta preguntan lo mismo: dónde quedan los datos, quién responde si la IA se equivoca y qué pasa si el proveedor desaparece.",
     respuestaHst:
-      "Publicamos nuestra gobernanza completa: guardrails explícitos, trazabilidad de decisiones, despliegue en su perímetro si lo prefiere, y propiedad total del código y los datos por parte del cliente.",
+      "Publicamos nuestra gobernanza completa: guardrails explícitos, trazabilidad de decisiones, despliegue en su perímetro si lo prefiere, y propiedad del código y los datos por parte del cliente.",
     servicioRecomendadoId: "gobernanza-guardrails",
   },
 ]
@@ -73,7 +73,7 @@ export const principles: Principle[] = [
       "El código, la configuración y los datos son del cliente. Sin plataformas cerradas ni mensualidades obligatorias.",
   },
   {
-    titulo: "Supervisión humana siempre",
+    titulo: "Supervisión humana en cada agente",
     descripcion:
       "Cada agente opera con límites explícitos y una persona responsable puede ver, corregir y detener lo que hace.",
   },

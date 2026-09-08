@@ -4,8 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "tsx scripts/validate-content.ts",
+    "prebuild": "tsx scripts/validate-content.ts && tsx scripts/check-copy.ts",
     "validate:content": "tsx scripts/validate-content.ts",
+    "check:copy": "tsx scripts/check-copy.ts",
     "newsletter:import": "tsx scripts/import-newsletter.ts",
     "build": "next build",
     "start": "next start",

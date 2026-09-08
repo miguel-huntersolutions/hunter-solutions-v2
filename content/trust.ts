@@ -107,7 +107,7 @@ export const cases: CaseStudy[] = [
     queConstruimos:
       "Un sistema que procesa automáticamente las hojas de vida recibidas: extrae la información relevante, la estructura contra los criterios del perfil y la entrega integrada a los sistemas de recursos humanos.",
     comoFunciona:
-      "Cada hoja de vida se lee sin importar el formato, se extraen datos y experiencia contra criterios objetivos definidos con el equipo de talento, y el resultado queda estructurado en la plataforma de RR. HH. La decisión de entrevistar es siempre de una persona.",
+      "Cada hoja de vida se lee sin importar el formato, se extraen datos y experiencia contra criterios objetivos definidos con el equipo de talento, y el resultado queda estructurado en la plataforma de RR. HH. La decisión de entrevistar es de una persona.",
     resultado: {
       texto:
         "El equipo pasó de dedicar la mayor parte del proceso a leer documentos, a dedicarlo a entrevistar candidatos filtrados con criterios trazables.",

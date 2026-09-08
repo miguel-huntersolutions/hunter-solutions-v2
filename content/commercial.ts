@@ -182,7 +182,7 @@ export const services: Service[] = [
     queSolucionamos:
       "Procesos de selección donde el equipo de talento dedica la mayor parte del tiempo a leer hojas de vida en lugar de entrevistar a los candidatos correctos.",
     comoLoHacemos:
-      "Definimos con su equipo los criterios objetivos del perfil, automatizamos la extracción y el filtrado inicial con esos criterios trazables, y dejamos la decisión final siempre en manos humanas.",
+      "Definimos con su equipo los criterios objetivos del perfil, automatizamos la extracción y el filtrado inicial con esos criterios trazables, y dejamos la decisión final en manos humanas.",
     ejemplo:
       "Una operación que recibe cientos de hojas de vida al mes pasa de dos semanas a dos días entre la publicación de la vacante y la lista corta de candidatos entrevistables.",
     sectoresRelevantes: ["Consumo", "Manufactura", "Salud"],
@@ -197,7 +197,7 @@ export const services: Service[] = [
     queSolucionamos:
       "Riesgo jurídico y horas facturables perdidas en revisar manualmente contratos que repiten estructuras conocidas.",
     comoLoHacemos:
-      "Indexamos su corpus contractual, entrenamos la revisión sobre sus políticas de riesgo y generamos borradores desde sus propias plantillas, siempre con validación del abogado responsable.",
+      "Indexamos su corpus contractual, entrenamos la revisión sobre sus políticas de riesgo y generamos borradores desde sus propias plantillas, con validación del abogado responsable.",
     ejemplo:
       "Una firma legal consulta y compara cláusulas de todo su corpus documental en segundos y genera primeros borradores que sus abogados ajustan, en lugar de partir de cero.",
     sectoresRelevantes: ["Legal"],
@@ -259,7 +259,7 @@ export const services: Service[] = [
     queSolucionamos:
       "El bloqueo regulatorio o de política interna: la IA aporta valor, pero los datos no pueden procesarse fuera del perímetro de la organización.",
     comoLoHacemos:
-      "Desplegamos la arquitectura en su nube privada o sus servidores, con modelos que corren dentro del perímetro cuando se requiere, y su equipo de TI con control total del entorno.",
+      "Desplegamos la arquitectura en su nube privada o sus servidores, con modelos que corren dentro del perímetro cuando se requiere, y su equipo de TI con control del entorno.",
     ejemplo:
       "Una organización de salud opera su Cerebro Corporativo y sus agentes de atención dentro de su propia infraestructura: ninguna historia clínica sale de su perímetro.",
     sectoresRelevantes: ["Salud", "Legal", "Manufactura"],

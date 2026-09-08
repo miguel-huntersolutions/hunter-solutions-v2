@@ -40,7 +40,20 @@ const PROHIBIDAS = [
   "llave en mano",
   "líder del mercado",
   "ia native",
+  "nómina digital",
+  "nomina digital",
+  "bajo costo",
+  "compañía joven",
+  "arquitectos de soluciones",
+  "100%",
 ]
+
+// Absolutos: se vetan como promesa, no como palabra. "Supervisión humana siempre"
+// es una promesa absoluta; "No siempre necesita lo más sofisticado" y "Autonomía
+// total no es el objetivo" son justo lo contrario, así que una negación cercana
+// desactiva la regla.
+const ABSOLUTOS = /\b(siempre|total)\b/gi
+const NEGACION_CERCA = /\bno\b/i
 
 function scanProhibited(value: unknown, path: string) {
   if (typeof value === "string") {
@@ -49,6 +62,19 @@ function scanProhibited(value: unknown, path: string) {
       // "no como cifra garantizada" es el encuadre literal obligatorio de la promesa
       if (p === "garantizado" && lower.includes("cifra garantizada")) continue
       if (lower.includes(p)) fail(`Vocabulario prohibido "${p}" en ${path}`)
+    }
+
+    ABSOLUTOS.lastIndex = 0
+    let m: RegExpExecArray | null
+    while ((m = ABSOLUTOS.exec(value)) !== null) {
+      const alrededor = value.slice(Math.max(0, m.index - 14), m.index + m[0].length + 14)
+      if (NEGACION_CERCA.test(alrededor)) continue
+      fail(`Promesa absoluta "${m[0]}" en ${path}: ${value.slice(Math.max(0, m.index - 40), m.index + 40)}`)
+    }
+
+    // El guion largo no se usa en copy; las referencias internas de `fuente` sí lo llevan.
+    if (value.includes("\u2014") && !path.endsWith(".fuente")) {
+      fail(`Guion largo en ${path}. Use punto, coma o dos puntos.`)
     }
   } else if (Array.isArray(value)) {
     value.forEach((v, i) => scanProhibited(v, `${path}[${i}]`))
@@ -155,7 +181,14 @@ if (!promise.retorno.includes("no como cifra garantizada"))
   fail('promise.retorno debe conservar el encuadre literal "no como cifra garantizada"')
 
 // ── T-CON-06 · vocabulario prohibido (excepción: promise.capacidad) ──
-scanProhibited({ brand, claims, sectors, problems, principles, stages, levels, services, differentiators, faqs, cases, pruebaPropia, lineaConfianza }, "content")
+scanProhibited(
+  {
+    brand, claims, sectors, positioning, problems, principles, stages, levels, services,
+    differentiators, faqs, cases, pruebaPropia, lineaConfianza, governance, partners,
+    teamExperience, training, sectorPages, resources,
+  },
+  "content",
+)
 scanProhibited({ retorno: promise.retorno, riesgo: promise.riesgo }, "content.promise")
 
 // ── T-CON-13 · bloque de prueba de la home ──

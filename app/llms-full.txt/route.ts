@@ -16,7 +16,7 @@ export const dynamic = "force-static"
 /** Versión extendida de llms.txt: incluye el texto completo de cada servicio y caso. */
 export function GET() {
   const lines: string[] = [
-    `# ${brand.shortName} — versión extendida`,
+    `# ${brand.shortName}: versión extendida`,
     "",
     `> ${positioning.h1} ${positioning.apoyo}`,
     "",
