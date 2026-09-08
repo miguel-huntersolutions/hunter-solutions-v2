@@ -13,6 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/recursos",
     "/newsletter",
     "/servicios",
+    "/nosotros",
     "/casos",
     "/gobernanza",
     "/formacion",

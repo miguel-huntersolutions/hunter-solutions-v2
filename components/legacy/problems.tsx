@@ -10,7 +10,7 @@ export function Problems() {
     <Section
       id="problemas"
       eyebrow="Los tres frenos"
-      title="Lo que detiene a las empresas frente a la IA"
+      title="Por dónde se atasca"
       intro="Tres situaciones se repiten en cada conversación. Para cada una, una respuesta concreta."
       align="center"
       tone="white"

@@ -1,6 +1,9 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { formatLevelRange, levels, services } from "@/content"
+import { Problems } from "@/components/legacy/problems"
+import { RolesGallery } from "@/components/legacy/roles-gallery"
+import { InvestmentChart } from "@/components/legacy/investment-chart"
 import { Sectors } from "@/components/home/sectors"
 import { EngagementModels } from "@/components/home/engagement-models"
 import { ToolsLazy } from "@/components/home/tools-lazy"
@@ -29,12 +32,27 @@ export default function ServiciosPage() {
             colombianos, sin IVA. La cifra exacta se define en la propuesta según el alcance.
           </p>
         </header>
+      </div>
+
+      {/* Los tres frenos: por qué una empresa no arranca */}
+      <Problems />
+
+      <div className="mx-auto flex max-w-[1200px] flex-col gap-8 px-2 py-8 md:px-3 md:py-10">
+        {/* Ancla obligatoria: la home enlaza a /servicios#niveles */}
+        <div id="niveles" className="scroll-mt-24 flex flex-col gap-4">
+          <InvestmentChart />
+        </div>
 
         {levels.map((level) => {
           const items = services.filter((s) => s.nivel === level.id)
           return (
             <section key={level.id} className="flex flex-col gap-3">
               <header className="flex flex-col gap-1">
+                {level.id === 2 && (
+                  <span className="w-fit bg-teal px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wide text-white">
+                    Más elegido
+                  </span>
+                )}
                 <h2 className="text-h2 font-bold text-navy">{level.nombre}</h2>
                 <p className="text-body font-semibold text-teal">
                   {formatLevelRange(level.id)} <span className="font-normal text-slate">(sin IVA)</span>
@@ -62,6 +80,12 @@ export default function ServiciosPage() {
           )
         })}
 
+      </div>
+
+      {/* Ejemplos de lo que un agente opera, dentro del bloque de niveles */}
+      <RolesGallery />
+
+      <div className="mx-auto flex max-w-[1200px] flex-col gap-8 px-2 pb-8 md:px-3 md:pb-10">
         <section className="flex flex-col gap-3 border border-line bg-navy p-3 text-white md:flex-row md:items-center md:justify-between">
           <p className="max-w-[60ch] text-body leading-relaxed text-line">
             ¿No sabe por dónde empezar? Cuéntele su reto al Agente de Diagnóstico: le dice qué

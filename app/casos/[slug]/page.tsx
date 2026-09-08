@@ -66,7 +66,7 @@ export default async function CasePage({
           <Link href="/" className="underline">
             Inicio
           </Link>{" "}
-          / <Link href="/#casos" className="underline">
+          / <Link href="/casos" className="underline">
             Casos
           </Link>{" "}
           / <span className="text-navy">{cs.titulo}</span>
