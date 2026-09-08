@@ -1,8 +1,8 @@
 "use client"
 
 import dynamic from "next/dynamic"
-import { LazyMount } from "./lazy-mount"
-import { ToolPlaceholder } from "./tool-placeholder"
+import { LazyMount } from "@/components/home/lazy-mount"
+import { ToolPlaceholder } from "@/components/home/tool-placeholder"
 
 // Encabezado de la sección (idéntico al de <Recommender>) para conservarlo en el
 // HTML inicial y evitar salto de layout al montar el widget.

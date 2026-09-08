@@ -2,7 +2,7 @@ import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import { formatLevelRange, levels } from "@/content"
 import { Section } from "@/components/ui/section"
-import { InvestmentChart } from "@/components/home/investment-chart"
+import { InvestmentChart } from "@/components/legacy/investment-chart"
 
 const LEVEL_BLURB: Record<number, string> = {
   1: "Primeros pasos con IA aplicada: una capacidad puntual y acotada para validar valor rápido.",
