@@ -2,16 +2,12 @@
 
 import { useState } from "react"
 import { MessageCircle } from "lucide-react"
-import { brand } from "@/content/brand"
+import { brand, whatsappUrl } from "@/content/brand"
 import { Section } from "@/components/ui/section"
 
 const SECTORS = ["Legal", "Manufactura", "Salud", "Alimentos", "Consumo", "Otro"] as const
 
-// WhatsApp de contacto con un mensaje inicial prellenado. El número vive en el
-// content model (brand.whatsapp); wa.me solo acepta dígitos, sin "+" ni espacios.
-const WHATSAPP_URL =
-  `https://wa.me/${brand.whatsapp.replace(/\D/g, "")}?text=` +
-  encodeURIComponent("Hola, quiero agendar una sesión de diagnóstico de 30 minutos.")
+const WHATSAPP_URL = whatsappUrl("Hola, quiero agendar una sesión de diagnóstico de 30 minutos.")
 
 export function Contact() {
   const [status, setStatus] = useState<"idle" | "sending" | "ok" | "error">("idle")

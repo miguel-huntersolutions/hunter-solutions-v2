@@ -8,13 +8,16 @@ import {
   differentiators,
   faqs,
   principles,
+  positioning,
   problems,
   promise,
   sectors,
   stages,
 } from "../content/narrative"
 import { levels, services } from "../content/commercial"
-import { cases } from "../content/trust"
+import { cases, governance, partners, teamExperience, training } from "../content/trust"
+import { sectorPages } from "../content/sectores"
+import { resources } from "../content/resources"
 
 const errors: string[] = []
 const fail = (msg: string) => errors.push(msg)
@@ -146,6 +149,43 @@ if (!promise.retorno.includes("no como cifra garantizada"))
 // ── T-CON-06 · vocabulario prohibido (excepción: promise.capacidad) ──
 scanProhibited({ brand, claims, sectors, problems, principles, stages, levels, services, differentiators, faqs, cases }, "content")
 scanProhibited({ retorno: promise.retorno, riesgo: promise.riesgo }, "content.promise")
+
+// ── T-CON-11 · marcadores de relleno fuera de producción ──
+// Un "[COMPLETAR ...]" o "[PENDIENTE ...]" en contenido visible es un texto que
+// el cliente termina leyendo. Se permite solo en resultado.metricas[].valor de
+// los casos: ahí es un recordatorio interno y la ficha ya no lo pinta.
+const MARCADORES = ["[completar", "[pendiente"]
+
+function scanPlaceholders(value: unknown, path: string) {
+  if (typeof value === "string") {
+    const lower = value.toLowerCase()
+    for (const m of MARCADORES) {
+      if (lower.includes(m)) fail(`Marcador de relleno "${m}...]" en ${path}`)
+    }
+  } else if (Array.isArray(value)) {
+    value.forEach((v, i) => scanPlaceholders(v, `${path}[${i}]`))
+  } else if (value && typeof value === "object") {
+    for (const [k, v] of Object.entries(value)) scanPlaceholders(v, `${path}.${k}`)
+  }
+}
+
+scanPlaceholders(
+  { brand, claims, sectors, positioning, problems, principles, stages, levels, services,
+    differentiators, faqs, promise, governance, partners, teamExperience, training, sectorPages,
+    resources },
+  "content",
+)
+// Los casos se escanean sin resultado.metricas, que es la excepción documentada.
+for (const c of cases) {
+  const { resultado, ...resto } = c
+  scanPlaceholders(resto, `cases.${c.id}`)
+  if (resultado) {
+    // metricas es la excepción documentada: se descarta a propósito.
+    const { metricas: _metricas, ...restoResultado } = resultado
+    void _metricas
+    scanPlaceholders(restoResultado, `cases.${c.id}.resultado`)
+  }
+}
 
 // ── Resultado ──
 if (errors.length > 0) {
