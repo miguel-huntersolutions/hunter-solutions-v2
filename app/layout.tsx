@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   description:
     'Capacidades digitales que se conectan a sus sistemas y ejecutan el trabajo que hoy nadie hace. Consultora AI-native en Colombia.',
   generator: 'v0.app',
-  alternates: { canonical: '/' },
+  alternates: { canonical: '/', types: { 'text/markdown': '/llm' } },
   icons: {
     icon: [{ url: '/brand/favicon.svg', type: 'image/svg+xml' }],
   },

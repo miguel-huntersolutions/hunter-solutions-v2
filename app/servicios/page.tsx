@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { formatLevelRange, levels, services } from "@/content"
+import { brand, formatLevelRange, levels, services } from "@/content"
+import { absoluteUrl, jsonLdScript } from "@/lib/seo"
 import { Problems } from "@/components/legacy/problems"
 import { RolesGallery } from "@/components/legacy/roles-gallery"
 import { InvestmentChart } from "@/components/legacy/investment-chart"
@@ -19,8 +20,37 @@ export const metadata: Metadata = {
 }
 
 export default function ServiciosPage() {
+  // Un Service por nivel, con su rango como priceSpecification. El provider
+  // referencia por @id la Organization que ya declara components/seo/org-jsonld.
+  const serviceJsonLd = levels.map((l) => ({
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: l.nombre,
+    description: l.nota,
+    url: absoluteUrl("/servicios#niveles"),
+    areaServed: { "@type": "Country", name: "Colombia" },
+    provider: { "@id": `${brand.domain}/#organization` },
+    offers: {
+      "@type": "Offer",
+      priceSpecification: {
+        "@type": "PriceSpecification",
+        priceCurrency: "COP",
+        valueAddedTaxIncluded: false,
+        minPrice: l.rangoMin,
+        ...(l.id === 3 ? {} : { maxPrice: l.rangoMax }),
+      },
+    },
+  }))
+
   return (
     <div className="bg-bg">
+      {serviceJsonLd.map((ld) => (
+        <script
+          key={ld.name}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: jsonLdScript(ld) }}
+        />
+      ))}
       <div className="mx-auto flex max-w-[1200px] flex-col gap-8 px-2 py-8 md:px-3 md:py-10">
         <header className="flex max-w-[70ch] flex-col gap-2">
           <p className="text-caption font-semibold uppercase tracking-wide text-teal">Catálogo</p>
