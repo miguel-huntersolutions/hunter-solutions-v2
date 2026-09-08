@@ -67,7 +67,7 @@ export function Catalog() {
           <ArrowRight size={16} aria-hidden />
         </Link>
         <Link
-          href="/#recomendador"
+          href="/#diagnostico"
           className="rounded-lg border border-navy px-4 py-2 text-caption font-semibold uppercase tracking-wide text-navy transition-colors hover:bg-navy hover:text-white"
         >
           ¿No sabe qué nivel necesita? Use el recomendador

@@ -64,14 +64,14 @@ export default function ServiciosPage() {
 
         <section className="flex flex-col gap-3 border border-line bg-navy p-3 text-white md:flex-row md:items-center md:justify-between">
           <p className="max-w-[60ch] text-body leading-relaxed text-line">
-            ¿No sabe por dónde empezar? El Recomendador de Nivel le sugiere el punto de entrada en
-            cuatro preguntas, sin pedirle datos.
+            ¿No sabe por dónde empezar? Cuéntele su reto al Agente de Diagnóstico: le dice qué
+            capacidad aplica y en qué nivel de inversión queda, sin pedirle datos.
           </p>
           <Link
-            href="/#recomendador"
+            href="/#diagnostico"
             className="shrink-0 bg-teal px-3 py-1 text-caption font-semibold uppercase tracking-wide text-white"
           >
-            Usar el Recomendador
+            Probar el Agente de Diagnóstico
           </Link>
         </section>
       </div>

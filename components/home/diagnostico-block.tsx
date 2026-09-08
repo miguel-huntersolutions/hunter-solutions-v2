@@ -1,11 +1,14 @@
+import { AgentPanel } from "@/components/agents/agent-panel"
 import { Section } from "@/components/ui/section"
 
 /**
  * Segundo bloque de la home: el Agente de Diagnóstico como experiencia central.
  *
- * Cascarón del Prompt 1. El contenido definitivo (copy, AgentPanel en tono claro,
- * sugerencias y cierre fijo del agente) llega en el Prompt 3, que además ajusta el
- * rol en app/api/agents/[agent]/route.ts y los guardrails.
+ * Estuvo dentro del hero, en una columna estrecha y sobre una imagen con blur.
+ * Aquí tiene ancho propio y fondo limpio, que es lo que necesita una conversación.
+ * También absorbe la función del Recomendador de Nivel: el rol del agente
+ * (app/api/agents/[agent]/route.ts) obliga a cerrar cada respuesta con la
+ * capacidad, el nivel y su rango publicado.
  */
 export function DiagnosticoBlock() {
   return (
@@ -16,8 +19,18 @@ export function DiagnosticoBlock() {
       intro="Cuéntele su reto operativo. Le dice por dónde empezar, qué capacidad aplica y en qué nivel de inversión queda. Sin registrarse."
       tone="white"
     >
-      <div className="border border-line bg-bg p-6 text-body text-slate">
-        [PENDIENTE COPY] El panel del Agente de Diagnóstico se monta aquí en el Prompt 3.
+      <div className="mx-auto w-full max-w-[860px]">
+        <AgentPanel
+          endpoint="/api/agents/diagnostico"
+          title="Agente de Diagnóstico"
+          placeholder="Ejemplo: cada mes se me quedan facturas sin cobrar y nadie las persigue."
+          suggestions={[
+            "Se me pierden facturas por cobrar y nadie hace seguimiento.",
+            "Recibimos cientos de hojas de vida y no alcanzamos a leerlas.",
+            "Buscar una cláusula en nuestros contratos toma horas.",
+          ]}
+          tone="light"
+        />
       </div>
     </Section>
   )

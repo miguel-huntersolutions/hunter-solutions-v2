@@ -10,6 +10,7 @@ export type GuardrailViolation =
   | { tipo: "importe_no_publicado"; detalle: string }
   | { tipo: "garantia_de_resultado"; detalle: string }
   | { tipo: "solicitud_datos_sensibles"; detalle: string }
+  | { tipo: "expresion_retirada"; detalle: string }
 
 /** Importes en millones COP permitidos (bordes de los rangos publicados) */
 const ALLOWED_MILLIONS = new Set<number>()
@@ -26,6 +27,10 @@ const AMOUNT_PATTERNS = [
 
 const GUARANTEE_PATTERN =
   /garantizamos|garantizado|garantía de resultado|retorno garantizado|roi garantizado/i
+
+// "Nómina digital" salió del vocabulario de marca: la oferta se nombra
+// "Fuerza Laboral Digital" o "capacidades digitales".
+const EXPRESION_RETIRADA_PATTERN = /n[oó]mina digital/i
 
 const SENSITIVE_REQUEST_PATTERN =
   /(?:dame|envíe|envía|comparta|comparte|necesito|indíqueme|escriba)[^.]{0,60}(?:cédula|tarjeta de crédito|número de tarjeta|contraseña|credenciales)/i
@@ -65,6 +70,13 @@ export function validateAgentOutput(text: string): GuardrailViolation[] {
     })
   }
 
+  if (EXPRESION_RETIRADA_PATTERN.test(text)) {
+    violations.push({
+      tipo: "expresion_retirada",
+      detalle: 'La respuesta usa "nómina digital", una expresión retirada del vocabulario de marca.',
+    })
+  }
+
   if (SENSITIVE_REQUEST_PATTERN.test(text)) {
     violations.push({
       tipo: "solicitud_datos_sensibles",
@@ -83,6 +95,7 @@ export function correctiveInstruction(violations: GuardrailViolation[]): string 
       levels.map((l) => `${l.nombre}: ${formatLevelRange(l.id)}`).join("; ") +
       " (COP, sin IVA).",
     "No prometas garantías de resultado ni de retorno. No pidas datos sensibles.",
+    'No uses la expresión "nómina digital": la oferta se llama Fuerza Laboral Digital o capacidades digitales.',
   ].join(" ")
 }
 
